@@ -1,0 +1,2 @@
+// Este componente contiene la seleccion del canal output y el control de abrir, cerrar, por tiempo y por llamada.
+//los controles anteriormente explicados solo controlaran el dispositivo seleccionado con su canal seleccionado.

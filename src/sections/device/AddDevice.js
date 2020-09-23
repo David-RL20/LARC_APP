@@ -1,0 +1,4 @@
+/*Este componente solo se visualiza si elusuario da tap al boton de agregar dispositivo
+Es una especie de over layout que recibe un formulario que debe ser completado todos sus campos
+ademas despues de confirmarlo este se debe agregar ala memoria
+*/
