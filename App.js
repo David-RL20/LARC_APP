@@ -7,10 +7,19 @@
  */
 
 import React from 'react';
-import Layout from './src/utils/padding_layout';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import State from './State';
+import reducer from './Reducer';
+import Icon from './src/utils/Icon';
 
+const store = createStore(reducer, State);
 const App: () => React$Node = () => {
-  return <Layout />;
+  return (
+    <Provider store={store}>
+      <Icon name="delete" />
+    </Provider>
+  );
 };
 
 export default App;
