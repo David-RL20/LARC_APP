@@ -2,24 +2,22 @@ const state = {
   currentTheme: 'light',
   themes: {
     dark: {
-      iconColor: '#dddddd',
       titleNormal: '#d4d4d4',
       letter: '#fcfcfc',
-      primary: 'rgb(75,75,75,.83)',
+      primary: 'rgba(75,75,75,.83)',
       background: '#2c2e2e',
       borderColor: '#cccccc',
       letterAlternative: '#bc4343',
       editIcon: '#348fb8',
     },
     light: {
-      iconColor: '#6e6767',
-      titleNormal: '#0f0707',
+      titleNormal: '#41444B',
       letter: '#fcfcfc',
-      primary: 'rgb(145,4,4,.83)',
+      primary: '#FDDB3A',
       background: '#F6F4E6',
-      borderColor: '#cccccc',
-      letterAlternative: 'rbg(139,4,4,.83)',
-      editIcon: 'rgb(8,0,251,.71)',
+      borderColor: '#41444B',
+      letterAlternative: '#52575D',
+      editIcon: '#0800FB  ',
     },
   },
   device: {
@@ -83,14 +81,4 @@ const state = {
   },
 };
 
-// const password = device.password;
-// const currentChannel = device.currentChannel;
-// array.forEach((ele) => {
-//     if (ele.message) {
-//         sendMessage(`#PWD${password}#OUT${currentChannel}=${ele.value}`);
-// return
-//     } else {
-//         ele.value
-//     }
-// });
 export default state;

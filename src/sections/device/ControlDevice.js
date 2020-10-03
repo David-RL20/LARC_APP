@@ -6,36 +6,109 @@ import {connect} from 'react-redux';
 import Icon from '../../utils/Icon';
 
 function Controll(props) {
-  console.log(props);
   return (
     <View style={[style.container, {backgroundColor: props.background}]}>
       {/* Channel control */}
       <View style={style.container_control}>
-        <Text style={style.labelChannel}>Output:</Text>
+        <Text style={[style.labelChannel, {color: props.titleNormal}]}>
+          Output:
+        </Text>
 
         <View style={style.container_control_buttons}>
-          <TouchableOpacity style={style.btnChannel}>
-            <Text style={style.control_button_label}>1</Text>
+          <TouchableOpacity
+            style={[
+              style.btnChannel,
+              {
+                backgroundColor: props.background,
+                color: props.titleNormal,
+                borderColor: props.borderColor,
+              },
+            ]}>
+            <Text
+              style={[
+                style.control_button_label,
+                {
+                  backgroundColor: props.background,
+                  color: props.titleNormal,
+                },
+              ]}>
+              1
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={style.btnChannel}>
-            <Text style={style.control_button_label}>2</Text>
+          <TouchableOpacity
+            style={[
+              style.btnChannel,
+              {
+                backgroundColor: props.background,
+                color: props.titleNormal,
+                borderColor: props.borderColor,
+              },
+            ]}>
+            <Text
+              style={[
+                style.control_button_label,
+                {
+                  backgroundColor: props.background,
+                  color: props.titleNormal,
+                },
+              ]}>
+              2
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={style.btnChannel}>
-            <Text style={style.control_button_label}>3</Text>
+          <TouchableOpacity
+            style={[
+              style.btnChannel,
+              {
+                backgroundColor: props.background,
+                color: props.titleNormal,
+                borderColor: props.borderColor,
+              },
+            ]}>
+            <Text
+              style={[
+                style.control_button_label,
+                {
+                  backgroundColor: props.background,
+                  color: props.titleNormal,
+                },
+              ]}>
+              3
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={style.btnChannel}>
-            <Text style={style.control_button_label}>4</Text>
+          <TouchableOpacity
+            style={[
+              style.btnChannel,
+              {
+                backgroundColor: props.background,
+                color: props.titleNormal,
+                borderColor: props.borderColor,
+              },
+            ]}>
+            <Text
+              style={[
+                style.control_button_label,
+                {
+                  backgroundColor: props.background,
+                  color: props.titleNormal,
+                },
+              ]}>
+              4
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
       {/* Device control */}
       <View style={style.deviceControl}>
         <View>
-          <Text style={style.nameDevice}> Device </Text>
-          <Text style={style.numberDevice}> 66645623515 </Text>
+          <Text style={[style.nameDevice, {color: props.titleNormal}]}>
+            Device
+          </Text>
+          <Text style={[style.numberDevice, {color: props.letterAlternative}]}>
+            66645623515
+          </Text>
         </View>
         <View style={style.container_icons}>
           <TouchableOpacity style={style.container_action_button}>
@@ -68,11 +141,11 @@ const style = StyleSheet.create({
   },
   control_button_label: {
     fontSize: 14,
-    fontFamily: 'roboto',
+    fontFamily: 'Roboto-Regular',
   },
   labelChannel: {
     fontSize: 18,
-    color: 'black',
+    fontFamily: 'Roboto-Bold',
   },
   btnChannel: {
     justifyContent: 'center',
@@ -87,10 +160,11 @@ const style = StyleSheet.create({
   },
   nameDevice: {
     fontSize: 30,
-    fontFamily: 'roboto',
+    fontFamily: 'Roboto-Bold',
   },
   numberDevice: {
     fontSize: 23,
+    fontFamily: 'Roboto-Regular',
   },
   container_icons: {
     flex: 1,
