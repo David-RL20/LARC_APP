@@ -11,13 +11,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import Icon from './src/utils/Icon';
+import Controller from './src/sections/device/ControlDevice';
 
 const store = createStore(reducer, State);
+
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <Icon name="delete" />
+      <Controller />
     </Provider>
   );
 };

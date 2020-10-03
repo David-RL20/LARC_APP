@@ -16,7 +16,7 @@ const state = {
       titleNormal: '#0f0707',
       letter: '#fcfcfc',
       primary: 'rgb(145,4,4,.83)',
-      background: '#ffffff',
+      background: '#F6F4E6',
       borderColor: '#cccccc',
       letterAlternative: 'rbg(139,4,4,.83)',
       editIcon: 'rgb(8,0,251,.71)',
