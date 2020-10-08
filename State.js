@@ -1,5 +1,6 @@
 const state = {
   currentTheme: 'light',
+  currentLanguage: 'esp',
   themes: {
     dark: {
       titleNormal: '#d4d4d4',
@@ -78,6 +79,10 @@ const state = {
         value: 4,
       },
     ],
+  },
+  loading: {
+    eng: 'Loading...',
+    esp: 'Cargando...',
   },
 };
 

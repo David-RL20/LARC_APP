@@ -11,14 +11,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import Controller from './src/sections/device/ControlDevice';
+import Loader from './src/sections/screens/loading';
 
 const store = createStore(reducer, State);
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <Controller />
+      <Loader />
     </Provider>
   );
 };
