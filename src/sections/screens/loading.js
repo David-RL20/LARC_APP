@@ -7,7 +7,7 @@ const Loading = (props) => {
     <View style={[style.container, {backgroundColor: props.theme.background}]}>
       <Image
         style={style.img}
-        source={require('../../../assets/light_larc.png')}
+        source={require('../../../assets/images/light_larc.png')}
       />
       <View style={style.container2}>
         <ActivityIndicator color={props.theme.titleNormal} size="large" />

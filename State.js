@@ -21,8 +21,7 @@ const state = {
       editIcon: '#0800FB  ',
     },
   },
-  device: {
-    logo: 'default.png',
+  device_default: {
     name: null,
     phoneNumber: null,
     currentChannel: null,
@@ -84,6 +83,124 @@ const state = {
     eng: 'Loading...',
     esp: 'Cargando...',
   },
+  devices: [
+    {
+      name: 'Casa morita',
+      phoneNumber: 6648956326,
+      currentChannel: null,
+      password: '123456',
+      controlls: [
+        {
+          name: {
+            eng: 'Dial to work',
+            esp: 'Llamar al dispositivo',
+          },
+          value: 'Call',
+          message: false,
+        },
+        {
+          name: {
+            eng: 'SMS to on',
+            esp: 'Mensaje para encender',
+          },
+          value: 'ON',
+          message: true,
+        },
+        {
+          name: {
+            eng: 'SMS to off',
+            esp: 'Mensaje para apagar',
+          },
+          value: 'OFF',
+          message: true,
+        },
+        {
+          name: {
+            eng: 'SMS to Jog',
+            esp: 'Mensaje por tiempo',
+          },
+          value: 'JOG',
+          message: true,
+        },
+      ],
+      channels: [
+        {
+          name: 'OUT1',
+          value: 1,
+        },
+        {
+          name: 'OUT2',
+          value: 2,
+        },
+        {
+          name: 'OUT3',
+          value: 3,
+        },
+        {
+          name: 'OUT4',
+          value: 4,
+        },
+      ],
+    },
+    {
+      name: 'Casa Blanca',
+      phoneNumber: 6635894102,
+      currentChannel: null,
+      password: '123456',
+      controlls: [
+        {
+          name: {
+            eng: 'Dial to work',
+            esp: 'Llamar al dispositivo',
+          },
+          value: 'Call',
+          message: false,
+        },
+        {
+          name: {
+            eng: 'SMS to on',
+            esp: 'Mensaje para encender',
+          },
+          value: 'ON',
+          message: true,
+        },
+        {
+          name: {
+            eng: 'SMS to off',
+            esp: 'Mensaje para apagar',
+          },
+          value: 'OFF',
+          message: true,
+        },
+        {
+          name: {
+            eng: 'SMS to Jog',
+            esp: 'Mensaje por tiempo',
+          },
+          value: 'JOG',
+          message: true,
+        },
+      ],
+      channels: [
+        {
+          name: 'OUT1',
+          value: 1,
+        },
+        {
+          name: 'OUT2',
+          value: 2,
+        },
+        {
+          name: 'OUT3',
+          value: 3,
+        },
+        {
+          name: 'OUT4',
+          value: 4,
+        },
+      ],
+    },
+  ],
 };
 
 export default state;
