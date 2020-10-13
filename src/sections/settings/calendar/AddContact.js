@@ -35,9 +35,10 @@ const AddDevice = (props) => {
         <View style={[style.container]}>
           <View style={style.container_form}>
             <Text style={[style.label, {color: props.theme.letter}]}>
-              {props.device_screen.name_label}
+              {props.device_screen.RegisterNumber} :
             </Text>
             <Input
+              keyboardType="numeric"
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder={props.device_screen.name_placeholder_label}
@@ -46,7 +47,7 @@ const AddDevice = (props) => {
           </View>
           <View style={style.container_form}>
             <Text style={[style.label, {color: props.theme.letter}]}>
-              {props.device_screen.cel_label}
+              {props.device_screen.cel_label} :
             </Text>
             <Input
               keyboardType="numeric"
@@ -64,6 +65,7 @@ const AddDevice = (props) => {
                 {backgroundColor: props.theme.letter},
               ]}
               titleStyle={{color: props.theme.letterAlternative}}
+              onPress={toggleOverlay}
             />
             <Button
               title={props.device_screen.add_confirm_label}
@@ -83,7 +85,7 @@ const AddDevice = (props) => {
 const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
-    device_screen: state.screens.device[state.currentLanguage],
+    device_screen: state.screens.settings_calendar[state.currentLanguage],
   };
 };
 

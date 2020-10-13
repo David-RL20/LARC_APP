@@ -1,6 +1,6 @@
 const state = {
   currentTheme: 'light',
-  currentLanguage: 'esp',
+  currentLanguage: 'eng',
   themes: {
     dark: {
       titleNormal: '#d4d4d4',
@@ -201,6 +201,24 @@ const state = {
       ],
     },
   ],
+  contacts: [
+    {
+      number: 1,
+      phoneNumber: 66421345112,
+    },
+    {
+      number: 2,
+      phoneNumber: 66421345112,
+    },
+    {
+      number: 3,
+      phoneNumber: 66421345112,
+    },
+    {
+      number: 4,
+      phoneNumber: 66421345112,
+    },
+  ],
   screens: {
     device: {
       eng: {
@@ -249,6 +267,28 @@ const state = {
           logo: 'settings',
         },
       ],
+    },
+    settings_calendar: {
+      eng: {
+        searchLabel: 'Search',
+        icon_search: 'search',
+        RegisterNumber: 'Register Num',
+        cel_label: 'Cellphone',
+        add_cancel_label: 'Cancel',
+        add_confirm_label: 'Confirm',
+        name_placeholder_label: '#number',
+        add: 'Add Contact',
+      },
+      esp: {
+        searchLabel: 'Buscar',
+        icon_search: 'search',
+        RegisterNumber: 'No.Registro',
+        cel_label: 'Celular',
+        add_cancel_label: 'Cancelar',
+        add_confirm_label: 'Confirmar',
+        name_placeholder_label: '#numero',
+        add: 'Agregar Contacto',
+      },
     },
   },
 };
