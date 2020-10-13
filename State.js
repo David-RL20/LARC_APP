@@ -201,6 +201,56 @@ const state = {
       ],
     },
   ],
+  screens: {
+    device: {
+      eng: {
+        add: 'Add Device',
+        add_cancel_label: 'Cancel',
+        add_confirm_label: 'Confirm',
+        name_label: 'Name :',
+        cel_label: 'Cellphone :',
+        name_placeholder_label: 'Main door',
+      },
+      esp: {
+        add: 'Agregar Dispositivo',
+        add_cancel_label: 'Cancelar',
+        add_confirm_label: 'Confirmar',
+        name_label: 'Nombre :',
+        cel_label: 'Celular :',
+        name_placeholder_label: 'Puerta principal',
+      },
+    },
+    device_settings: {
+      eng: [
+        {
+          title: 'Calendar',
+          logo: 'schedule',
+        },
+      ],
+      esp: [
+        {
+          title: 'Agenda',
+          logo: 'schedule',
+        },
+        {
+          title: 'Historial',
+          logo: 'historial',
+        },
+        {
+          title: 'Ajustes del canal out',
+          logo: 'settings_out',
+        },
+        {
+          title: 'Ajustes del canal in',
+          logo: 'settings_in',
+        },
+        {
+          title: 'Ajustes del sistema',
+          logo: 'settings',
+        },
+      ],
+    },
+  },
 };
 
 export default state;

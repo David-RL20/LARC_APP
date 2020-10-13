@@ -11,14 +11,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import ListDevices from './src/sections/device/ListDevices';
+import Calendar from './src/sections/settings/calendar/SearchContact';
 
 const store = createStore(reducer, State);
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <ListDevices />
+      <Calendar />
     </Provider>
   );
 };
