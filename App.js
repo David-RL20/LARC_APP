@@ -11,14 +11,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import AddContact from './src/sections/settings/calendar/AddContact';
+import System_settings from './src/sections/settings/system_settings/system_settings';
 
 const store = createStore(reducer, State);
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <AddContact />
+      <System_settings />
     </Provider>
   );
 };
