@@ -11,7 +11,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import System_settings from './src/sections/settings/system_settings/system_settings';
+import System_settings from './src/sections/settings/history/history';
 
 const store = createStore(reducer, State);
 
