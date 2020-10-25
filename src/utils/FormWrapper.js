@@ -41,6 +41,7 @@ const style = StyleSheet.create({
   title: {
     fontFamily: 'Roboto_Bold',
     fontWeight: 'bold',
+    fontSize: 15,
   },
 });
 const mapStateToProps = (state) => {

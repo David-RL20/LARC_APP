@@ -7,7 +7,7 @@ const VerticalSeparator = (props) => {
 
 const styles = StyleSheet.create({
   separator: {
-    padding: 15,
+    padding: 7,
   },
 });
 export default VerticalSeparator;
