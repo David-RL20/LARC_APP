@@ -8,9 +8,13 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
+
+import Wrapper from '../../../utils/FormWrapperHorizontal';
+import {connect} from 'react-redux';
 
 class AplicacionPlatzi extends Component {
   constructor() {
@@ -43,13 +47,39 @@ class AplicacionPlatzi extends Component {
     return (
       <>
         <View style={styles.container}>
-          <Text style={{color: 'red', fontSize: 20, marginBottom: 100}}>
-            {this.state.chosenDate}
-          </Text>
+          <Wrapper theme={this.props.theme} title={'Date :'}>
+            <Button
+              title={this.state.chosenDate || 'No seleccionada'}
+              style={[
+                styles.select_date_button,
+                {backgroundColor: this.props.theme.letter},
+              ]}
+              titleStyle={{color: this.props.theme.letterAlternative}}
+              onPress={this.showPicker}
+              type="outline"
+            />
+          </Wrapper>
+          <Wrapper theme={this.props.theme} title={'Hour :'}>
+            <Button
+              title={this.state.chosenDate || 'No seleccionada'}
+              style={[
+                styles.select_date_button,
+                {backgroundColor: this.props.theme.letter},
+              ]}
+              titleStyle={{color: this.props.theme.letterAlternative}}
+              onPress={this.showPicker}
+              type="outline"
+            />
+          </Wrapper>
+          <Button
+            title={'Buscar'}
+            buttonStyle={[
+              styles.searchbutton,
+              {backgroundColor: this.props.theme.primary},
+            ]}
+            titleStyle={{color: this.props.theme.letterAlternative}}
+          />
 
-          <TouchableOpacity style={styles.button} onPress={this.showPicker}>
-            <Text style={styles.text}>Show DatePicker</Text>
-          </TouchableOpacity>
           <DateTimePickerModal
             isVisible={this.state.isVisible}
             onConfirm={this.handlePicker}
@@ -66,23 +96,22 @@ class AplicacionPlatzi extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  button: {
-    width: 250,
-    height: 50,
-    backgroundColor: '#330066',
+  select_date_button: {
+    height: 65,
+    width: '80%',
     borderRadius: 30,
-    justifyContent: 'center',
-    marginTop: 15,
   },
-  text: {
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
+  searchbutton: {
+    marginTop: 30,
+    paddingHorizontal: 15,
   },
 });
-
-export default AplicacionPlatzi;
+const mapStateToProps = (state) => {
+  return {
+    theme: state.themes[state.currentTheme],
+    screen: state.screens.settings_history[state.currentLanguage],
+  };
+};
+export default connect(mapStateToProps)(AplicacionPlatzi);

@@ -370,6 +370,10 @@ const state = {
         call_ring_tone_label: 'Llamada o tono',
       },
     },
+    settings_history: {
+      eng: {},
+      esp: {},
+    },
   },
 };
 
