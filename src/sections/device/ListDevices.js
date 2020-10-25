@@ -6,10 +6,12 @@ import React, {Component} from 'react';
 import {FlatList, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import ListItem from './ListItem';
-import Separator from '../../utils/verticalSeparator';
+import Separator from '../../utils/horizontalPaddingSeparator';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 class ListaDispositivos extends Component {
   renderItem({item}) {
-    return <ListItem item={item} />;
+    return <ListItem navigation={this.props.navigation} item={item} />;
   }
   keyExtractor(item) {
     return item.name;
@@ -29,7 +31,7 @@ class ListaDispositivos extends Component {
           <FlatList
             keyExtractor={this.keyExtractor}
             data={this.props.device_list}
-            renderItem={this.renderItem}
+            renderItem={this.renderItem.bind(this)}
             ItemSeparatorComponent={this.renderSeparator}
           />
         </View>

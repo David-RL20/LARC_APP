@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 
 const Loading = (props) => {
+  // setTimeout(()=>{},2000)
   return (
     <View style={[style.container, {backgroundColor: props.theme.background}]}>
       <Image

@@ -1,18 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+
 import Icon from '../../utils/Icon';
-const ListItem = ({item, theme}) => {
+const ListItem = ({item, theme, navigation}) => {
   const width = 20;
   const height = 24;
   return (
     <View style={style.container}>
-      <View style={style.picture_name_container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('DeviceControl')}
+        style={style.picture_name_container}>
         <Icon width="37" height="38" name="profile" />
         <View style={style.name_phone_container}>
           <Text style={style.name_device}>{item.name}</Text>
           <Text style={style.phone_device}>{item.phoneNumber}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View style={style.icons_container}>
         <TouchableOpacity style={style.icon}>

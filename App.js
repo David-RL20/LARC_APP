@@ -11,14 +11,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import State from './State';
 import reducer from './Reducer';
-import System_settings from './src/sections/settings/history/history';
+import AppStack from './src/StackApp';
 
 const store = createStore(reducer, State);
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <System_settings />
+      <AppStack />
     </Provider>
   );
 };

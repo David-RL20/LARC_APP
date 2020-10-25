@@ -63,6 +63,7 @@ const AddDevice = (props) => {
                 style.button_cancel,
                 {backgroundColor: props.theme.letter},
               ]}
+              onPress={toggleOverlay}
               titleStyle={{color: props.theme.letterAlternative}}
             />
             <Button
