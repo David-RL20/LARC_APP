@@ -1,6 +1,6 @@
 const state = {
   currentTheme: 'light',
-  currentLanguage: 'esp',
+  currentLanguage: 'eng',
   themes: {
     dark: {
       titleNormal: '#d4d4d4',
@@ -243,28 +243,54 @@ const state = {
         {
           title: 'Calendar',
           logo: 'schedule',
+          route: 'settings_calendar',
+        },
+        {
+          title: 'History',
+          logo: 'historial',
+          route: 'settings_history',
+        },
+        {
+          title: 'Channel out settings',
+          logo: 'settings_out',
+          route: 'settings_out',
+        },
+        {
+          title: 'Channel in settings',
+          logo: 'settings_in',
+          route: 'settings_in',
+        },
+        {
+          title: 'System settings',
+          logo: 'settings',
+          route: 'settings_system',
         },
       ],
       esp: [
         {
           title: 'Agenda',
           logo: 'schedule',
+          route: 'settings_calendar',
         },
         {
           title: 'Historial',
           logo: 'historial',
+          route: 'settings_history',
         },
         {
           title: 'Ajustes del canal out',
           logo: 'settings_out',
+          route: 'settings_out',
         },
         {
           title: 'Ajustes del canal in',
           logo: 'settings_in',
+          route: 'settings_in',
         },
         {
           title: 'Ajustes del sistema',
           logo: 'settings',
+          route: 'settings_system',
         },
       ],
     },

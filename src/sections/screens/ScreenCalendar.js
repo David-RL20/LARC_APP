@@ -3,10 +3,12 @@ import {View, StyleSheet} from 'react-native';
 import Search from '../settings/calendar/SearchContact';
 import ListContact from '../settings/calendar/ListContacts';
 import AddContact from '../settings/calendar/AddContact';
+import {connect} from 'react-redux';
 const ScreenCalendar = (props) => {
   return (
     <>
-      <View style={style.container}>
+      <View
+        style={[style.container, {backgroundColor: props.theme.background}]}>
         <Search />
         <ListContact />
       </View>
@@ -20,4 +22,9 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
   },
 });
-export default ScreenCalendar;
+const mapStateToProps = (state) => {
+  return {
+    theme: state.themes[state.currentTheme],
+  };
+};
+export default connect(mapStateToProps)(ScreenCalendar);

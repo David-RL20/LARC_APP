@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 
 const Loading = (props) => {
-  // setTimeout(()=>{},2000)
+  useEffect(() => {
+    // Run! Like go get some data from an API.
+    setTimeout(() => {
+      const {navigation} = props;
+      navigation.navigate('DevicesScreen');
+    }, 1500);
+  });
   return (
     <View style={[style.container, {backgroundColor: props.theme.background}]}>
       <Image
