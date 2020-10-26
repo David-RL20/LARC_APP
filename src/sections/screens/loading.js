@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
+import Icon from '../../utils/Icon';
 
 const Loading = (props) => {
   useEffect(() => {
@@ -11,14 +12,12 @@ const Loading = (props) => {
     }, 1500);
   });
   return (
-    <View style={[style.container, {backgroundColor: props.theme.background}]}>
-      <Image
-        style={style.img}
-        source={require('../../../assets/images/light_larc.png')}
-      />
+    <View
+      style={[style.container, {backgroundColor: props.theme.body_background}]}>
+      <Icon style={style.img} name="logo" />
       <View style={style.container2}>
-        <ActivityIndicator color={props.theme.titleNormal} size="large" />
-        <Text style={[style.title, {color: props.theme.titleNormal}]}>
+        <ActivityIndicator color={props.theme.header_title} size="large" />
+        <Text style={[style.title, {color: props.theme.header_title}]}>
           {props.title}
         </Text>
       </View>

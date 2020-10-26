@@ -1,5 +1,6 @@
 const images = {
   dark: {
+    logo: require('./images/dark_larc.png'),
     profile: require('./images/dark_default.png'),
     back: require('./images/dark_back.png'),
     delete: require('./images/dark_delete.png'),
@@ -16,6 +17,7 @@ const images = {
     unlock: require('./images/dark_unlock.png'),
   },
   light: {
+    logo: require('./images/light_larc.png'),
     profile: require('./images/light_default.png'),
     back: require('./images/light_back.png'),
     delete: require('./images/light_delete.png'),

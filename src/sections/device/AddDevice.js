@@ -15,37 +15,40 @@ const AddDevice = (props) => {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: props.theme.device_add_background,
+      }}>
       <Button
         title={props.device_screen.add}
         buttonStyle={{
-          backgroundColor: props.theme.letterAlternative,
+          backgroundColor: props.theme.device_add_background,
         }}
-        titleStyle={{color: props.theme.letter}}
+        titleStyle={{color: props.theme.device_add_title}}
         onPress={toggleOverlay}
       />
 
       <Overlay
         overlayStyle={[
           style.Overlay,
-          {backgroundColor: props.theme.letterAlternative},
+          {backgroundColor: props.theme.overlay_background},
         ]}
         isVisible={visible}
         onBackdropPress={toggleOverlay}>
         <View style={[style.container]}>
           <View style={style.container_form}>
-            <Text style={[style.label, {color: props.theme.letter}]}>
+            <Text style={[style.label, {color: props.theme.overlay_title}]}>
               {props.device_screen.name_label}
             </Text>
             <Input
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder={props.device_screen.name_placeholder_label}
-              inputStyle={{color: props.theme.primary}}
+              inputStyle={{color: props.theme.overlay_title}}
             />
           </View>
           <View style={style.container_form}>
-            <Text style={[style.label, {color: props.theme.letter}]}>
+            <Text style={[style.label, {color: props.theme.overlay_title}]}>
               {props.device_screen.cel_label}
             </Text>
             <Input
@@ -53,7 +56,7 @@ const AddDevice = (props) => {
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder="664*******"
-              inputStyle={{color: props.theme.primary}}
+              inputStyle={{color: props.theme.overlay_title}}
             />
           </View>
           <View style={style.container_buttons}>
@@ -61,18 +64,18 @@ const AddDevice = (props) => {
               title={props.device_screen.add_cancel_label}
               buttonStyle={[
                 style.button_cancel,
-                {backgroundColor: props.theme.letter},
+                {backgroundColor: props.theme.overlay_button_regular},
               ]}
               onPress={toggleOverlay}
-              titleStyle={{color: props.theme.letterAlternative}}
+              titleStyle={{color: props.theme.overlay_button_title}}
             />
             <Button
               title={props.device_screen.add_confirm_label}
               buttonStyle={[
                 style.button_confirm,
-                {backgroundColor: props.theme.primary},
+                {backgroundColor: props.theme.overlay_button_primary},
               ]}
-              titleStyle={{color: props.theme.letterAlternative}}
+              titleStyle={{color: props.theme.overlay_button_title}}
             />
           </View>
         </View>

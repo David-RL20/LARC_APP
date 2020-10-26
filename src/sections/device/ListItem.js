@@ -6,14 +6,22 @@ const ListItem = ({item, theme, navigation}) => {
   const width = 20;
   const height = 24;
   return (
-    <View style={style.container}>
+    <View style={[style.container, {borderColor: theme.device_list_border}]}>
       <TouchableOpacity
         onPress={() => navigation.navigate('DeviceControl')}
-        style={style.picture_name_container}>
+        style={[
+          style.picture_name_container,
+          {backgroundColor: theme.body_background},
+        ]}>
         <Icon width="37" height="38" name="profile" />
         <View style={style.name_phone_container}>
-          <Text style={style.name_device}>{item.name}</Text>
-          <Text style={style.phone_device}>{item.phoneNumber}</Text>
+          <Text style={[style.name_device, {color: theme.device_list_title}]}>
+            {item.name}
+          </Text>
+          <Text
+            style={[style.phone_device, {color: theme.device_list_subtitle}]}>
+            {item.phoneNumber}
+          </Text>
         </View>
       </TouchableOpacity>
 
@@ -35,6 +43,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     borderWidth: 1,
+    borderRadius: 2,
   },
   picture_name_container: {
     flexDirection: 'row',

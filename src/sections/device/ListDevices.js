@@ -11,7 +11,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 class ListaDispositivos extends Component {
   renderItem({item}) {
-    return <ListItem navigation={this.props.navigation} item={item} />;
+    return (
+      <ListItem
+        navigation={this.props.navigation}
+        theme={this.props.theme}
+        item={item}
+      />
+    );
   }
   keyExtractor(item) {
     return item.name;
@@ -25,7 +31,7 @@ class ListaDispositivos extends Component {
       <View
         style={[
           style.container,
-          {backgroundColor: this.props.theme.background},
+          {backgroundColor: this.props.theme.body_background},
         ]}>
         <View style={style.flatList_container}>
           <FlatList
