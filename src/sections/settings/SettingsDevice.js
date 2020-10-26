@@ -15,7 +15,13 @@ class SettingsDevice extends Component {
           this.props.navigation.navigate(item.route);
         }}>
         <Icon width="40" height="40" name={item.logo} />
-        <Text style={style.text_settings}>{item.title}</Text>
+        <Text
+          style={[
+            style.text_settings,
+            {color: this.props.theme.settings_title},
+          ]}>
+          {item.title}
+        </Text>
       </TouchableOpacity>
     );
   }
@@ -25,7 +31,7 @@ class SettingsDevice extends Component {
   renderSeparator() {
     return (
       <HorizontalSeparator
-        style={{borderColor: this.props.theme.borderColor}}
+        style={{borderColor: this.props.theme.settings_border}}
       />
     );
   }
@@ -34,7 +40,7 @@ class SettingsDevice extends Component {
       <View
         style={[
           style.FlatList_container,
-          {backgroundColor: this.props.theme.background},
+          {backgroundColor: this.props.theme.body_background},
         ]}>
         <FlatList
           style={style.FlatList}

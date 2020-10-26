@@ -46,7 +46,7 @@ class ChannelOut extends Component {
         style={[
           style.container,
           {
-            backgroundColor: this.props.theme.background,
+            backgroundColor: this.props.theme.body_background,
           },
         ]}>
         <FormWrapper title={this.props.screen.channel_name}>
@@ -55,6 +55,7 @@ class ChannelOut extends Component {
             containerStyle={{paddingHorizontal: 0}}
             placeholder={this.props.screen.channel_holder}
             style={{fontSize: 13}}
+            inputStyle={{color: this.props.theme.settings_out_subtitle}}
           />
         </FormWrapper>
         <FormWrapper title={this.props.screen.type_activation}>
@@ -77,6 +78,7 @@ class ChannelOut extends Component {
             containerStyle={{paddingHorizontal: 0}}
             placeholder="Canal"
             style={{fontSize: 13}}
+            inputStyle={{color: this.props.theme.settings_out_subtitle}}
           />
         </FormWrapper>
         <FormWrapper title={this.props.screen.activation_message}>
@@ -84,6 +86,7 @@ class ChannelOut extends Component {
             containerStyle={{paddingHorizontal: 0}}
             placeholder={this.props.screen.activation_holder}
             style={{fontSize: 13}}
+            inputStyle={{color: this.props.theme.settings_out_subtitle}}
           />
         </FormWrapper>
         <FormWrapper title={this.props.screen.feedback_message}>
@@ -91,6 +94,7 @@ class ChannelOut extends Component {
             containerStyle={{paddingHorizontal: 0}}
             placeholder={this.props.screen.feedback_holder}
             style={{fontSize: 13}}
+            inputStyle={{color: this.props.theme.settings_out_subtitle}}
           />
         </FormWrapper>
       </View>

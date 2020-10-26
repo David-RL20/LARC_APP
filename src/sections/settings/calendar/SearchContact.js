@@ -7,13 +7,17 @@ const Calendar = (props) => {
   return (
     <View style={style.container_search}>
       <Text
-        style={[style.label_search, {color: props.theme.letterAlternative}]}>
+        style={[
+          style.label_search,
+          {color: props.theme.settings_calendar_title},
+        ]}>
         {props.calendar.searchLabel} :
       </Text>
       <Input
         keyboardType="numeric"
         placeholder="664*******"
         inputContainerStyle={style.input_container_style}
+        inputStyle={{color: props.theme.settings_calendar_title}}
       />
     </View>
   );

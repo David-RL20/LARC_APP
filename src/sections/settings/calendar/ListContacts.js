@@ -14,7 +14,6 @@ class ListContact extends Component {
     return <Separator />;
   }
   render() {
-    console.log(this.props.contacts);
     return (
       <View style={style.FlatList_container}>
         <FlatList

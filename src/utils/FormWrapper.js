@@ -17,7 +17,7 @@ const Wrapper = (props) => {
           style={[
             props.titleStyle,
             style.title,
-            {color: props.theme.titleNormal},
+            {color: props.theme.settings_out_title},
           ]}>
           {props.title}
         </Text>
@@ -25,7 +25,7 @@ const Wrapper = (props) => {
       <View
         style={[
           props.containerChildrenStyle,
-          {color: props.theme.titleNormal},
+          {color: props.theme.settings_out_subtitle},
           style.container_Children_Style,
         ]}>
         {props.children}

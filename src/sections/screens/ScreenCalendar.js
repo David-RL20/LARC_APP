@@ -8,7 +8,10 @@ const ScreenCalendar = (props) => {
   return (
     <>
       <View
-        style={[style.container, {backgroundColor: props.theme.background}]}>
+        style={[
+          style.container,
+          {backgroundColor: props.theme.body_background},
+        ]}>
         <Search />
         <ListContact />
       </View>

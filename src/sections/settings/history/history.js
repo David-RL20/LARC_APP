@@ -46,16 +46,23 @@ class AplicacionPlatzi extends Component {
   render() {
     return (
       <>
-        <View style={styles.container}>
+        <View
+          style={[
+            styles.container,
+            {backgroundColor: this.props.theme.body_background},
+          ]}>
           <Wrapper theme={this.props.theme} title={'Date :'}>
             <Button
               title={this.state.chosenDate || 'No seleccionada'}
               style={[
                 styles.select_date_button,
-                {backgroundColor: this.props.theme.letter},
+                {backgroundColor: this.props.theme.body_background},
               ]}
-              titleStyle={{color: this.props.theme.letterAlternative}}
+              titleStyle={{color: this.props.theme.settings_history_title}}
               onPress={this.showPicker}
+              buttonStyle={{
+                borderColor: this.props.theme.settings_history_button_border,
+              }}
               type="outline"
             />
           </Wrapper>
@@ -64,10 +71,13 @@ class AplicacionPlatzi extends Component {
               title={this.state.chosenDate || 'No seleccionada'}
               style={[
                 styles.select_date_button,
-                {backgroundColor: this.props.theme.letter},
+                {backgroundColor: this.props.theme.body_background},
               ]}
-              titleStyle={{color: this.props.theme.letterAlternative}}
+              titleStyle={{color: this.props.theme.settings_history_title}}
               onPress={this.showPicker}
+              buttonStyle={{
+                borderColor: this.props.theme.settings_history_button_border,
+              }}
               type="outline"
             />
           </Wrapper>
@@ -75,9 +85,13 @@ class AplicacionPlatzi extends Component {
             title={'Buscar'}
             buttonStyle={[
               styles.searchbutton,
-              {backgroundColor: this.props.theme.primary},
+              {
+                backgroundColor: this.props.theme
+                  .settings_history_button_background,
+                borderColor: this.props.theme.settings_history_button_border,
+              },
             ]}
-            titleStyle={{color: this.props.theme.letterAlternative}}
+            titleStyle={{color: this.props.theme.settings_history_button_title}}
           />
 
           <DateTimePickerModal

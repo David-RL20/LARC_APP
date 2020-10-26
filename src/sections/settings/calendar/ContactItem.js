@@ -5,12 +5,25 @@ const ListItem = ({item, theme}) => {
   const width = 20;
   const height = 24;
   return (
-    <View style={[style.container, {backgroundColor: theme.background}]}>
-      <View style={style.picture_name_container}>
+    <View style={style.container}>
+      <View
+        style={[
+          style.picture_name_container,
+          {backgroundColor: theme.body_background},
+        ]}>
         <Icon width="37" height="38" name="profile" />
         <View style={style.name_phone_container}>
-          <Text style={style.name_device}>{item.number}</Text>
-          <Text style={style.phone_device}>{item.phoneNumber}</Text>
+          <Text
+            style={[style.name_device, {color: theme.settings_calendar_title}]}>
+            {item.number}
+          </Text>
+          <Text
+            style={[
+              style.phone_device,
+              {color: theme.settings_calendar_subtitle},
+            ]}>
+            {item.phoneNumber}
+          </Text>
         </View>
       </View>
 

@@ -3,8 +3,12 @@ import {View, Text, StyleSheet} from 'react-native';
 
 const Wrapper = (props) => {
   return (
-    <View style={[styles.container, {backgroundColor: props.theme.background}]}>
-      <Text style={[styles.label, {color: props.theme.titleNormal}]}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: props.theme.body_background},
+      ]}>
+      <Text style={[styles.label, {color: props.theme.settings_history_title}]}>
         {props.title}
       </Text>
       <View style={styles.containerChildren}>{props.children}</View>
