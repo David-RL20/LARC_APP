@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Search from '../settings/calendar/SearchContact';
 import ListContact from '../settings/calendar/ListContacts';
 import AddContact from '../settings/calendar/AddContact';
@@ -7,14 +7,14 @@ import {connect} from 'react-redux';
 const ScreenCalendar = (props) => {
   return (
     <>
-      <View
+      <SafeAreaView
         style={[
           style.container,
           {backgroundColor: props.theme.body_background},
         ]}>
         <Search />
         <ListContact />
-      </View>
+      </SafeAreaView>
       <AddContact />
     </>
   );

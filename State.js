@@ -1,9 +1,9 @@
 const state = {
-  currentTheme: 'light',
-  currentLanguage: 'eng',
+  currentTheme: 'dark',
+  currentLanguage: 'esp',
   themes: {
     dark: {
-      header_background: 'rgba(75,75,75,.83)',
+      header_background: 'rgb(75,75,75)',
       header_title: '#FCFCFC',
       body_background: '#2C2E2E',
       device_list_title: '#D4D4D4',
@@ -35,6 +35,9 @@ const state = {
       settings_button_group_background_selected: '#BC4343',
       settings_button_group_border: '#CCCCCC',
       settings_button_group_title: '#D4D4D4',
+      settings_in_title: '#D4D4D4',
+      settings_in_subtitle: '#D4D4D4',
+      settings_system_subtitle: '#D4D4D4',
     },
     light: {
       header_background: '#FDDB3A',
@@ -69,6 +72,9 @@ const state = {
       settings_button_group_background_selected: '#FDDB3A',
       settings_button_group_border: '#707070',
       settings_button_group_title: '#52575D',
+      settings_in_title: '#41444B',
+      settings_in_subtitle: '#41444B',
+      settings_system_subtitle: '#41444B',
     },
   },
   device_default: {

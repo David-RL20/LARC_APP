@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {Input, ButtonGroup} from 'react-native-elements';
 import {connect} from 'react-redux';
 import FormWrapper from '../../../utils/FormWrapper';
@@ -36,53 +41,62 @@ class SystemSettings extends Component {
     const ringsAvailable = ['Dial', 'DTMF'];
     const {freeControlIndex, feedBackMessageIndex, ringToneIndex} = this.state;
     return (
-      <View
+      <SafeAreaView
         style={[
           style.container,
-          {backgroundColor: this.props.theme.background},
+          {backgroundColor: this.props.theme.body_background},
         ]}>
-        <FormWrapper title={this.props.screen.control_label}>
-          <ButtonGroupCustumized
-            action={this.updateFreeControlIndex}
-            index={freeControlIndex}
-            buttons={activeOptions}
-          />
-        </FormWrapper>
-        <FormWrapper title={this.props.screen.feedBMessage}>
-          <ButtonGroupCustumized
-            action={this.updateFeedBackMessageIndex}
-            index={feedBackMessageIndex}
-            buttons={activeOptions}
-          />
-        </FormWrapper>
-        <FormWrapper
-          containerStyle={{height: 160}}
-          title={this.props.screen.update_pwd_label}>
-          <Input
-            keyboardType={'numeric'}
-            containerStyle={{paddingHorizontal: 0}}
-            placeholder={this.props.screen.current_pwd_label}
-          />
-          <Input
-            keyboardType={'numeric'}
-            containerStyle={{paddingHorizontal: 0}}
-            placeholder={this.props.screen.new_pwd_label}
-          />
-        </FormWrapper>
-        <FormWrapper title={this.props.screen.call_ring_tone_label}>
-          <ButtonGroupCustumized
-            action={this.updateRingToneIndex}
-            index={ringToneIndex}
-            buttons={ringsAvailable}
-          />
-        </FormWrapper>
-      </View>
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={20}>
+          <FormWrapper title={this.props.screen.control_label}>
+            <ButtonGroupCustumized
+              action={this.updateFreeControlIndex}
+              index={freeControlIndex}
+              buttons={activeOptions}
+            />
+          </FormWrapper>
+          <FormWrapper title={this.props.screen.feedBMessage}>
+            <ButtonGroupCustumized
+              action={this.updateFeedBackMessageIndex}
+              index={feedBackMessageIndex}
+              buttons={activeOptions}
+            />
+          </FormWrapper>
+          <FormWrapper
+            containerStyle={{height: 160}}
+            title={this.props.screen.update_pwd_label}>
+            <Input
+              keyboardType={'numeric'}
+              containerStyle={{paddingHorizontal: 0}}
+              placeholder={this.props.screen.current_pwd_label}
+              inputStyle={{
+                color: this.props.theme.settings_system_subtitle,
+              }}
+            />
+            <Input
+              keyboardType={'numeric'}
+              containerStyle={{paddingHorizontal: 0}}
+              placeholder={this.props.screen.new_pwd_label}
+              inputStyle={{
+                color: this.props.theme.settings_system_subtitle,
+              }}
+            />
+          </FormWrapper>
+          <FormWrapper title={this.props.screen.call_ring_tone_label}>
+            <ButtonGroupCustumized
+              action={this.updateRingToneIndex}
+              index={ringToneIndex}
+              buttons={ringsAvailable}
+            />
+          </FormWrapper>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
 const style = StyleSheet.create({
   container: {
     paddingVertical: 20,
+    flex: 1,
   },
 });
 const mapStateToProps = (state) => {

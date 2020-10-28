@@ -102,7 +102,7 @@ const style = StyleSheet.create({
   container: {},
   container_control: {
     paddingHorizontal: 20,
-    paddingVertical: 40,
+    paddingVertical: 10,
   },
   container_control_buttons: {
     width: '80%',

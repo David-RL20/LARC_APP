@@ -46,7 +46,7 @@ class AplicacionPlatzi extends Component {
   render() {
     return (
       <>
-        <View
+        <SafeAreaView
           style={[
             styles.container,
             {backgroundColor: this.props.theme.body_background},
@@ -101,7 +101,7 @@ class AplicacionPlatzi extends Component {
             mode={'datetime'}
             is24Hour={false}
           />
-        </View>
+        </SafeAreaView>
       </>
     );
   }

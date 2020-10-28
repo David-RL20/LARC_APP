@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Input, ButtonGroup} from 'react-native-elements';
+import {StyleSheet, SafeAreaView, KeyboardAvoidingView} from 'react-native';
+import {Input} from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
 import {connect} from 'react-redux';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
@@ -21,42 +21,46 @@ class ChannelIn extends Component {
     const buttons = [this.props.screen.call_on, this.props.screen.call_off];
     const {selectedIndex} = this.state;
     return (
-      <View
+      <SafeAreaView
         style={[
           style.container,
           {
-            backgroundColor: this.props.theme.background,
+            backgroundColor: this.props.theme.body_background,
           },
         ]}>
-        <FormWrapper title={this.props.screen.channel_name}>
-          <Input
-            disabled
-            containerStyle={{paddingHorizontal: 0}}
-            placeholder={this.props.screen.placeholder}
-          />
-        </FormWrapper>
-        <FormWrapper title={this.props.screen.call}>
-          <ButtonGroupCustumized
-            action={this.updateIndex}
-            index={selectedIndex}
-            buttons={buttons}
-          />
-        </FormWrapper>
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={80}>
+          <FormWrapper title={this.props.screen.channel_name}>
+            <Input
+              disabled
+              containerStyle={{paddingHorizontal: 0}}
+              placeholder={this.props.screen.placeholder}
+            />
+          </FormWrapper>
+          <FormWrapper title={this.props.screen.call}>
+            <ButtonGroupCustumized
+              action={this.updateIndex}
+              index={selectedIndex}
+              buttons={buttons}
+            />
+          </FormWrapper>
 
-        <FormWrapper title={this.props.screen.emergNumber}>
-          <Input
-            keyboardType={'numeric'}
-            containerStyle={{paddingHorizontal: 0}}
-            placeholder={this.props.screen.emergHolder}
-          />
-        </FormWrapper>
-        <FormWrapper title={this.props.screen.feedBMessage}>
-          <Input
-            containerStyle={{paddingHorizontal: 0}}
-            placeholder={this.props.screen.feedHolder}
-          />
-        </FormWrapper>
-      </View>
+          <FormWrapper title={this.props.screen.emergNumber}>
+            <Input
+              keyboardType={'numeric'}
+              containerStyle={{paddingHorizontal: 0}}
+              placeholder={this.props.screen.emergHolder}
+              inputStyle={{color: this.props.theme.settings_in_subtitle}}
+            />
+          </FormWrapper>
+          <FormWrapper title={this.props.screen.feedBMessage}>
+            <Input
+              containerStyle={{paddingHorizontal: 0}}
+              placeholder={this.props.screen.feedHolder}
+              inputStyle={{color: this.props.theme.settings_in_subtitle}}
+            />
+          </FormWrapper>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
@@ -69,6 +73,7 @@ const mapStateToProps = (state) => {
 const style = StyleSheet.create({
   container: {
     paddingVertical: 20,
+    flex: 1,
   },
 });
 

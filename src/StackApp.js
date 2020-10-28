@@ -34,7 +34,7 @@ function App(props) {
             return <Icon name="back" width="28" height="30" />;
           },
         }}
-        initialRouteName={'settings_out'}>
+        initialRouteName={'Loading'}>
         <Stack.Screen
           name="Loading"
           component={Loading}

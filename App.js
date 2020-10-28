@@ -9,6 +9,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import {SafeAreaView} from 'react-native';
 import State from './State';
 import reducer from './Reducer';
 import AppStack from './src/StackApp';

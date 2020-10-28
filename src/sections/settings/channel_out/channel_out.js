@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, KeyboardAvoidingView} from 'react-native';
 import {Input, ButtonGroup} from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
 import {connect} from 'react-redux';
@@ -42,7 +42,9 @@ class ChannelOut extends Component {
     ];
     const {activationTypeIndex} = this.state;
     return (
-      <View
+      <KeyboardAvoidingView
+        behavior="position"
+        keyboardVerticalOffset={59}
         style={[
           style.container,
           {
@@ -97,13 +99,14 @@ class ChannelOut extends Component {
             inputStyle={{color: this.props.theme.settings_out_subtitle}}
           />
         </FormWrapper>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 const style = StyleSheet.create({
   container: {
     paddingVertical: 20,
+    flex: 1,
   },
 });
 
