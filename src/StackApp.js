@@ -65,6 +65,7 @@ function App(props) {
         <Stack.Screen name="settings_out" component={SettingOut} />
         <Stack.Screen name="settings_in" component={SettingIn} />
         <Stack.Screen name="settings_system" component={SettingSystem} />
+        <Stack.Screen name="settings_check" component={SettingSystem} />
       </Stack.Navigator>
     </NavigationContainer>
   );

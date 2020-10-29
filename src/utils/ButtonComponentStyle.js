@@ -9,7 +9,10 @@ const ButtonGroupCustumized = (props) => {
       onPress={props.action}
       selectedIndex={props.index}
       buttons={props.buttons}
-      containerStyle={{height: 50}}
+      containerStyle={[
+        props.containerStyle,
+        {height: parseFloat(props.height) || 50},
+      ]}
       textStyle={{
         color: props.theme.settings_button_group_title,
       }}

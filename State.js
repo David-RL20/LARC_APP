@@ -1,5 +1,5 @@
 const state = {
-  currentTheme: 'dark',
+  currentTheme: 'light',
   currentLanguage: 'esp',
   themes: {
     dark: {
@@ -329,6 +329,11 @@ const state = {
           logo: 'settings',
           route: 'settings_system',
         },
+        {
+          title: 'Check system settings',
+          logo: 'settings',
+          route: 'settings_check',
+        },
       ],
       esp: [
         {
@@ -355,6 +360,11 @@ const state = {
           title: 'Ajustes del sistema',
           logo: 'settings',
           route: 'settings_system',
+        },
+        {
+          title: 'Verificar las configuraciones del sistema',
+          logo: 'settings',
+          route: 'settings_check',
         },
       ],
     },
