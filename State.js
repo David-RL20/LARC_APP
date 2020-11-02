@@ -1,6 +1,6 @@
 const state = {
   currentTheme: 'light',
-  currentLanguage: 'esp',
+  currentLanguage: 'eng',
   themes: {
     dark: {
       header_background: 'rgb(75,75,75)',
@@ -458,6 +458,12 @@ const state = {
         current_pwd_label: 'Current password',
         new_pwd_label: 'New password',
         call_ring_tone_label: 'Call or ring tone',
+        working_mode_label: 'Set working mode',
+        working_mode_button1: 'Toggle mode',
+        working_mode_button2: 'Switch mode',
+        enable_report_label: 'Enable report or not',
+        set_all_relay_status_label: 'Set all relay status',
+        set_all_relay_status_placeholder: 'Input 0 = OFF ,1 = ON (4 digits)',
       },
       esp: {
         control_label: 'Control libre',
@@ -468,6 +474,12 @@ const state = {
         current_pwd_label: 'Contraseña actual',
         new_pwd_label: 'Contraseña nueva',
         call_ring_tone_label: 'Llamada o tono',
+        working_mode_label: 'Cambiar modo de trabajo',
+        working_mode_button1: 'Modo alterno',
+        working_mode_button2: 'Modo interruptor',
+        enable_report_label: 'Habilitar reporte o no',
+        set_all_relay_status_label: 'Cambiar el estatus de todos los relay',
+        set_all_relay_status_placeholder: 'Ingrese 0 = OFF ,1 = ON (4 digitos)',
       },
     },
     settings_history: {
