@@ -30,10 +30,6 @@ class Controll extends Component {
   }
 
   updateIndex(selectedIndex) {
-    this.setState({
-      selectedIndex,
-    });
-    this.currentChannel = selectedIndex + 1;
     this.props.setCurrentChannel({
       currentChannel: selectedIndex + 1,
       phoneNumber: this.phoneNumber,
@@ -183,18 +179,22 @@ class Controll extends Component {
       {cancelable: true},
     );
   }
+  findDevice() {
+    this.device = this.props.devices.filter(
+      (device) => device.phoneNumber == this.phoneNumber,
+    );
+    this.device = this.device[0];
+    //varibles
+    this.prefix = this.device.prefix;
+    this.password = this.device.password;
+    this.name = this.device.name;
+    this.currentChannel = this.device.currentChannel;
+  }
 
   render() {
-    this.name = this.props.route.params.name;
-    this.phoneNumber = this.props.route.params.phoneNumber;
-    this.password = this.props.route.params.password;
-    this.prefix = this.props.route.params.prefix;
-    console.log(
-      `Canal en el estado = ` + this.props.route.params.currentChannel,
-    );
-
+    this.phoneNumber = this.props.route.params.phone;
+    this.findDevice();
     const buttons = [1, 2, 3, 4];
-    const {selectedIndex} = this.state;
     return (
       <View
         style={[
@@ -213,7 +213,7 @@ class Controll extends Component {
 
           <ButtonGroup
             onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
+            selectedIndex={this.currentChannel - 1}
             buttons={buttons}
             containerStyle={{
               height: 40,
@@ -328,6 +328,7 @@ const mapStateToProps = (state) => {
     state: state,
     theme: state.themes[state.currentTheme],
     screen: state.screens.device_control[state.currentLanguage],
+    devices: state.devices,
   };
 };
 const mapDispatchToProps = {

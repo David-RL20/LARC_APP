@@ -82,40 +82,6 @@ const state = {
     phoneNumber: null,
     currentChannel: null,
     password: '123456',
-    controlls: [
-      {
-        name: {
-          eng: 'Dial to work',
-          esp: 'Llamar al dispositivo',
-        },
-        value: 'Call',
-        message: false,
-      },
-      {
-        name: {
-          eng: 'SMS to on',
-          esp: 'Mensaje para encender',
-        },
-        value: 'ON',
-        message: true,
-      },
-      {
-        name: {
-          eng: 'SMS to off',
-          esp: 'Mensaje para apagar',
-        },
-        value: 'OFF',
-        message: true,
-      },
-      {
-        name: {
-          eng: 'SMS to Jog',
-          esp: 'Mensaje por tiempo',
-        },
-        value: 'JOG',
-        message: true,
-      },
-    ],
     channels: [
       {
         name: 'OUT1',
@@ -150,18 +116,254 @@ const state = {
         {
           name: 'OUT1',
           value: 1,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              activation_type: 0,
+              base_time: {
+                selected: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: '',
+              feedBMessage: '',
+            },
+            channel_in: {
+              name: '',
+              emergencyCall: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              emergencyNumber: {
+                phone: '',
+              },
+              feedBMessage: '',
+            },
+            settings_system: {
+              free_control: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              feedBMessage: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              update_pwd_cap: 'CAP',
+              call_ring_tone: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              working_mode: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              report_or_not: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              set_all_relay_status: '',
+            },
+            check_system_status: '#STATUS?',
+          },
         },
         {
           name: 'OUT2',
           value: 2,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              activation_type: 0,
+              base_time: {
+                selected: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: '',
+              feedBMessage: '',
+            },
+            channel_in: {
+              name: '',
+              emergencyCall: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              emergencyNumber: {
+                phone: '',
+              },
+              feedBMessage: '',
+            },
+            settings_system: {
+              free_control: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              feedBMessage: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              update_pwd_cap: 'CAP',
+              call_ring_tone: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              working_mode: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              report_or_not: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              set_all_relay_status: '',
+            },
+            check_system_status: '#STATUS?',
+          },
         },
         {
           name: 'OUT3',
           value: 3,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              activation_type: 0,
+              base_time: {
+                selected: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: '',
+              feedBMessage: '',
+            },
+            channel_in: {
+              name: '',
+              emergencyCall: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              emergencyNumber: {
+                phone: '',
+              },
+              feedBMessage: '',
+            },
+            settings_system: {
+              free_control: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              feedBMessage: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              update_pwd_cap: 'CAP',
+              call_ring_tone: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              working_mode: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              report_or_not: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              set_all_relay_status: '',
+            },
+            check_system_status: '#STATUS?',
+          },
         },
         {
           name: 'OUT4',
           value: 4,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              activation_type: 0,
+              base_time: {
+                selected: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: '',
+              feedBMessage: '',
+            },
+            channel_in: {
+              name: '',
+              emergencyCall: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              emergencyNumber: {
+                phone: '',
+              },
+              feedBMessage: '',
+            },
+            settings_system: {
+              free_control: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              feedBMessage: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              update_pwd_cap: 'CAP',
+              call_ring_tone: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              working_mode: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              report_or_not: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              set_all_relay_status: '',
+            },
+            check_system_status: '#STATUS?',
+          },
         },
       ],
     },

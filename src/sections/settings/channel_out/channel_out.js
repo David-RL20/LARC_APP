@@ -50,15 +50,15 @@ class ChannelOut extends Component {
     const buttons = [1, 2, 3, 4];
     const {selectedIndex} = this.state;
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView
+        style={[
+          {flex: 1},
+          {
+            backgroundColor: this.props.theme.body_background,
+          },
+        ]}>
         <ScrollView>
-          <View
-            style={[
-              style.container,
-              {
-                backgroundColor: this.props.theme.body_background,
-              },
-            ]}>
+          <View style={[style.container]}>
             <View style={style.container_control}>
               <Text
                 style={[
@@ -82,7 +82,6 @@ class ChannelOut extends Component {
 
             <FormWrapper title={this.props.screen_settings_out.channel_name}>
               <Input
-                disabled
                 containerStyle={{paddingHorizontal: 0}}
                 placeholder={this.props.screen_settings_out.channel_holder}
                 style={{fontSize: 13}}
