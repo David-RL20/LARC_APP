@@ -12,7 +12,9 @@ class SettingsDevice extends Component {
       <TouchableOpacity
         style={style.container_settings}
         onPress={() => {
-          this.props.navigation.navigate(item.route);
+          this.props.navigation.navigate(item.route, {
+            cellphone: this.props.route.params.cellphone,
+          });
         }}>
         <Icon width="40" height="40" name={item.logo} />
         <Text

@@ -48,10 +48,15 @@ function App(props) {
         <Stack.Screen
           name="DeviceControl"
           component={DeviceControl}
-          options={({navigation}) => {
+          options={({route, navigation}) => {
             return {
               headerRight: () => {
-                return <SettingsIcon navigation={navigation} />;
+                return (
+                  <SettingsIcon
+                    cellphone={route.params.phone}
+                    navigation={navigation}
+                  />
+                );
               },
               headerRightContainerStyle: {
                 padding: 10,
@@ -71,11 +76,12 @@ function App(props) {
   );
 }
 
-const SettingsIcon = ({navigation}) => {
+const SettingsIcon = (props) => {
+  const {navigation} = props;
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('SettingsDevice');
+        navigation.navigate('SettingsDevice', {cellphone: props.cellphone});
       }}>
       <Icon name="settings" width="40" height="40" />
     </TouchableOpacity>
