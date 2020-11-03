@@ -8,7 +8,7 @@ const ListItem = ({item, theme, navigation}) => {
   return (
     <View style={[style.container, {borderColor: theme.device_list_border}]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('DeviceControl')}
+        onPress={() => navigation.navigate('DeviceControl', item)}
         style={[
           style.picture_name_container,
           {backgroundColor: theme.body_background},
