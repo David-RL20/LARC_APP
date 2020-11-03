@@ -121,9 +121,13 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: 0,
+              activation_type: {
+                index: 0,
+                temporal: 'Temporal',
+                constant: 'Constante',
+              },
               base_time: {
-                selected: 0,
+                index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
