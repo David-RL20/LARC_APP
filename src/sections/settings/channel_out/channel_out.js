@@ -159,9 +159,11 @@ class ChannelOut extends Component {
     this.password = this.device.password;
 
     this.prefix = this.device.prefix;
+
     this.time = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.base_time;
+
     this.actType = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.activation_type;
@@ -169,21 +171,42 @@ class ChannelOut extends Component {
     this.name = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.name;
+
     this.activationType = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.activation_type;
+
     this.baseTime = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.base_time;
+
     this.activationTime = this.device.channels[
       this.device.currentChannel - 1
-    ].configs.channel_out.activation_time;
+    ].configs.channel_out.activation_time.value;
+
     this.activationMessage = this.device.channels[
       this.device.currentChannel - 1
-    ].configs.channel_out.activation_message;
+    ].configs.channel_out.activation_message.value;
+
     this.feedBMessage = this.device.channels[
       this.device.currentChannel - 1
-    ].configs.channel_out.feedBMessage;
+    ].configs.channel_out.feedBMessage.value;
+
+    this.cmd_activation_time = this.device.channels[
+      this.device.currentChannel - 1
+    ].configs.channel_out.activation_time.command;
+
+    this.cmd_activation_message = this.device.channels[
+      this.device.currentChannel - 1
+    ].configs.channel_out.activation_message.command;
+
+    this.cmd_feedback_message = this.device.channels[
+      this.device.currentChannel - 1
+    ].configs.channel_out.feedBMessage.command;
+    console.log(
+      this.device.channels[this.device.currentChannel - 1].configs.channel_out
+        .feedBMessage,
+    );
   }
   handleChannelNameChange() {
     console.log(this.channel_name_input);
@@ -217,6 +240,16 @@ class ChannelOut extends Component {
       {
         text: 'Ok',
         onPress: () => {
+          Platform.OS === 'ios' &&
+            this.sendMessageIOS(
+              `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
+              this.phoneNumber,
+            );
+          Platform.OS === 'android' &&
+            this.sendMessageAndroid(
+              `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
+              this.phoneNumber,
+            );
           this.props.setActivationTime({
             phoneNumber: this.phoneNumber,
             value: this.currentChannel,
@@ -242,6 +275,16 @@ class ChannelOut extends Component {
             value: this.currentChannel,
             activation_message: this.activation_message_input,
           });
+          Platform.OS === 'ios' &&
+            this.sendMessageIOS(
+              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.cmd_activation_message}${this.activation_message_input}`,
+              this.phoneNumber,
+            );
+          Platform.OS === 'android' &&
+            this.sendMessageAndroid(
+              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.cmd_activation_message}${this.activation_message_input}`,
+              this.phoneNumber,
+            );
         },
       },
     ]);
@@ -262,6 +305,16 @@ class ChannelOut extends Component {
             value: this.currentChannel,
             feedBMessage: this.feedBMessageInput,
           });
+          Platform.OS === 'ios' &&
+            this.sendMessageIOS(
+              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+              this.phoneNumber,
+            );
+          Platform.OS === 'android' &&
+            this.sendMessageAndroid(
+              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+              this.phoneNumber,
+            );
         },
       },
     ]);

@@ -123,7 +123,10 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        activation_time: action.payLoad.activation_time,
+                        activation_time: {
+                          ...channel.configs.channel_out.activation_time,
+                          value: action.payLoad.activation_time,
+                        },
                       },
                     },
                   };
@@ -152,7 +155,10 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        activation_message: action.payLoad.activation_message,
+                        activation_message: {
+                          ...channel.configs.channel_out.activation_message,
+                          value: action.payLoad.activation_message,
+                        },
                       },
                     },
                   };
@@ -181,7 +187,10 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        feedBMessage: action.payLoad.feedBMessage,
+                        feedBMessage: {
+                          ...channel.configs.channel_out.feedBMessage,
+                          value: action.payLoad.feedBMessage,
+                        },
                       },
                     },
                   };

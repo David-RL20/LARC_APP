@@ -132,9 +132,18 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: 0,
-              activation_message: '',
-              feedBMessage: '',
+              activation_time: {
+                value: 0,
+                command: 'RLY',
+              },
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
             },
             channel_in: {
               name: '',
