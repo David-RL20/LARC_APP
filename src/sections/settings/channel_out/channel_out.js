@@ -15,6 +15,10 @@ import {
   setCurrentChannel,
   setActivationType,
   setBaseTime,
+  setActivationTime,
+  setActivationMessage,
+  setFeedBMessage,
+  setChannelOutName,
 } from '../../../../Actions';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
@@ -68,11 +72,40 @@ class ChannelOut extends Component {
     );
   }
   updateActivationType(activationTypeIndex) {
-    this.props.setActivationType({
-      phoneNumber: this.phoneNumber,
-      value: this.currentChannel,
-      index: activationTypeIndex,
-    });
+    const actT = [this.actType.temporal, this.actType.constant];
+    Alert.alert(
+      'Confirmacion',
+      'Desea abrir el dispositivo ?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${actT[activationTypeIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${actT[activationTypeIndex]}`,
+                this.phoneNumber,
+              );
+            this.props.setActivationType({
+              phoneNumber: this.phoneNumber,
+              value: this.currentChannel,
+              index: activationTypeIndex,
+            });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
   }
   updateTimeBase(timeBaseIndex) {
     const cmds = [this.time.minutes, this.time.seconds, this.time.milliseconds];
@@ -129,6 +162,9 @@ class ChannelOut extends Component {
     this.time = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.base_time;
+    this.actType = this.device.channels[
+      this.device.currentChannel - 1
+    ].configs.channel_out.activation_type;
 
     this.name = this.device.channels[
       this.device.currentChannel - 1
@@ -148,6 +184,87 @@ class ChannelOut extends Component {
     this.feedBMessage = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.feedBMessage;
+  }
+  handleChannelNameChange() {
+    console.log(this.channel_name_input);
+    Alert.alert('Confirmacion', 'Desea cambiar el nombre', [
+      {
+        text: 'Cancel',
+        onPress: () => {
+          console.log('cancel');
+        },
+      },
+      {
+        text: 'Ok',
+        onPress: () => {
+          this.props.setChannelOutName({
+            phoneNumber: this.phoneNumber,
+            value: this.currentChannel,
+            name: this.channel_name_input,
+          });
+        },
+      },
+    ]);
+  }
+  handleActivationTimeChange() {
+    Alert.alert('Confirmacion', 'Desea cambiar el tiempo de activacion ?', [
+      {
+        text: 'Cancel',
+        onPress: () => {
+          console.log('cancel');
+        },
+      },
+      {
+        text: 'Ok',
+        onPress: () => {
+          this.props.setActivationTime({
+            phoneNumber: this.phoneNumber,
+            value: this.currentChannel,
+            activation_time: this.activation_time_input,
+          });
+        },
+      },
+    ]);
+  }
+  handleActivationSmsChange() {
+    Alert.alert('Confirmacion', 'Desea cambiar el mensaje de activacion ?', [
+      {
+        text: 'Cancel',
+        onPress: () => {
+          console.log('cancel');
+        },
+      },
+      {
+        text: 'Ok',
+        onPress: () => {
+          this.props.setActivationMessage({
+            phoneNumber: this.phoneNumber,
+            value: this.currentChannel,
+            activation_message: this.activation_message_input,
+          });
+        },
+      },
+    ]);
+  }
+  handleFeedBMessage() {
+    Alert.alert('Confirmacion', 'Desea cambiar el mensaje de Feedback ?', [
+      {
+        text: 'Cancel',
+        onPress: () => {
+          console.log('cancel');
+        },
+      },
+      {
+        text: 'Ok',
+        onPress: () => {
+          this.props.setFeedBMessage({
+            phoneNumber: this.phoneNumber,
+            value: this.currentChannel,
+            feedBMessage: this.feedBMessageInput,
+          });
+        },
+      },
+    ]);
   }
 
   render() {
@@ -203,13 +320,18 @@ class ChannelOut extends Component {
                 height="40"
               />
             </View>
-
             <FormWrapper title={this.props.screen_settings_out.channel_name}>
               <Input
                 containerStyle={{paddingHorizontal: 0}}
-                placeholder={this.props.screen_settings_out.channel_holder}
+                placeholder={
+                  this.name || this.props.screen_settings_out.channel_holder
+                }
                 style={{fontSize: 13}}
                 inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                onEndEditing={this.handleChannelNameChange.bind(this)}
+                onChangeText={(text) => {
+                  this.channel_name_input = text;
+                }}
               />
             </FormWrapper>
             <FormWrapper title={this.props.screen_settings_out.type_activation}>
@@ -230,27 +352,45 @@ class ChannelOut extends Component {
               <Input
                 keyboardType={'numeric'}
                 containerStyle={{paddingHorizontal: 0}}
-                placeholder="Canal"
+                placeholder={this.activationTime || 'Set Activation time'}
                 style={{fontSize: 13}}
                 inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                onChangeText={(text) => {
+                  this.activation_time_input = text;
+                }}
+                onEndEditing={this.handleActivationTimeChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper
               title={this.props.screen_settings_out.activation_message}>
               <Input
                 containerStyle={{paddingHorizontal: 0}}
-                placeholder={this.props.screen_settings_out.activation_holder}
+                placeholder={
+                  this.activationMessage ||
+                  this.props.screen_settings_out.activation_holder
+                }
                 style={{fontSize: 13}}
                 inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                onChangeText={(text) => {
+                  this.activation_message_input = text;
+                }}
+                onEndEditing={this.handleActivationSmsChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper
               title={this.props.screen_settings_out.feedback_message}>
               <Input
                 containerStyle={{paddingHorizontal: 0}}
-                placeholder={this.props.screen_settings_out.feedback_holder}
+                placeholder={
+                  this.feedBMessage ||
+                  this.props.screen_settings_out.feedback_holder
+                }
                 style={{fontSize: 13}}
                 inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                onChangeText={(text) => {
+                  this.feedBMessageInput = text;
+                }}
+                onEndEditing={this.handleFeedBMessage.bind(this)}
               />
             </FormWrapper>
           </View>
@@ -287,6 +427,10 @@ const mapDispatchToProps = {
   setCurrentChannel,
   setActivationType,
   setBaseTime,
+  setActivationTime,
+  setActivationMessage,
+  setFeedBMessage,
+  setChannelOutName,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelOut);
