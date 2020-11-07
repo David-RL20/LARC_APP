@@ -22,13 +22,15 @@ class AplicacionPlatzi extends Component {
     this.state = {
       isVisible: false,
       chosenDate: '',
+      chosenTime: '',
+      isVisibleTime: false,
     };
   }
 
-  handlePicker = (datetime) => {
+  handlePicker = (date) => {
     this.setState({
       isVisible: false,
-      chosenDate: moment(datetime).format('MMMM, Do YYYY HH:mm'),
+      chosenDate: moment(date).format('MMMM, Do YYYY'),
     });
   };
 
@@ -40,6 +42,24 @@ class AplicacionPlatzi extends Component {
   hidePicker = () => {
     this.setState({
       isVisible: false,
+    });
+  };
+
+  handlePickerTime = (time) => {
+    this.setState({
+      isVisibleTime: false,
+      chosenTime: moment(time).format('HH:mm'),
+    });
+  };
+
+  showPickerTime = () => {
+    this.setState({
+      isVisibleTime: true,
+    });
+  };
+  hidePickerTime = () => {
+    this.setState({
+      isVisibleTime: false,
     });
   };
 
@@ -68,13 +88,13 @@ class AplicacionPlatzi extends Component {
           </Wrapper>
           <Wrapper theme={this.props.theme} title={'Hour :'}>
             <Button
-              title={this.state.chosenDate || 'No seleccionada'}
+              title={this.state.chosenTime || 'No seleccionada'}
               style={[
                 styles.select_date_button,
                 {backgroundColor: this.props.theme.body_background},
               ]}
               titleStyle={{color: this.props.theme.settings_history_title}}
-              onPress={this.showPicker}
+              onPress={this.showPickerTime}
               buttonStyle={{
                 borderColor: this.props.theme.settings_history_button_border,
               }}
@@ -98,7 +118,15 @@ class AplicacionPlatzi extends Component {
             isVisible={this.state.isVisible}
             onConfirm={this.handlePicker}
             onCancel={this.hidePicker}
-            mode={'datetime'}
+            mode={'date'}
+            is24Hour={false}
+          />
+
+          <DateTimePickerModal
+            isVisible={this.state.isVisibleTime}
+            onConfirm={this.handlePickerTime}
+            onCancel={this.hidePickerTime}
+            mode={'time'}
             is24Hour={false}
           />
         </SafeAreaView>

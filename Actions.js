@@ -29,3 +29,16 @@ export const setFeedBMessage = (payLoad) => ({
   type: 'SET_FEED_BACK_MESSAGE_OUT',
   payLoad,
 });
+
+/* 
+export const setCurrentChannelIN = (payLoad) => ({
+  type: 'SET_CURRENT_CHANNEL_IN',
+  payLoad,
+});
+
+export const setChannelInName = (payLoad) => ({
+  type: 'SET_CHANNEL_IN_NAME',
+  payLoad,
+});
+
+*/

@@ -4,7 +4,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
-import Loading from './sections/screens/Loading';
+import Loading from './sections/screens/loading';
 import DevicesScreen from './sections/screens/DeviceScreen';
 import DeviceControl from './sections/device/ControlDevice';
 import SettingsDevice from './sections/settings/SettingsDevice';
@@ -13,6 +13,7 @@ import SettingHistory from './sections/settings/history/history';
 import SettingOut from './sections/settings/channel_out/channel_out';
 import SettingIn from './sections/settings/channel_in/channel_in';
 import SettingSystem from './sections/settings/system_settings/system_settings';
+import SettingCheck from './sections/settings/SettingsCheck';
 import {connect} from 'react-redux';
 import Icon from './utils/Icon';
 const Stack = createStackNavigator();
@@ -70,7 +71,7 @@ function App(props) {
         <Stack.Screen name="settings_out" component={SettingOut} />
         <Stack.Screen name="settings_in" component={SettingIn} />
         <Stack.Screen name="settings_system" component={SettingSystem} />
-        <Stack.Screen name="settings_check" component={SettingSystem} />
+        <Stack.Screen name="settings_check" component={SettingCheck} />
       </Stack.Navigator>
     </NavigationContainer>
   );

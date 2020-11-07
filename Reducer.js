@@ -123,10 +123,7 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        activation_time: {
-                          ...channel.configs.channel_out.activation_time,
-                          value: action.payLoad.activation_time,
-                        },
+                        activation_time: action.payLoad.activation_time,
                       },
                     },
                   };
@@ -203,7 +200,34 @@ function Reducer(state, action) {
           }
         }),
       };
+    /**********************************************************************
+      case 'SET_CURRENT_CHANNEL_IN':
+          return {
+              ...state,
+              devices: state.devices.map((device) => {
+                  if (device.phoneNumber == action.payLoad.phoneNumber) {
+                      return {
+                          ...device,
+                          channels:device.channels.map((channel)=>{
+                              return{
+                                  ...channel,
+                                  configs:{
+                                      ...channel.configs,
+                                      channel_in:{
 
+                                      }
+                                  }
+                              }
+                          })
+                      };
+                  } else {
+                      return device;
+                  }
+              }),
+          };
+
+      
+*/
     default:
       return state;
   }

@@ -107,11 +107,12 @@ const state = {
   },
   devices: [
     {
-      name: 'Brandi',
-      phoneNumber: '6643454982',
+      name: 'David',
+      phoneNumber: '6645226208',
       currentChannel: 1,
       prefix: '#PWD',
       password: '123456',
+      check_system_status: '#STATUS?',
       channels: [
         {
           name: 'OUT1',
@@ -132,10 +133,95 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: {
-                value: 0,
-                command: 'RLY',
+              activation_time: 0,
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
               },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
+            },
+            channel_in: [
+              {
+                value: 1,
+                name: '',
+                emergencyCall: {
+                  index: 0,
+                  turn_on: '',
+                  turn_off: '',
+                },
+                emergencyNumber: {
+                  phone: '',
+                },
+                feedBMessage: '',
+              },
+              {
+                value: 2,
+                name: '',
+                emergencyCall: {
+                  index: 0,
+                  turn_on: '',
+                  turn_off: '',
+                },
+                emergencyNumber: {
+                  phone: '',
+                },
+                feedBMessage: '',
+              },
+            ],
+            settings_system: {
+              free_control: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              feedBMessage: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              update_pwd_cap: 'CAP',
+              call_ring_tone: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              working_mode: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              report_or_not: {
+                index: 0,
+                turn_on: '',
+                turn_off: '',
+              },
+              set_all_relay_status: '',
+            },
+          },
+        },
+        {
+          name: 'OUT2',
+          value: 2,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              activation_type: {
+                index: 0,
+                temporal: 'Temporal',
+                constant: 'Constante',
+              },
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
               activation_message: {
                 value: '',
                 command: '-ON-TEXT:',
@@ -190,69 +276,6 @@ const state = {
           },
         },
         {
-          name: 'OUT2',
-          value: 2,
-          configs: {
-            calendar: [],
-            history: [],
-            channel_out: {
-              name: '',
-              activation_type: 0,
-              base_time: {
-                selected: 0,
-                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-                seconds: 'TIMER-DELAY-AT-SECOND',
-                minutes: 'TIMER-DELAY-AT-MINUTE',
-              },
-              activation_time: 0,
-              activation_message: '',
-              feedBMessage: '',
-            },
-            channel_in: {
-              name: '',
-              emergencyCall: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              emergencyNumber: {
-                phone: '',
-              },
-              feedBMessage: '',
-            },
-            settings_system: {
-              free_control: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              feedBMessage: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              update_pwd_cap: 'CAP',
-              call_ring_tone: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              working_mode: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              report_or_not: {
-                index: 0,
-                turn_on: '',
-                turn_off: '',
-              },
-              set_all_relay_status: '',
-            },
-            check_system_status: '#STATUS?',
-          },
-        },
-        {
           name: 'OUT3',
           value: 3,
           configs: {
@@ -260,16 +283,26 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: 0,
+              activation_type: {
+                index: 0,
+                temporal: 'Temporal',
+                constant: 'Constante',
+              },
               base_time: {
-                selected: 0,
+                index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: '',
-              feedBMessage: '',
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
             },
             channel_in: {
               name: '',
@@ -323,16 +356,26 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: 0,
+              activation_type: {
+                index: 0,
+                temporal: 'Temporal',
+                constant: 'Constante',
+              },
               base_time: {
-                selected: 0,
+                index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: '',
-              feedBMessage: '',
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
             },
             channel_in: {
               name: '',
