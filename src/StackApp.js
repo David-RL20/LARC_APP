@@ -4,7 +4,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
-import Loading from './sections/screens/loading';
+import Loading from './sections/screens/Loading';
 import DevicesScreen from './sections/screens/DeviceScreen';
 import DeviceControl from './sections/device/ControlDevice';
 import SettingsDevice from './sections/settings/SettingsDevice';

@@ -30,8 +30,7 @@ export const setFeedBMessage = (payLoad) => ({
   payLoad,
 });
 
-/* 
-export const setCurrentChannelIN = (payLoad) => ({
+export const setCurrentChannelIn = (payLoad) => ({
   type: 'SET_CURRENT_CHANNEL_IN',
   payLoad,
 });
@@ -40,5 +39,17 @@ export const setChannelInName = (payLoad) => ({
   type: 'SET_CHANNEL_IN_NAME',
   payLoad,
 });
+export const setChannelInEmergencyCall = (payLoad) => ({
+  type: 'SET_CHANNEL_IN_EMERGENCY_CALL',
+  payLoad,
+});
 
-*/
+export const setChannelInEmergencyNumber = (payLoad) => ({
+  type: 'SET_CHANNEL_IN_EMERGENCY_NUMBER',
+  payLoad,
+});
+
+export const setChannelInFeedbackMessage = (payLoad) => ({
+  type: 'SET_CHANNEL_IN_FEEDBACK_MESSAGE',
+  payLoad,
+});

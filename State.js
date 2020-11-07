@@ -107,9 +107,10 @@ const state = {
   },
   devices: [
     {
-      name: 'David',
-      phoneNumber: '6645226208',
+      name: 'Brandi',
+      phoneNumber: '6643454982',
       currentChannel: 1,
+      currentChannelIn: 1,
       prefix: '#PWD',
       password: '123456',
       check_system_status: '#STATUS?',
@@ -143,34 +144,7 @@ const state = {
                 command: '-ON-REPLY-TEXT:',
               },
             },
-            channel_in: [
-              {
-                value: 1,
-                name: '',
-                emergencyCall: {
-                  index: 0,
-                  turn_on: '',
-                  turn_off: '',
-                },
-                emergencyNumber: {
-                  phone: '',
-                },
-                feedBMessage: '',
-              },
-              {
-                value: 2,
-                name: '',
-                emergencyCall: {
-                  index: 0,
-                  turn_on: '',
-                  turn_off: '',
-                },
-                emergencyNumber: {
-                  phone: '',
-                },
-                feedBMessage: '',
-              },
-            ],
+
             settings_system: {
               free_control: {
                 index: 0,
@@ -419,6 +393,38 @@ const state = {
               set_all_relay_status: '',
             },
             check_system_status: '#STATUS?',
+          },
+        },
+      ],
+      channel_in: [
+        {
+          value: 1,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
+          },
+        },
+        {
+          value: 2,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
           },
         },
       ],

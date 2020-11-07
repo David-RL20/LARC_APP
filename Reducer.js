@@ -200,34 +200,139 @@ function Reducer(state, action) {
           }
         }),
       };
-    /**********************************************************************
-      case 'SET_CURRENT_CHANNEL_IN':
-          return {
-              ...state,
-              devices: state.devices.map((device) => {
-                  if (device.phoneNumber == action.payLoad.phoneNumber) {
-                      return {
-                          ...device,
-                          channels:device.channels.map((channel)=>{
-                              return{
-                                  ...channel,
-                                  configs:{
-                                      ...channel.configs,
-                                      channel_in:{
 
-                                      }
-                                  }
-                              }
-                          })
-                      };
-                  } else {
-                      return device;
-                  }
+    case 'SET_CURRENT_CHANNEL_IN':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              currentChannelIn: action.payLoad.currentChannelIn,
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+    case 'SET_CHANNEL_IN_NAME':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              channel_in: device.channel_in.map((channel) => {
+                if (channel.value == action.payLoad.currentChannelIn) {
+                  return {
+                    ...channel,
+                    name: action.payLoad.name,
+                  };
+                } else {
+                  return {
+                    ...channel,
+                  };
+                }
               }),
-          };
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+    case 'SET_CHANNEL_IN_EMERGENCY_CALL':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              channel_in: device.channel_in.map((channel) => {
+                if (channel.value == action.payLoad.currentChannelIn) {
+                  return {
+                    ...channel,
+                    configs: {
+                      ...channel.configs,
+                      emergencyCall: {
+                        ...channel.configs.emergencyCall,
+                        index: action.payLoad.index,
+                      },
+                    },
+                  };
+                } else {
+                  return {
+                    ...channel,
+                  };
+                }
+              }),
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
 
-      
-*/
+    case 'SET_CHANNEL_IN_EMERGENCY_NUMBER':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              channel_in: device.channel_in.map((channel) => {
+                if (channel.value == action.payLoad.currentChannelIn) {
+                  return {
+                    ...channel,
+                    configs: {
+                      ...channel.configs,
+                      emergencyNumber: {
+                        ...channel.configs.emergencyNumber,
+                        phone: action.payLoad.phone,
+                      },
+                    },
+                  };
+                } else {
+                  return {
+                    ...channel,
+                  };
+                }
+              }),
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
+    case 'SET_CHANNEL_IN_FEEDBACK_MESSAGE':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              channel_in: device.channel_in.map((channel) => {
+                if (channel.value == action.payLoad.currentChannelIn) {
+                  return {
+                    ...channel,
+                    configs: {
+                      ...channel.configs,
+                      feedBMessage: action.payLoad.feedBMessage,
+                    },
+                  };
+                } else {
+                  return {
+                    ...channel,
+                  };
+                }
+              }),
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
     default:
       return state;
   }
