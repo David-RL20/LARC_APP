@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, SafeAreaView, View, ScrollView, Text} from 'react-native';
+import {StyleSheet, SafeAreaView, View, ScrollView, Text,Alert} from 'react-native';
 import {Input} from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
 import {connect} from 'react-redux';
@@ -11,6 +11,8 @@ import {
   setChannelInEmergencyNumber,
   setChannelInFeedbackMessage,
 } from '../../../../Actions';
+import SmsAndroid from 'react-native-get-sms-android';
+import SendSMS from 'react-native-sms';
 
 class ChannelIn extends Component {
   constructor() {
@@ -22,40 +24,204 @@ class ChannelIn extends Component {
     );
   }
 
+  sendMessageIOS(msg, phone) {
+    SendSMS.send(
+      {
+        body: msg,
+        recipients: [phone],
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          'SMS Callback: completed: ' +
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
+        );
+      },
+    );
+  }
+  sendMessageAndroid(msg, phone) {
+    SmsAndroid.autoSend(
+      phone,
+      msg,
+      (fail) => {
+        console.log('Failed with this error: ' + fail);
+      },
+      (success) => {
+        console.log('SMS sent successfully');
+      },
+    );
+  }
+
   updateEmergencyCallIndex(selectedIndex) {
-    this.props.setChannelInEmergencyCall({
-      phoneNumber: this.phoneNumber,
-      currentChannelIn: this.currentChannelIn,
-      index: selectedIndex,
-    });
+
+    Alert.alert(
+      'Confirmacion',
+      'Desea habilitar llamada de emergencia ?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+              this.props.setChannelInEmergencyCall({
+                phoneNumber: this.phoneNumber,
+                currentChannelIn: this.currentChannelIn,
+                index: selectedIndex,
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+
+
+    
+   
   }
   updateChannelIndex(selectedChannel) {
+    
     this.props.setCurrentChannelIn({
       phoneNumber: this.phoneNumber,
       currentChannelIn: selectedChannel + 1,
     });
   }
   handleNameChannelInChange() {
-    this.props.setChannelInName({
-      phoneNumber: this.phoneNumber,
-      currentChannelIn: this.currentChannelIn,
-      name: this.name_input,
-    });
+
+    Alert.alert(
+      'Confirmacion',
+      'Desea cambiar el nombre  del channel In?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+              this.props.setChannelInName({
+                phoneNumber: this.phoneNumber,
+                currentChannelIn: this.currentChannelIn,
+                name: this.name_input,
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+
+
+
+    
   }
   handleEmergencyNumberChange() {
-    this.props.setChannelInEmergencyNumber({
-      phoneNumber: this.phoneNumber,
-      currentChannelIn: this.currentChannelIn,
-      phone: this.cellphone_input,
-    });
+
+    Alert.alert(
+      'Confirmacion',
+      'Desea agregar este numero de emergencia?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+              this.props.setChannelInEmergencyNumber({
+                phoneNumber: this.phoneNumber,
+                currentChannelIn: this.currentChannelIn,
+                phone: this.cellphone_input,
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+
+
+    
   }
 
   handleFeedbackMessageChange() {
-    this.props.setChannelInFeedbackMessage({
-      phoneNumber: this.phoneNumber,
-      currentChannelIn: this.currentChannelIn,
-      feedBMessage: this.feedBMessage_input,
-    });
+
+    Alert.alert(
+      'Confirmacion',
+      'Desea cambiar el feedback message  del channel In?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#`,
+                this.phoneNumber,
+              );
+              this.props.setChannelInFeedbackMessage({
+                phoneNumber: this.phoneNumber,
+                currentChannelIn: this.currentChannelIn,
+                feedBMessage: this.feedBMessage_input,
+              
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+
+    
   }
   findDevices() {
     this.device = this.props.devices.filter(

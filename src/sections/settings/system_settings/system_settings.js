@@ -19,7 +19,6 @@ class SystemSettings extends Component {
       feedBackMessageIndex: 0,
       ringToneIndex: 0,
       workingModeIndex: 0,
-      enableReportIndex: 0,
     };
     this.updateFreeControlIndex = this.updateFreeControlIndex.bind(this);
     this.updateFeedBackMessageIndex = this.updateFeedBackMessageIndex.bind(
@@ -27,7 +26,6 @@ class SystemSettings extends Component {
     );
     this.updateRingToneIndex = this.updateRingToneIndex.bind(this);
     this.updateWorkingModeIndex = this.updateWorkingModeIndex.bind(this);
-    this.updateEnableReportIndex = this.updateEnableReportIndex.bind(this);
   }
   updateFreeControlIndex(freeControlIndex) {
     this.setState({freeControlIndex});
@@ -40,9 +38,6 @@ class SystemSettings extends Component {
   }
   updateWorkingModeIndex(workingModeIndex) {
     this.setState({workingModeIndex});
-  }
-  updateEnableReportIndex(enableReportIndex) {
-    this.setState({enableReportIndex});
   }
   render() {
     const activeOptions = [
@@ -61,7 +56,6 @@ class SystemSettings extends Component {
       feedBackMessageIndex,
       ringToneIndex,
       workingModeIndex,
-      enableReportIndex,
     } = this.state;
     return (
       <SafeAreaView
@@ -116,13 +110,6 @@ class SystemSettings extends Component {
               action={this.updateWorkingModeIndex}
               index={workingModeIndex}
               buttons={workingModeTitles}
-            />
-          </FormWrapper>
-          <FormWrapper title={this.props.screen.enable_report_label}>
-            <ButtonGroupCustumized
-              action={this.updateEnableReportIndex}
-              index={enableReportIndex}
-              buttons={activeOptions}
             />
           </FormWrapper>
           <FormWrapper title={this.props.screen.set_all_relay_status_label}>

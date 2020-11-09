@@ -203,13 +203,8 @@ class ChannelOut extends Component {
     this.cmd_feedback_message = this.device.channels[
       this.device.currentChannel - 1
     ].configs.channel_out.feedBMessage.command;
-    console.log(
-      this.device.channels[this.device.currentChannel - 1].configs.channel_out
-        .feedBMessage,
-    );
   }
   handleChannelNameChange() {
-    console.log(this.channel_name_input);
     Alert.alert('Confirmacion', 'Desea cambiar el nombre', [
       {
         text: 'Cancel',
@@ -333,14 +328,6 @@ class ChannelOut extends Component {
     const timeBaseIndex = this.device.channels[this.currentChannel - 1].configs
       .channel_out.base_time.index;
 
-    /*Activation type*/
-    const activationTypeButtons = [
-      this.props.screen_settings_out.type_temporal,
-      this.props.screen_settings_out.type_const,
-    ];
-    const activationTypeIndex = this.device.channels[this.currentChannel - 1]
-      .configs.channel_out.activation_type.index;
-
     const buttons = [1, 2, 3, 4];
 
     return (
@@ -385,13 +372,6 @@ class ChannelOut extends Component {
                 onChangeText={(text) => {
                   this.channel_name_input = text;
                 }}
-              />
-            </FormWrapper>
-            <FormWrapper title={this.props.screen_settings_out.type_activation}>
-              <ButtonGroupCustumized
-                action={this.updateActivationType}
-                index={activationTypeIndex}
-                buttons={activationTypeButtons}
               />
             </FormWrapper>
             <FormWrapper title={this.props.screen_settings_out.base_time}>

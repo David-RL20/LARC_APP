@@ -492,11 +492,11 @@ const state = {
           logo: 'settings_out',
           route: 'settings_out',
         },
-        {
-          title: 'Channel in settings',
-          logo: 'settings_in',
-          route: 'settings_in',
-        },
+        // {
+        //   title: 'Channel in settings',
+        //   logo: 'settings_in',
+        //   route: 'settings_in',
+        // },
         {
           title: 'System settings',
           logo: 'settings',
@@ -524,11 +524,11 @@ const state = {
           logo: 'settings_out',
           route: 'settings_out',
         },
-        {
-          title: 'Ajustes del canal in',
-          logo: 'settings_in',
-          route: 'settings_in',
-        },
+        // {
+        //   title: 'Ajustes del canal in',
+        //   logo: 'settings_in',
+        //   route: 'settings_in',
+        // },
         {
           title: 'Ajustes del sistema',
           logo: 'settings',
@@ -591,9 +591,6 @@ const state = {
       eng: {
         channel_name: 'Channel name',
         channel_holder: 'Channel',
-        type_activation: 'Type activation',
-        type_temporal: 'Temporal',
-        type_const: 'Constants',
         base_time: 'Base Time',
         btime_minutes: 'Minutes',
         btime_seconds: 'Seconds',
@@ -607,9 +604,6 @@ const state = {
       esp: {
         channel_name: 'Nombre del canal',
         channel_holder: 'Canal',
-        type_activation: 'Tipo de activacion',
-        type_temporal: 'Temporal',
-        type_const: 'Constante',
         base_time: 'Tiempo base',
         btime_minutes: 'Minutos',
         btime_seconds: 'Segundos',

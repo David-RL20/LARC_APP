@@ -11,7 +11,7 @@ import SettingsDevice from './sections/settings/SettingsDevice';
 import SettingsCalendar from './sections/screens/ScreenCalendar';
 import SettingHistory from './sections/settings/history/history';
 import SettingOut from './sections/settings/channel_out/channel_out';
-import SettingIn from './sections/settings/channel_in/channel_in';
+// import SettingIn from './sections/settings/channel_in/channel_in';
 import SettingSystem from './sections/settings/system_settings/system_settings';
 import SettingCheck from './sections/settings/SettingsCheck';
 import {connect} from 'react-redux';
@@ -69,7 +69,7 @@ function App(props) {
         <Stack.Screen name="settings_calendar" component={SettingsCalendar} />
         <Stack.Screen name="settings_history" component={SettingHistory} />
         <Stack.Screen name="settings_out" component={SettingOut} />
-        <Stack.Screen name="settings_in" component={SettingIn} />
+        {/* <Stack.Screen name="settings_in" component={SettingIn} /> */}
         <Stack.Screen name="settings_system" component={SettingSystem} />
         <Stack.Screen name="settings_check" component={SettingCheck} />
       </Stack.Navigator>
