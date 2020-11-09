@@ -244,7 +244,7 @@ class ChannelOut extends Component {
   handleFeedBMessage() {
     Alert.alert(
       this.props.screen_settings_out.alerts.confirmation,
-      this.props.screen_settings_out.alerts.change_feddbackMessage,
+      this.props.screen_settings_out.alerts.change_feedbackMessage,
       [
         {
           text: this.props.screen_settings_out.alerts.cancel,
