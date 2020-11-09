@@ -62,6 +62,9 @@ class AplicacionPlatzi extends Component {
       isVisibleTime: false,
     });
   };
+  handleSearch() {
+    console.log('searching...');
+  }
 
   render() {
     return (
@@ -71,9 +74,11 @@ class AplicacionPlatzi extends Component {
             styles.container,
             {backgroundColor: this.props.theme.body_background},
           ]}>
-          <Wrapper theme={this.props.theme} title={'Date :'}>
+          <Wrapper
+            theme={this.props.theme}
+            title={this.props.screen.date + ' :'}>
             <Button
-              title={this.state.chosenDate || 'No seleccionada'}
+              title={this.state.chosenDate || this.props.screen.not_selected}
               style={[
                 styles.select_date_button,
                 {backgroundColor: this.props.theme.body_background},
@@ -86,9 +91,11 @@ class AplicacionPlatzi extends Component {
               type="outline"
             />
           </Wrapper>
-          <Wrapper theme={this.props.theme} title={'Hour :'}>
+          <Wrapper
+            theme={this.props.theme}
+            title={this.props.screen.hour + ' :'}>
             <Button
-              title={this.state.chosenTime || 'No seleccionada'}
+              title={this.state.chosenTime || this.props.screen.not_selected}
               style={[
                 styles.select_date_button,
                 {backgroundColor: this.props.theme.body_background},
@@ -102,7 +109,7 @@ class AplicacionPlatzi extends Component {
             />
           </Wrapper>
           <Button
-            title={'Buscar'}
+            title={this.props.screen.search}
             buttonStyle={[
               styles.searchbutton,
               {
@@ -111,6 +118,7 @@ class AplicacionPlatzi extends Component {
                 borderColor: this.props.theme.settings_history_button_border,
               },
             ]}
+            onPress={this.handleSearch.bind(this)}
             titleStyle={{color: this.props.theme.settings_history_button_title}}
           />
 

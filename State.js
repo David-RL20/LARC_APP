@@ -584,6 +584,17 @@ const state = {
         activation_holder: 'Write an activation message',
         feedback_message: 'Feedback message',
         feedback_holder: 'Write a feedback message',
+        alerts: {
+          confirmation: 'Confirmation',
+          change_name: 'Do you want to change the name?',
+          change_baseTime: 'Do you want to change the base time?',
+          change_activationTime: 'Do you want to change the activation time?',
+          change_activationMessage:
+            'Do you want to change the activation message?',
+          change_feedbackMessage: 'Do you want to change the feedback message?',
+          cancel: 'Cancel',
+          ok: 'Confirm',
+        },
       },
       esp: {
         channel_name: 'Nombre del canal',
@@ -597,6 +608,16 @@ const state = {
         activation_holder: 'Escribe un mensaje de activacion',
         feedback_message: 'Mensaje de retroalimentacion',
         feedback_holder: 'Escribe un mensaje de retroalimentacion',
+        alerts: {
+          confirmation: 'Confirmacion',
+          change_name: 'Desea cambiar el nombre?',
+          change_baseTime: 'Desea cambiar el tiempo base?',
+          change_activationTime: 'Desea cambiar el tiempo de activacion?',
+          change_activationMessage: 'Desea cambiar el mensaje de activacion?',
+          change_feedbackMessage: 'Desea cambiar el mensaje de respuesta?',
+          cancel: 'Cancelar',
+          ok: 'Confirmar',
+        },
       },
     },
     settings_system_settings: {
@@ -634,8 +655,32 @@ const state = {
       },
     },
     settings_history: {
-      eng: {},
-      esp: {},
+      eng: {
+        date: 'Date',
+        hour: 'Hour',
+        search: 'Search',
+        not_selected: 'Not selected',
+      },
+      esp: {
+        date: 'Fecha',
+        hour: 'Hora',
+        search: 'Buscar',
+        not_selected: 'No seleccionada',
+      },
+    },
+    settings_check_system: {
+      eng: {
+        status: 'Status',
+        check: 'Do you want to check the device status?',
+        cancel: 'Cancel',
+        Ok: 'Ok',
+      },
+      esp: {
+        status: 'Estatus',
+        check: 'Desea checar el estatus del dispositivo?',
+        cancel: 'Cancelar',
+        Ok: 'Ok',
+      },
     },
   },
 };

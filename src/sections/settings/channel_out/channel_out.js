@@ -34,11 +34,10 @@ class ChannelOut extends Component {
       timeBaseIndex: 0,
       selectedIndex: 0,
     };
-    this.updateActivationType = this.updateActivationType.bind(this);
+
     this.updateTimeBase = this.updateTimeBase.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
   }
-
   sendMessageIOS(msg, phone) {
     SendSMS.send(
       {
@@ -71,56 +70,20 @@ class ChannelOut extends Component {
       },
     );
   }
-  updateActivationType(activationTypeIndex) {
-    const actT = [this.actType.temporal, this.actType.constant];
-    Alert.alert(
-      'Confirmacion',
-      'Desea abrir el dispositivo ?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {
-            console.log('Canceled');
-          },
-        },
-        {
-          text: 'Ok',
-          onPress: () => {
-            Platform.OS === 'ios' &&
-              this.sendMessageIOS(
-                `${this.prefix}${this.password}#${actT[activationTypeIndex]}`,
-                this.phoneNumber,
-              );
-            Platform.OS === 'android' &&
-              this.sendMessageAndroid(
-                `${this.prefix}${this.password}#${actT[activationTypeIndex]}`,
-                this.phoneNumber,
-              );
-            this.props.setActivationType({
-              phoneNumber: this.phoneNumber,
-              value: this.currentChannel,
-              index: activationTypeIndex,
-            });
-          },
-        },
-      ],
-      {cancelable: true},
-    );
-  }
   updateTimeBase(timeBaseIndex) {
     const cmds = [this.time.minutes, this.time.seconds, this.time.milliseconds];
     Alert.alert(
-      'Confirmacion',
-      'Desea abrir el dispositivo ?',
+      this.props.screen_settings_out.alerts.confirmation,
+      this.props.screen_settings_out.alerts.change_baseTime,
       [
         {
-          text: 'Cancel',
+          text: this.props.screen_settings_out.alerts.cancel,
           onPress: () => {
             console.log('Canceled');
           },
         },
         {
-          text: 'Ok',
+          text: this.props.screen_settings_out.alerts.ok,
           onPress: () => {
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
@@ -187,114 +150,130 @@ class ChannelOut extends Component {
       statusArray[this.channel.configs.channel_out.currentStatus];
   }
   handleChannelNameChange() {
-    Alert.alert('Confirmacion', 'Desea cambiar el nombre', [
-      {
-        text: 'Cancel',
-        onPress: () => {
-          console.log('cancel');
+    Alert.alert(
+      this.props.screen_settings_out.alerts.confirmation,
+      this.props.screen_settings_out.alerts.change_name,
+      [
+        {
+          text: this.props.screen_settings_out.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
         },
-      },
-      {
-        text: 'Ok',
-        onPress: () => {
-          this.props.setChannelOutName({
-            phoneNumber: this.phoneNumber,
-            value: this.currentChannel,
-            name: this.channel_name_input,
-          });
+        {
+          text: this.props.screen_settings_out.alerts.ok,
+          onPress: () => {
+            this.props.setChannelOutName({
+              phoneNumber: this.phoneNumber,
+              value: this.currentChannel,
+              name: this.channel_name_input,
+            });
+          },
         },
-      },
-    ]);
+      ],
+    );
   }
   handleActivationTimeChange() {
-    Alert.alert('Confirmacion', 'Desea cambiar el tiempo de activacion ?', [
-      {
-        text: 'Cancel',
-        onPress: () => {
-          console.log('cancel');
+    Alert.alert(
+      this.props.screen_settings_out.alerts.confirmation,
+      this.props.screen_settings_out.alerts.change_activationTime,
+      [
+        {
+          text: this.props.screen_settings_out.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
         },
-      },
-      {
-        text: 'Ok',
-        onPress: () => {
-          Platform.OS === 'ios' &&
-            this.sendMessageIOS(
-              `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
-              this.phoneNumber,
-            );
-          Platform.OS === 'android' &&
-            this.sendMessageAndroid(
-              `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
-              this.phoneNumber,
-            );
-          this.props.setActivationTime({
-            phoneNumber: this.phoneNumber,
-            value: this.currentChannel,
-            activation_time: this.activation_time_input,
-          });
+        {
+          text: this.props.screen_settings_out.alerts.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
+                this.phoneNumber,
+              );
+            this.props.setActivationTime({
+              phoneNumber: this.phoneNumber,
+              value: this.currentChannel,
+              activation_time: this.activation_time_input,
+            });
+          },
         },
-      },
-    ]);
+      ],
+    );
   }
   handleActivationSmsChange() {
-    Alert.alert('Confirmacion', 'Desea cambiar el mensaje de activacion ?', [
-      {
-        text: 'Cancel',
-        onPress: () => {
-          console.log('cancel');
+    Alert.alert(
+      this.props.screen_settings_out.alerts.confirmation,
+      this.props.screen_settings_out.alerts.change_activationTime,
+      [
+        {
+          text: this.props.screen_settings_out.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
         },
-      },
-      {
-        text: 'Ok',
-        onPress: () => {
-          this.props.setActivationMessage({
-            phoneNumber: this.phoneNumber,
-            value: this.currentChannel,
-            activation_message: this.activation_message_input,
-          });
-          Platform.OS === 'ios' &&
-            this.sendMessageIOS(
-              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
-              this.phoneNumber,
-            );
-          Platform.OS === 'android' &&
-            this.sendMessageAndroid(
-              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
-              this.phoneNumber,
-            );
+        {
+          text: this.props.screen_settings_out.alerts.ok,
+          onPress: () => {
+            this.props.setActivationMessage({
+              phoneNumber: this.phoneNumber,
+              value: this.currentChannel,
+              activation_message: this.activation_message_input,
+            });
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
+                this.phoneNumber,
+              );
+          },
         },
-      },
-    ]);
+      ],
+    );
   }
   handleFeedBMessage() {
-    Alert.alert('Confirmacion', 'Desea cambiar el mensaje de Feedback ?', [
-      {
-        text: 'Cancel',
-        onPress: () => {
-          console.log('cancel');
+    Alert.alert(
+      this.props.screen_settings_out.alerts.confirmation,
+      this.props.screen_settings_out.alerts.change_feddbackMessage,
+      [
+        {
+          text: this.props.screen_settings_out.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
         },
-      },
-      {
-        text: 'Ok',
-        onPress: () => {
-          this.props.setFeedBMessage({
-            phoneNumber: this.phoneNumber,
-            value: this.currentChannel,
-            feedBMessage: this.feedBMessageInput,
-          });
-          Platform.OS === 'ios' &&
-            this.sendMessageIOS(
-              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
-              this.phoneNumber,
-            );
-          Platform.OS === 'android' &&
-            this.sendMessageAndroid(
-              `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
-              this.phoneNumber,
-            );
+        {
+          text: this.props.screen_settings_out.alerts.ok,
+          onPress: () => {
+            this.props.setFeedBMessage({
+              phoneNumber: this.phoneNumber,
+              value: this.currentChannel,
+              feedBMessage: this.feedBMessageInput,
+            });
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+                this.phoneNumber,
+              );
+          },
         },
-      },
-    ]);
+      ],
+    );
   }
 
   render() {
