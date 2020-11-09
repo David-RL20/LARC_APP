@@ -123,11 +123,7 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: {
-                index: 0,
-                temporal: 'Temporal',
-                constant: 'Constante',
-              },
+              currentStatus: 1,
               base_time: {
                 index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
@@ -137,11 +133,11 @@ const state = {
               activation_time: 0,
               activation_message: {
                 value: '',
-                command: '-ON-TEXT:',
+                command: '-TEXT:',
               },
               feedBMessage: {
                 value: '',
-                command: '-ON-REPLY-TEXT:',
+                command: '-REPLY-TEXT:',
               },
             },
 
@@ -184,11 +180,7 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: {
-                index: 0,
-                temporal: 'Temporal',
-                constant: 'Constante',
-              },
+
               base_time: {
                 index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
@@ -257,11 +249,7 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: {
-                index: 0,
-                temporal: 'Temporal',
-                constant: 'Constante',
-              },
+
               base_time: {
                 index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
@@ -330,11 +318,7 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              activation_type: {
-                index: 0,
-                temporal: 'Temporal',
-                constant: 'Constante',
-              },
+
               base_time: {
                 index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',

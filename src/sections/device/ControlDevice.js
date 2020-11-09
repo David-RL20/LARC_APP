@@ -89,7 +89,7 @@ class Controll extends Component {
       },
     );
   }
-  unlockDevice() {
+  lockDevice() {
     Alert.alert(
       'Confirmacion',
       'Desea abrir el dispositivo ?',
@@ -119,7 +119,7 @@ class Controll extends Component {
       {cancelable: true},
     );
   }
-  lockDevice() {
+  unlockDevice() {
     Alert.alert(
       'Confirmacion',
       'Desea cerrar el dispositivo ?',
