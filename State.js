@@ -82,225 +82,224 @@ const state = {
     phoneNumber: null,
     currentChannel: null,
     password: '123456',
-    channels: [{
-      name: 'OUT1',
-      value: 1,
-    },
-    {
-      name: 'OUT2',
-      value: 2,
-    },
-    {
-      name: 'OUT3',
-      value: 3,
-    },
-    {
-      name: 'OUT4',
-      value: 4,
-    },
+    channels: [
+      {
+        name: 'OUT1',
+        value: 1,
+      },
+      {
+        name: 'OUT2',
+        value: 2,
+      },
+      {
+        name: 'OUT3',
+        value: 3,
+      },
+      {
+        name: 'OUT4',
+        value: 4,
+      },
     ],
   },
   loading: {
     eng: 'Loading...',
     esp: 'Cargando...',
   },
-  devices: [{
-    name: 'Brandi',
-    phoneNumber: '6643454982',
-    currentChannel: 1,
-    currentChannelIn: 1,
-    prefix: '#PWD',
-    password: '123456',
-    check_system_status: '#STATUS?',
-    channels: [{
-      name: 'OUT1',
-      value: 1,
-      configs: {
-        calendar: [],
-        history: [],
-        channel_out: {
-          name: '',
-          currentStatus: 1,
-          base_time: {
-            index: 0,
-            milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-            seconds: 'TIMER-DELAY-AT-SECOND',
-            minutes: 'TIMER-DELAY-AT-MINUTE',
-          },
-          activation_time: 0,
-          activation_message: {
-            value: '',
-            command: '-TEXT:',
-          },
-          feedBMessage: {
-            value: '',
-            command: '-REPLY-TEXT:',
-          },
-        },
-
-
-      },
-    },
+  devices: [
     {
-      name: 'OUT2',
-      value: 2,
-      configs: {
-        calendar: [],
-        history: [],
-        channel_out: {
-          name: '',
-
-          base_time: {
-            index: 0,
-            milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-            seconds: 'TIMER-DELAY-AT-SECOND',
-            minutes: 'TIMER-DELAY-AT-MINUTE',
-          },
-          activation_time: 0,
-          activation_message: {
-            value: '',
-            command: '-ON-TEXT:',
-          },
-          feedBMessage: {
-            value: '',
-            command: '-ON-REPLY-TEXT:',
-          },
-        },
-
-
-
-      },
-    },
-    {
-      name: 'OUT3',
-      value: 3,
-      configs: {
-        calendar: [],
-        history: [],
-        channel_out: {
-          name: '',
-
-          base_time: {
-            index: 0,
-            milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-            seconds: 'TIMER-DELAY-AT-SECOND',
-            minutes: 'TIMER-DELAY-AT-MINUTE',
-          },
-          activation_time: 0,
-          activation_message: {
-            value: '',
-            command: '-ON-TEXT:',
-          },
-          feedBMessage: {
-            value: '',
-            command: '-ON-REPLY-TEXT:',
+      name: 'Brandi',
+      phoneNumber: '6643454982',
+      currentChannel: 1,
+      currentChannelIn: 1,
+      prefix: '#PWD',
+      password: '123456',
+      check_system_status: '#STATUS?',
+      channels: [
+        {
+          name: 'OUT1',
+          value: 1,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              currentStatus: 1,
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: {
+                value: '',
+                command: '-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-REPLY-TEXT:',
+              },
+            },
           },
         },
+        {
+          name: 'OUT2',
+          value: 2,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
 
-      },
-    },
-    {
-      name: 'OUT4',
-      value: 4,
-      configs: {
-        calendar: [],
-        history: [],
-        channel_out: {
-          name: '',
-
-          base_time: {
-            index: 0,
-            milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-            seconds: 'TIMER-DELAY-AT-SECOND',
-            minutes: 'TIMER-DELAY-AT-MINUTE',
-          },
-          activation_time: 0,
-          activation_message: {
-            value: '',
-            command: '-ON-TEXT:',
-          },
-          feedBMessage: {
-            value: '',
-            command: '-ON-REPLY-TEXT:',
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
+            },
           },
         },
+        {
+          name: 'OUT3',
+          value: 3,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
 
-      },
-    },
-    ],
-    channel_in: [{
-      value: 1,
-      name: '',
-      configs: {
-        emergencyCall: {
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
+            },
+          },
+        },
+        {
+          name: 'OUT4',
+          value: 4,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: 0,
+              activation_message: {
+                value: '',
+                command: '-ON-TEXT:',
+              },
+              feedBMessage: {
+                value: '',
+                command: '-ON-REPLY-TEXT:',
+              },
+            },
+          },
+        },
+      ],
+      channel_in: [
+        {
+          value: 1,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
+          },
+        },
+        {
+          value: 2,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
+          },
+        },
+      ],
+      settings_system: {
+        free_control: {
           index: 0,
-          turn_on: '',
-          turn_off: '',
+          turn_on: 'ACM=ON',
+          turn_off: 'ACM=OFF',
         },
-        emergencyNumber: {
-          phone: '',
+        feedBMessage: {
+          index: 0,
+          turn_on: 'REPORT=ON',
+          turn_off: 'REPORT=OFF',
         },
-        feedBMessage: '',
+        update_pwd_cap: 'CAP',
+        call_ring_tone: {
+          index: 0,
+          dial: 'ON',
+          dtmf: 'OFF',
+        },
+        working_mode: {
+          index: 0,
+          toggle: 'MODE0',
+          switch: 'MODE1',
+        },
+
+        set_all_relay_status: '',
       },
+    },
+  ],
+  contacts: [
+    {
+      number: 1,
+      phoneNumber: 66421345112,
     },
     {
-      value: 2,
-      name: '',
-      configs: {
-        emergencyCall: {
-          index: 0,
-          turn_on: '',
-          turn_off: '',
-        },
-        emergencyNumber: {
-          phone: '',
-        },
-        feedBMessage: '',
-      },
+      number: 2,
+      phoneNumber: 66421345112,
     },
-    ],
-    settings_system: {
-      free_control: {
-        index: 0,
-        turn_on: 'ACM=ON',
-        turn_off: 'ACM=OFF',
-      },
-      feedBMessage: {
-        index: 0,
-        turn_on: 'REPORT=ON',
-        turn_off: 'REPORT=OFF',
-      },
-      update_pwd_cap: 'CAP',
-      call_ring_tone: {
-        index: 0,
-        dial: 'ON',
-        dtmf: 'OFF',
-      },
-      working_mode: {
-        index: 0,
-        toggle: 'MODE0',
-        switch: 'MODE1',
-      },
-      
-      set_all_relay_status: '',
+    {
+      number: 3,
+      phoneNumber: 66421345112,
     },
-  },],
-  contacts: [{
-    number: 1,
-    phoneNumber: 66421345112,
-  },
-  {
-    number: 2,
-    phoneNumber: 66421345112,
-  },
-  {
-    number: 3,
-    phoneNumber: 66421345112,
-  },
-  {
-    number: 4,
-    phoneNumber: 66421345112,
-  },
+    {
+      number: 4,
+      phoneNumber: 66421345112,
+    },
   ],
   screens: {
     device: {
@@ -330,67 +329,69 @@ const state = {
       },
     },
     device_settings: {
-      eng: [{
-        title: 'Calendar',
-        logo: 'schedule',
-        route: 'settings_calendar',
-      },
-      {
-        title: 'History',
-        logo: 'historial',
-        route: 'settings_history',
-      },
-      {
-        title: 'Channel out settings',
-        logo: 'settings_out',
-        route: 'settings_out',
-      },
-      // {
-      //   title: 'Channel in settings',
-      //   logo: 'settings_in',
-      //   route: 'settings_in',
-      // },
-      {
-        title: 'System settings',
-        logo: 'settings',
-        route: 'settings_system',
-      },
-      {
-        title: 'Check system settings',
-        logo: 'settings',
-        route: 'settings_check',
-      },
+      eng: [
+        {
+          title: 'Calendar',
+          logo: 'schedule',
+          route: 'settings_calendar',
+        },
+        {
+          title: 'History',
+          logo: 'historial',
+          route: 'settings_history',
+        },
+        {
+          title: 'Channel out settings',
+          logo: 'settings_out',
+          route: 'settings_out',
+        },
+        // {
+        //   title: 'Channel in settings',
+        //   logo: 'settings_in',
+        //   route: 'settings_in',
+        // },
+        {
+          title: 'System settings',
+          logo: 'settings',
+          route: 'settings_system',
+        },
+        {
+          title: 'Check system settings',
+          logo: 'settings',
+          route: 'settings_check',
+        },
       ],
-      esp: [{
-        title: 'Agenda',
-        logo: 'schedule',
-        route: 'settings_calendar',
-      },
-      {
-        title: 'Historial',
-        logo: 'historial',
-        route: 'settings_history',
-      },
-      {
-        title: 'Ajustes del canal out',
-        logo: 'settings_out',
-        route: 'settings_out',
-      },
-      // {
-      //   title: 'Ajustes del canal in',
-      //   logo: 'settings_in',
-      //   route: 'settings_in',
-      // },
-      {
-        title: 'Ajustes del sistema',
-        logo: 'settings',
-        route: 'settings_system',
-      },
-      {
-        title: 'Verificar las configuraciones del sistema',
-        logo: 'settings',
-        route: 'settings_check',
-      },
+      esp: [
+        {
+          title: 'Agenda',
+          logo: 'schedule',
+          route: 'settings_calendar',
+        },
+        {
+          title: 'Historial',
+          logo: 'historial',
+          route: 'settings_history',
+        },
+        {
+          title: 'Ajustes del canal out',
+          logo: 'settings_out',
+          route: 'settings_out',
+        },
+        // {
+        //   title: 'Ajustes del canal in',
+        //   logo: 'settings_in',
+        //   route: 'settings_in',
+        // },
+        {
+          title: 'Ajustes del sistema',
+          logo: 'settings',
+          route: 'settings_system',
+        },
+        {
+          title: 'Verificar las configuraciones del sistema',
+          logo: 'settings',
+          route: 'settings_check',
+        },
       ],
     },
     settings_calendar: {
@@ -457,7 +458,8 @@ const state = {
           change_name: 'Do you want to change the name?',
           change_baseTime: 'Do you want to change the base time?',
           change_activationTime: 'Do you want to change the activation time?',
-          change_activationMessage: 'Do you want to change the activation message?',
+          change_activationMessage:
+            'Do you want to change the activation message?',
           change_feedbackMessage: 'Do you want to change the feedback message?',
           cancel: 'Cancel',
           ok: 'Confirm',
@@ -503,16 +505,16 @@ const state = {
         enable_report_label: 'Enable report or not',
         set_all_relay_status_label: 'Set all relay status',
         set_all_relay_status_placeholder: 'Input 0 = OFF ,1 = ON (4 digits)',
-        alert:{
-          confirm:'Confirmation',
-          freeControl:'Do You Want to change the free control status?',
-          feed:'Do you want to change the feedback status?',
-          call_ring:'Do you want to change to Dial/DTMF?',
-          workingMode:'Do you want to change the working mode?',
-          ok:'Confirm',
-          cancel:'Cancel'
-        }
-        
+        alert: {
+          confirm: 'Confirmation',
+          freeControl: 'Do You Want to change the free control status?',
+          feed: 'Do you want to change the feedback status?',
+          call_ring: 'Do you want to change to Dial/DTMF?',
+          workingMode: 'Do you want to change the working mode?',
+          ok: 'Confirm',
+          cancel: 'Cancel',
+          password: 'Do you want to change the password ?',
+        },
       },
       esp: {
         control_label: 'Control libre',
@@ -529,15 +531,16 @@ const state = {
         enable_report_label: 'Habilitar reporte o no',
         set_all_relay_status_label: 'Cambiar el estatus de todos los relay',
         set_all_relay_status_placeholder: 'Ingrese 0 = OFF ,1 = ON (4 digitos)',
-        alert:{
-          confirm:'Confirmacion',
-          freeControl:'Desea cambiar el control libre?',
-          feed:'Desea cambiar el estado de feedback?',
-          call_ring:'Desea cambiar el a Dial/DTMF?',
-          workingMode:'Desea cambiar el modo de trabajo?',
-          ok:'Confirmar',
-          cancel:'Cancelar'
-        }
+        alert: {
+          confirm: 'Confirmacion',
+          freeControl: 'Desea cambiar el control libre?',
+          feed: 'Desea cambiar el estado de feedback?',
+          call_ring: 'Desea cambiar el a Dial/DTMF?',
+          workingMode: 'Desea cambiar el modo de trabajo?',
+          ok: 'Confirmar',
+          cancel: 'Cancelar',
+          password: 'Quieres cambiar la contraseña ?',
+        },
       },
     },
     settings_history: {

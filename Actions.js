@@ -55,7 +55,6 @@ export const setChannelInFeedbackMessage = (payLoad) => ({
   payLoad,
 });
 
-
 /****************System Settings********************* */
 export const setFreeControl = (payLoad) => ({
   type: 'SET_FREE_CONTROL',
@@ -74,5 +73,9 @@ export const setCallOrRingtone = (payLoad) => ({
 
 export const setWorkingMode = (payLoad) => ({
   type: 'SET_WORKING_MODE',
+  payLoad,
+});
+export const setPassword = (payLoad) => ({
+  type: 'SET_PASSWORD',
   payLoad,
 });

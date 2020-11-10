@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Alert
-} from 'react-native';
-import {Input, ButtonGroup} from 'react-native-elements';
+import {ScrollView, StyleSheet, SafeAreaView, Alert} from 'react-native';
+import {Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import FormWrapper from '../../../utils/FormWrapper';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
-import {setFreeControl,setSystemFeedback,setCallOrRingtone,setWorkingMode} from '../../../../Actions'
+import {
+  setFreeControl,
+  setSystemFeedback,
+  setCallOrRingtone,
+  setWorkingMode,
+  setPassword,
+} from '../../../../Actions';
 class SystemSettings extends Component {
   constructor() {
     super();
@@ -29,6 +28,7 @@ class SystemSettings extends Component {
     );
     this.updateRingToneIndex = this.updateRingToneIndex.bind(this);
     this.updateWorkingModeIndex = this.updateWorkingModeIndex.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
   sendMessageIOS(msg, phone) {
     SendSMS.send(
@@ -87,17 +87,15 @@ class SystemSettings extends Component {
                 `${this.prefix}${this.password}#${cmds[freeControlIndex]}`,
                 this.phoneNumber,
               );
-              this.props.setFreeControl({
-                phoneNumber:this.phoneNumber,
-                index:freeControlIndex
-              });
+            this.props.setFreeControl({
+              phoneNumber: this.phoneNumber,
+              index: freeControlIndex,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-  
-    
   }
   updateFeedBackMessageIndex(feedBackMessageIndex) {
     const cmds = [this.feedcmd.turn_off, this.feedcmd.turn_on];
@@ -124,19 +122,17 @@ class SystemSettings extends Component {
                 `${this.prefix}${this.password}#${cmds[feedBackMessageIndex]}`,
                 this.phoneNumber,
               );
-              this.props.setSystemFeedback({
-                phoneNumber:this.phoneNumber,
-                index:feedBackMessageIndex
-              })
+            this.props.setSystemFeedback({
+              phoneNumber: this.phoneNumber,
+              index: feedBackMessageIndex,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-    
   }
   updateRingToneIndex(ringToneIndex) {
-
     const cmds = [this.callOrRcmd.dial, this.callOrRcmd.dtmf];
     Alert.alert(
       this.props.screen.alert.confirm,
@@ -161,19 +157,17 @@ class SystemSettings extends Component {
                 `${this.prefix}${this.password}#${cmds[ringToneIndex]}`,
                 this.phoneNumber,
               );
-              this.props.setCallOrRingtone({
-                phoneNumber:this.phoneNumber,
-                index:ringToneIndex
-              })
+            this.props.setCallOrRingtone({
+              phoneNumber: this.phoneNumber,
+              index: ringToneIndex,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-    
   }
   updateWorkingModeIndex(workingModeIndex) {
-
     const cmds = [this.workModecmd.toggle, this.workModecmd.switch];
     Alert.alert(
       this.props.screen.alert.confirm,
@@ -198,41 +192,85 @@ class SystemSettings extends Component {
                 `${this.prefix}${this.password}#${cmds[workingModeIndex]}`,
                 this.phoneNumber,
               );
-              this.props.setWorkingMode({
-                phoneNumber:this.phoneNumber,
-                index:workingModeIndex
-              })
+            this.props.setWorkingMode({
+              phoneNumber: this.phoneNumber,
+              index: workingModeIndex,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-    
   }
 
   findDevices() {
     this.device = this.props.devices.filter(
       (device) => device.phoneNumber == this.phoneNumber,
     );
-    
+
     this.device = this.device[0];
     this.system = this.device.channels[this.device.currentChannel - 1];
     this.currentChannel = this.device.currentChannel;
     this.password = this.device.password;
     this.prefix = this.device.prefix;
-    this.freeCmd=this.device.settings_system.free_control;
-    this.indexFreeControl=this.freeCmd.index;
-    this.feedcmd=this.device.settings_system.feedBMessage;
-    this.indexFeedback=this.feedcmd.index;
-    this.callOrRcmd=this.device.settings_system.call_ring_tone;
-    this.indexCallOrRington=this.callOrRcmd.index;
-    this.workModecmd=this.device.settings_system.working_mode
-    this.indexWorkingMode=this.workModecmd.index;
-
-    
+    this.freeCmd = this.device.settings_system.free_control;
+    this.indexFreeControl = this.freeCmd.index;
+    this.feedcmd = this.device.settings_system.feedBMessage;
+    this.indexFeedback = this.feedcmd.index;
+    this.callOrRcmd = this.device.settings_system.call_ring_tone;
+    this.indexCallOrRington = this.callOrRcmd.index;
+    this.workModecmd = this.device.settings_system.working_mode;
+    this.indexWorkingMode = this.workModecmd.index;
+    this.pwdCap = this.device.settings_system.update_pwd_cap;
+  }
+  handlePasswordChange() {
+    if (
+      typeof this.newPassword !== 'undefined' &&
+      typeof this.currentPassword !== 'undefined'
+    ) {
+      if ((this.newPassword.length = 6) && (this.currentPassword.length = 6)) {
+        console.log(this.currentPassword + '  ==  ' + this.password);
+        if (this.currentPassword == this.password) {
+          Alert.alert(
+            this.props.screen.alert.confirm,
+            this.props.screen.alert.password,
+            [
+              {
+                text: this.props.screen.alert.cancel,
+                onPress: () => {
+                  console.log('Canceled');
+                },
+              },
+              {
+                text: this.props.screen.alert.ok,
+                onPress: () => {
+                  Platform.OS === 'ios' &&
+                    this.sendMessageIOS(
+                      `${this.prefix}${this.password}#${this.pwdCap}${this.newPassword}#${this.pwdCap}${this.newPassword}`,
+                      this.phoneNumber,
+                    );
+                  Platform.OS === 'android' &&
+                    this.sendMessageAndroid(
+                      `${this.prefix}${this.password}#${this.pwdCap}${this.newPassword}#${this.pwdCap}${this.newPassword}`,
+                      this.phoneNumber,
+                    );
+                  this.props.setPassword({
+                    password: this.newPassword,
+                    phoneNumber: this.phoneNumber,
+                  });
+                },
+              },
+            ],
+            {cancelable: true},
+          );
+        } else {
+          console.log('contraseña incorrecta');
+        }
+      }
+    }
   }
   render() {
-    this.phoneNumber=this.props.route.params.cellphone
+    this.phoneNumber = this.props.route.params.cellphone;
     this.findDevices();
     const activeOptions = [
       this.props.screen.control_off,
@@ -245,10 +283,10 @@ class SystemSettings extends Component {
       this.props.screen.working_mode_button2,
     ];
 
-    const ringToneIndex= this.indexCallOrRington;
-    const workingModeIndex=this.indexWorkingMode;
-    const feedBackMessageIndex=this.indexFeedback;
-    const freeControlIndex=this.indexFreeControl;
+    const ringToneIndex = this.indexCallOrRington;
+    const workingModeIndex = this.indexWorkingMode;
+    const feedBackMessageIndex = this.indexFeedback;
+    const freeControlIndex = this.indexFreeControl;
     return (
       <SafeAreaView
         style={[
@@ -280,6 +318,11 @@ class SystemSettings extends Component {
               inputStyle={{
                 color: this.props.theme.settings_system_subtitle,
               }}
+              maxLength={6}
+              onChangeText={(text) => {
+                this.currentPassword = text;
+              }}
+              onEndEditing={this.handlePasswordChange}
             />
             <Input
               keyboardType={'numeric'}
@@ -288,6 +331,11 @@ class SystemSettings extends Component {
               inputStyle={{
                 color: this.props.theme.settings_system_subtitle,
               }}
+              maxLength={6}
+              onChangeText={(text) => {
+                this.newPassword = text;
+              }}
+              onEndEditing={this.handlePasswordChange}
             />
           </FormWrapper>
           <FormWrapper title={this.props.screen.call_ring_tone_label}>
@@ -329,12 +377,14 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     screen: state.screens.settings_system_settings[state.currentLanguage],
-    devices:state.devices
+    devices: state.devices,
   };
 };
-const mapDistpatchToProps={
+const mapDistpatchToProps = {
   setFreeControl,
   setSystemFeedback,
-  setCallOrRingtone,setWorkingMode
-}
-export default connect(mapStateToProps,mapDistpatchToProps)(SystemSettings);
+  setCallOrRingtone,
+  setWorkingMode,
+  setPassword,
+};
+export default connect(mapStateToProps, mapDistpatchToProps)(SystemSettings);

@@ -340,91 +340,95 @@ function Reducer(state, action) {
           if (device.phoneNumber == action.payLoad.phoneNumber) {
             return {
               ...device,
-              settings_system:
-              {
+              settings_system: {
                 ...device.settings_system,
                 free_control: {
                   ...device.settings_system.free_control,
                   index: action.payLoad.index,
-                }
-
-              }
-            }
-          }else{
+                },
+              },
+            };
+          } else {
             return device;
           }
-        })
-      }
-      case 'SET_SYSTEM_FEEDBACK':
+        }),
+      };
+    case 'SET_SYSTEM_FEEDBACK':
       return {
         ...state,
         devices: state.devices.map((device) => {
           if (device.phoneNumber == action.payLoad.phoneNumber) {
             return {
               ...device,
-              settings_system:
-              {
+              settings_system: {
                 ...device.settings_system,
                 feedBMessage: {
                   ...device.settings_system.feedBMessage,
                   index: action.payLoad.index,
-                }
-
-              }
-            }
-          }else{
+                },
+              },
+            };
+          } else {
             return device;
           }
-        })
-      }
+        }),
+      };
 
-      case 'SET_CALL_OR_RINGTONE':
+    case 'SET_CALL_OR_RINGTONE':
       return {
         ...state,
         devices: state.devices.map((device) => {
           if (device.phoneNumber == action.payLoad.phoneNumber) {
             return {
               ...device,
-              settings_system:
-              {
+              settings_system: {
                 ...device.settings_system,
                 call_ring_tone: {
                   ...device.settings_system.call_ring_tone,
                   index: action.payLoad.index,
-                }
-
-              }
-            }
-          }else{
+                },
+              },
+            };
+          } else {
             return device;
           }
-        })
-      }
+        }),
+      };
 
-      case 'SET_WORKING_MODE':
+    case 'SET_WORKING_MODE':
       return {
         ...state,
         devices: state.devices.map((device) => {
           if (device.phoneNumber == action.payLoad.phoneNumber) {
             return {
               ...device,
-              settings_system:
-              {
+              settings_system: {
                 ...device.settings_system,
                 working_mode: {
                   ...device.settings_system.working_mode,
                   index: action.payLoad.index,
-                }
-
-              }
-            }
-          }else{
+                },
+              },
+            };
+          } else {
             return device;
           }
-        })
-      }
-
-
+        }),
+      };
+    case 'SET_PASSWORD':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              password: action.payLoad.password,
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
 
     default:
       return state;
