@@ -30,6 +30,7 @@ export const setFeedBMessage = (payLoad) => ({
   payLoad,
 });
 
+/**********************Channel In************************ */
 export const setCurrentChannelIn = (payLoad) => ({
   type: 'SET_CURRENT_CHANNEL_IN',
   payLoad,
@@ -51,5 +52,27 @@ export const setChannelInEmergencyNumber = (payLoad) => ({
 
 export const setChannelInFeedbackMessage = (payLoad) => ({
   type: 'SET_CHANNEL_IN_FEEDBACK_MESSAGE',
+  payLoad,
+});
+
+
+/****************System Settings********************* */
+export const setFreeControl = (payLoad) => ({
+  type: 'SET_FREE_CONTROL',
+  payLoad,
+});
+
+export const setSystemFeedback = (payLoad) => ({
+  type: 'SET_SYSTEM_FEEDBACK',
+  payLoad,
+});
+
+export const setCallOrRingtone = (payLoad) => ({
+  type: 'SET_CALL_OR_RINGTONE',
+  payLoad,
+});
+
+export const setWorkingMode = (payLoad) => ({
+  type: 'SET_WORKING_MODE',
   payLoad,
 });

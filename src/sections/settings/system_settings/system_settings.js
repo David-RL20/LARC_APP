@@ -5,12 +5,15 @@ import {
   View,
   SafeAreaView,
   KeyboardAvoidingView,
+  Alert
 } from 'react-native';
 import {Input, ButtonGroup} from 'react-native-elements';
 import {connect} from 'react-redux';
 import FormWrapper from '../../../utils/FormWrapper';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
-
+import SmsAndroid from 'react-native-get-sms-android';
+import SendSMS from 'react-native-sms';
+import {setFreeControl,setSystemFeedback,setCallOrRingtone,setWorkingMode} from '../../../../Actions'
 class SystemSettings extends Component {
   constructor() {
     super();
@@ -27,19 +30,210 @@ class SystemSettings extends Component {
     this.updateRingToneIndex = this.updateRingToneIndex.bind(this);
     this.updateWorkingModeIndex = this.updateWorkingModeIndex.bind(this);
   }
+  sendMessageIOS(msg, phone) {
+    SendSMS.send(
+      {
+        body: msg,
+        recipients: [phone],
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          'SMS Callback: completed: ' +
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
+        );
+      },
+    );
+  }
+  sendMessageAndroid(msg, phone) {
+    SmsAndroid.autoSend(
+      phone,
+      msg,
+      (fail) => {
+        console.log('Failed with this error: ' + fail);
+      },
+      (success) => {
+        console.log('SMS sent successfully');
+      },
+    );
+  }
   updateFreeControlIndex(freeControlIndex) {
-    this.setState({freeControlIndex});
+    const cmds = [this.freeCmd.turn_off, this.freeCmd.turn_on];
+    Alert.alert(
+      this.props.screen.alert.confirm,
+      this.props.screen.alert.freeControl,
+      [
+        {
+          text: this.props.screen.alert.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alert.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${cmds[freeControlIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${cmds[freeControlIndex]}`,
+                this.phoneNumber,
+              );
+              this.props.setFreeControl({
+                phoneNumber:this.phoneNumber,
+                index:freeControlIndex
+              });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  
+    
   }
   updateFeedBackMessageIndex(feedBackMessageIndex) {
-    this.setState({feedBackMessageIndex});
+    const cmds = [this.feedcmd.turn_off, this.feedcmd.turn_on];
+    Alert.alert(
+      this.props.screen.alert.confirm,
+      this.props.screen.alert.feed,
+      [
+        {
+          text: this.props.screen.alert.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alert.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${cmds[feedBackMessageIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${cmds[feedBackMessageIndex]}`,
+                this.phoneNumber,
+              );
+              this.props.setSystemFeedback({
+                phoneNumber:this.phoneNumber,
+                index:feedBackMessageIndex
+              })
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+    
   }
   updateRingToneIndex(ringToneIndex) {
-    this.setState({ringToneIndex});
+
+    const cmds = [this.callOrRcmd.dial, this.callOrRcmd.dtmf];
+    Alert.alert(
+      this.props.screen.alert.confirm,
+      this.props.screen.alert.call_ring,
+      [
+        {
+          text: this.props.screen.alert.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alert.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${cmds[ringToneIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${cmds[ringToneIndex]}`,
+                this.phoneNumber,
+              );
+              this.props.setCallOrRingtone({
+                phoneNumber:this.phoneNumber,
+                index:ringToneIndex
+              })
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+    
   }
   updateWorkingModeIndex(workingModeIndex) {
-    this.setState({workingModeIndex});
+
+    const cmds = [this.workModecmd.toggle, this.workModecmd.switch];
+    Alert.alert(
+      this.props.screen.alert.confirm,
+      this.props.screen.alert.workingMode,
+      [
+        {
+          text: this.props.screen.alert.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alert.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${cmds[workingModeIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${cmds[workingModeIndex]}`,
+                this.phoneNumber,
+              );
+              this.props.setWorkingMode({
+                phoneNumber:this.phoneNumber,
+                index:workingModeIndex
+              })
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+    
+  }
+
+  findDevices() {
+    this.device = this.props.devices.filter(
+      (device) => device.phoneNumber == this.phoneNumber,
+    );
+    
+    this.device = this.device[0];
+    this.system = this.device.channels[this.device.currentChannel - 1];
+    this.currentChannel = this.device.currentChannel;
+    this.password = this.device.password;
+    this.prefix = this.device.prefix;
+    this.freeCmd=this.device.settings_system.free_control;
+    this.indexFreeControl=this.freeCmd.index;
+    this.feedcmd=this.device.settings_system.feedBMessage;
+    this.indexFeedback=this.feedcmd.index;
+    this.callOrRcmd=this.device.settings_system.call_ring_tone;
+    this.indexCallOrRington=this.callOrRcmd.index;
+    this.workModecmd=this.device.settings_system.working_mode
+    this.indexWorkingMode=this.workModecmd.index;
+
+    
   }
   render() {
+    this.phoneNumber=this.props.route.params.cellphone
+    this.findDevices();
     const activeOptions = [
       this.props.screen.control_off,
       this.props.screen.control_on,
@@ -51,12 +245,10 @@ class SystemSettings extends Component {
       this.props.screen.working_mode_button2,
     ];
 
-    const {
-      freeControlIndex,
-      feedBackMessageIndex,
-      ringToneIndex,
-      workingModeIndex,
-    } = this.state;
+    const ringToneIndex= this.indexCallOrRington;
+    const workingModeIndex=this.indexWorkingMode;
+    const feedBackMessageIndex=this.indexFeedback;
+    const freeControlIndex=this.indexFreeControl;
     return (
       <SafeAreaView
         style={[
@@ -137,6 +329,12 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     screen: state.screens.settings_system_settings[state.currentLanguage],
+    devices:state.devices
   };
 };
-export default connect(mapStateToProps)(SystemSettings);
+const mapDistpatchToProps={
+  setFreeControl,
+  setSystemFeedback,
+  setCallOrRingtone,setWorkingMode
+}
+export default connect(mapStateToProps,mapDistpatchToProps)(SystemSettings);

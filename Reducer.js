@@ -200,7 +200,7 @@ function Reducer(state, action) {
           }
         }),
       };
-
+    /********************Channel In********************** */
     case 'SET_CURRENT_CHANNEL_IN':
       return {
         ...state,
@@ -332,6 +332,99 @@ function Reducer(state, action) {
           }
         }),
       };
+    /******************System Settings******************* */
+    case 'SET_FREE_CONTROL':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              settings_system:
+              {
+                ...device.settings_system,
+                free_control: {
+                  ...device.settings_system.free_control,
+                  index: action.payLoad.index,
+                }
+
+              }
+            }
+          }else{
+            return device;
+          }
+        })
+      }
+      case 'SET_SYSTEM_FEEDBACK':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              settings_system:
+              {
+                ...device.settings_system,
+                feedBMessage: {
+                  ...device.settings_system.feedBMessage,
+                  index: action.payLoad.index,
+                }
+
+              }
+            }
+          }else{
+            return device;
+          }
+        })
+      }
+
+      case 'SET_CALL_OR_RINGTONE':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              settings_system:
+              {
+                ...device.settings_system,
+                call_ring_tone: {
+                  ...device.settings_system.call_ring_tone,
+                  index: action.payLoad.index,
+                }
+
+              }
+            }
+          }else{
+            return device;
+          }
+        })
+      }
+
+      case 'SET_WORKING_MODE':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              settings_system:
+              {
+                ...device.settings_system,
+                working_mode: {
+                  ...device.settings_system.working_mode,
+                  index: action.payLoad.index,
+                }
+
+              }
+            }
+          }else{
+            return device;
+          }
+        })
+      }
+
+
 
     default:
       return state;
