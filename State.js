@@ -514,6 +514,7 @@ const state = {
           ok: 'Confirm',
           cancel: 'Cancel',
           password: 'Do you want to change the password ?',
+          relay_status: 'Do you want to set all relay status ?',
         },
       },
       esp: {
@@ -540,6 +541,7 @@ const state = {
           ok: 'Confirmar',
           cancel: 'Cancelar',
           password: 'Quieres cambiar la contraseña ?',
+          relay_status: 'Quieres establecer el status del relay?',
         },
       },
     },

@@ -329,7 +329,7 @@ class ChannelOut extends Component {
                 }
                 style={{fontSize: 13}}
                 inputStyle={{color: this.props.theme.settings_out_subtitle}}
-                onEndEditing={this.handleChannelNameChange.bind(this)}
+                onSubmitEditing={this.handleChannelNameChange.bind(this)}
                 onChangeText={(text) => {
                   this.channel_name_input = text;
                 }}
@@ -352,7 +352,7 @@ class ChannelOut extends Component {
                 onChangeText={(text) => {
                   this.activation_time_input = text;
                 }}
-                onEndEditing={this.handleActivationTimeChange.bind(this)}
+                onSubmitEditing={this.handleActivationTimeChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper
@@ -368,7 +368,7 @@ class ChannelOut extends Component {
                 onChangeText={(text) => {
                   this.activation_message_input = text;
                 }}
-                onEndEditing={this.handleActivationSmsChange.bind(this)}
+                onSubmitEditing={this.handleActivationSmsChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper
@@ -384,7 +384,7 @@ class ChannelOut extends Component {
                 onChangeText={(text) => {
                   this.feedBMessageInput = text;
                 }}
-                onEndEditing={this.handleFeedBMessage.bind(this)}
+                onSubmitEditing={this.handleFeedBMessage.bind(this)}
               />
             </FormWrapper>
           </View>

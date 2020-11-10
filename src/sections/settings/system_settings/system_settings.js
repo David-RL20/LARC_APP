@@ -29,6 +29,7 @@ class SystemSettings extends Component {
     this.updateRingToneIndex = this.updateRingToneIndex.bind(this);
     this.updateWorkingModeIndex = this.updateWorkingModeIndex.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSetAllRelayStatus = this.handleSetAllRelayStatus.bind(this);
   }
   sendMessageIOS(msg, phone) {
     SendSMS.send(
@@ -228,8 +229,7 @@ class SystemSettings extends Component {
       typeof this.newPassword !== 'undefined' &&
       typeof this.currentPassword !== 'undefined'
     ) {
-      if ((this.newPassword.length = 6) && (this.currentPassword.length = 6)) {
-        console.log(this.currentPassword + '  ==  ' + this.password);
+      if (this.newPassword.length == 6 && this.currentPassword.length == 6) {
         if (this.currentPassword == this.password) {
           Alert.alert(
             this.props.screen.alert.confirm,
@@ -267,6 +267,40 @@ class SystemSettings extends Component {
           console.log('contraseña incorrecta');
         }
       }
+    }
+  }
+  handleSetAllRelayStatus() {
+    if (!this.all_relay_var.match(/^[0-1]+$/)) {
+      console.log('No esta en el formato correcto');
+    } else {
+      Alert.alert(
+        this.props.screen.alert.confirm,
+        this.props.screen.alert.relay_status,
+        [
+          {
+            text: this.props.screen.alert.cancel,
+            onPress: () => {
+              console.log('Canceled');
+            },
+          },
+          {
+            text: this.props.screen.alert.ok,
+            onPress: () => {
+              Platform.OS === 'ios' &&
+                this.sendMessageIOS(
+                  `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
+                  this.phoneNumber,
+                );
+              Platform.OS === 'android' &&
+                this.sendMessageAndroid(
+                  `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
+                  this.phoneNumber,
+                );
+            },
+          },
+        ],
+        {cancelable: true},
+      );
     }
   }
   render() {
@@ -322,7 +356,7 @@ class SystemSettings extends Component {
               onChangeText={(text) => {
                 this.currentPassword = text;
               }}
-              onEndEditing={this.handlePasswordChange}
+              onSubmitEditing={this.handlePasswordChange}
             />
             <Input
               keyboardType={'numeric'}
@@ -335,7 +369,7 @@ class SystemSettings extends Component {
               onChangeText={(text) => {
                 this.newPassword = text;
               }}
-              onEndEditing={this.handlePasswordChange}
+              onSubmitEditing={this.handlePasswordChange}
             />
           </FormWrapper>
           <FormWrapper title={this.props.screen.call_ring_tone_label}>
@@ -360,6 +394,11 @@ class SystemSettings extends Component {
               inputStyle={{
                 color: this.props.theme.settings_system_subtitle,
               }}
+              maxLength={4}
+              onChangeText={(text) => {
+                this.all_relay_var = text;
+              }}
+              onSubmitEditing={this.handleSetAllRelayStatus}
             />
           </FormWrapper>
         </ScrollView>

@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, SafeAreaView, View, ScrollView, Text,Alert} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  ScrollView,
+  Text,
+  Alert,
+} from 'react-native';
 import {Input} from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
 import {connect} from 'react-redux';
@@ -58,7 +65,6 @@ class ChannelIn extends Component {
   }
 
   updateEmergencyCallIndex(selectedIndex) {
-
     Alert.alert(
       'Confirmacion',
       'Desea habilitar llamada de emergencia ?',
@@ -82,30 +88,24 @@ class ChannelIn extends Component {
                 `${this.prefix}${this.password}#`,
                 this.phoneNumber,
               );
-              this.props.setChannelInEmergencyCall({
-                phoneNumber: this.phoneNumber,
-                currentChannelIn: this.currentChannelIn,
-                index: selectedIndex,
-              });
+            this.props.setChannelInEmergencyCall({
+              phoneNumber: this.phoneNumber,
+              currentChannelIn: this.currentChannelIn,
+              index: selectedIndex,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-
-
-    
-   
   }
   updateChannelIndex(selectedChannel) {
-    
     this.props.setCurrentChannelIn({
       phoneNumber: this.phoneNumber,
       currentChannelIn: selectedChannel + 1,
     });
   }
   handleNameChannelInChange() {
-
     Alert.alert(
       'Confirmacion',
       'Desea cambiar el nombre  del channel In?',
@@ -129,23 +129,18 @@ class ChannelIn extends Component {
                 `${this.prefix}${this.password}#`,
                 this.phoneNumber,
               );
-              this.props.setChannelInName({
-                phoneNumber: this.phoneNumber,
-                currentChannelIn: this.currentChannelIn,
-                name: this.name_input,
-              });
+            this.props.setChannelInName({
+              phoneNumber: this.phoneNumber,
+              currentChannelIn: this.currentChannelIn,
+              name: this.name_input,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-
-
-
-    
   }
   handleEmergencyNumberChange() {
-
     Alert.alert(
       'Confirmacion',
       'Desea agregar este numero de emergencia?',
@@ -169,23 +164,19 @@ class ChannelIn extends Component {
                 `${this.prefix}${this.password}#`,
                 this.phoneNumber,
               );
-              this.props.setChannelInEmergencyNumber({
-                phoneNumber: this.phoneNumber,
-                currentChannelIn: this.currentChannelIn,
-                phone: this.cellphone_input,
-              });
+            this.props.setChannelInEmergencyNumber({
+              phoneNumber: this.phoneNumber,
+              currentChannelIn: this.currentChannelIn,
+              phone: this.cellphone_input,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-
-
-    
   }
 
   handleFeedbackMessageChange() {
-
     Alert.alert(
       'Confirmacion',
       'Desea cambiar el feedback message  del channel In?',
@@ -209,19 +200,16 @@ class ChannelIn extends Component {
                 `${this.prefix}${this.password}#`,
                 this.phoneNumber,
               );
-              this.props.setChannelInFeedbackMessage({
-                phoneNumber: this.phoneNumber,
-                currentChannelIn: this.currentChannelIn,
-                feedBMessage: this.feedBMessage_input,
-              
-              });
+            this.props.setChannelInFeedbackMessage({
+              phoneNumber: this.phoneNumber,
+              currentChannelIn: this.currentChannelIn,
+              feedBMessage: this.feedBMessage_input,
+            });
           },
         },
       ],
       {cancelable: true},
     );
-
-    
   }
   findDevices() {
     this.device = this.props.devices.filter(
@@ -292,7 +280,7 @@ class ChannelIn extends Component {
                 onChangeText={(text) => {
                   this.name_input = text;
                 }}
-                onEndEditing={this.handleNameChannelInChange.bind(this)}
+                onSubmitEditing={this.handleNameChannelInChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper title={this.props.screen.call}>
@@ -311,7 +299,7 @@ class ChannelIn extends Component {
                   this.emergencyNumber || this.props.screen.emergHolder
                 }
                 inputStyle={{color: this.props.theme.settings_in_subtitle}}
-                onEndEditing={this.handleEmergencyNumberChange}
+                onSubmitEditing={this.handleEmergencyNumberChange}
                 onChangeText={(text) => {
                   this.cellphone_input = text;
                 }}
@@ -325,7 +313,7 @@ class ChannelIn extends Component {
                 onChangeText={(text) => {
                   this.feedBMessage_input = text;
                 }}
-                onEndEditing={this.handleFeedbackMessageChange.bind(this)}
+                onSubmitEditing={this.handleFeedbackMessageChange.bind(this)}
               />
             </FormWrapper>
           </View>
