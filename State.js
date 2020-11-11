@@ -78,28 +78,250 @@ const state = {
     },
   },
   device_default: {
-    name: null,
-    phoneNumber: null,
-    currentChannel: null,
+    name: '',
+    phoneNumber: '',
+    currentChannel: 1,
+    currentChannelIn: 1,
+    prefix: '#PWD',
     password: '123456',
+    check_system_status: '#STATUS?',
     channels: [
       {
         name: 'OUT1',
         value: 1,
+        configs: {
+          calendar: [],
+          history: [],
+          channel_out: {
+            name: '',
+            base_time: {
+              index: 0,
+              milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+              seconds: 'TIMER-DELAY-AT-SECOND',
+              minutes: 'TIMER-DELAY-AT-MINUTE',
+            },
+            activation_time: 0,
+            currentStatus: 0,
+            on_off: [
+              {
+                value: 0,
+                activation_message: {
+                  value: '',
+                  command: '-ON-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-ON-REPLY-TEXT:',
+                },
+              },
+              {
+                value: 1,
+                activation_message: {
+                  value: '',
+                  command: '-OFF-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-OFF-REPLY-TEXT:',
+                },
+              },
+            ],
+          },
+        },
       },
       {
         name: 'OUT2',
         value: 2,
+        configs: {
+          calendar: [],
+          history: [],
+          channel_out: {
+            name: '',
+
+            base_time: {
+              index: 0,
+              milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+              seconds: 'TIMER-DELAY-AT-SECOND',
+              minutes: 'TIMER-DELAY-AT-MINUTE',
+            },
+            activation_time: 0,
+            currentStatus: 0,
+            on_off: [
+              {
+                value: 0,
+                activation_message: {
+                  value: '',
+                  command: '-ON-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-ON-REPLY-TEXT:',
+                },
+              },
+              {
+                value: 1,
+                activation_message: {
+                  value: '',
+                  command: '-OFF-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-OFF-REPLY-TEXT:',
+                },
+              },
+            ],
+          },
+        },
       },
       {
         name: 'OUT3',
         value: 3,
+        configs: {
+          calendar: [],
+          history: [],
+          channel_out: {
+            name: '',
+
+            base_time: {
+              index: 0,
+              milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+              seconds: 'TIMER-DELAY-AT-SECOND',
+              minutes: 'TIMER-DELAY-AT-MINUTE',
+            },
+            activation_time: 0,
+            currentStatus: 0,
+            on_off: [
+              {
+                value: 0,
+                activation_message: {
+                  value: '',
+                  command: '-ON-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-ON-REPLY-TEXT:',
+                },
+              },
+              {
+                value: 1,
+                activation_message: {
+                  value: '',
+                  command: '-OFF-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-OFF-REPLY-TEXT:',
+                },
+              },
+            ],
+          },
+        },
       },
       {
         name: 'OUT4',
         value: 4,
+        configs: {
+          calendar: [],
+          history: [],
+          channel_out: {
+            name: '',
+
+            base_time: {
+              index: 0,
+              milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+              seconds: 'TIMER-DELAY-AT-SECOND',
+              minutes: 'TIMER-DELAY-AT-MINUTE',
+            },
+            activation_time: 0,
+            currentStatus: 0,
+            on_off: [
+              {
+                value: 0,
+                activation_message: {
+                  value: '',
+                  command: '-ON-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-ON-REPLY-TEXT:',
+                },
+              },
+              {
+                value: 1,
+                activation_message: {
+                  value: '',
+                  command: '-OFF-TEXT:',
+                },
+                feedBMessage: {
+                  value: '',
+                  command: '-OFF-REPLY-TEXT:',
+                },
+              },
+            ],
+          },
+        },
       },
     ],
+    channel_in: [
+      {
+        value: 1,
+        name: '',
+        configs: {
+          emergencyCall: {
+            index: 0,
+            turn_on: '',
+            turn_off: '',
+          },
+          emergencyNumber: {
+            phone: '',
+          },
+          feedBMessage: '',
+        },
+      },
+      {
+        value: 2,
+        name: '',
+        configs: {
+          emergencyCall: {
+            index: 0,
+            turn_on: '',
+            turn_off: '',
+          },
+          emergencyNumber: {
+            phone: '',
+          },
+          feedBMessage: '',
+        },
+      },
+    ],
+    settings_system: {
+      free_control: {
+        index: 0,
+        turn_on: 'ACM=ON',
+        turn_off: 'ACM=OFF',
+      },
+      feedBMessage: {
+        index: 0,
+        turn_on: 'REPORT=ON',
+        turn_off: 'REPORT=OFF',
+      },
+      update_pwd_cap: 'CAP',
+      call_ring_tone: {
+        index: 0,
+        dial: 'ON',
+        dtmf: 'OFF',
+      },
+      working_mode: {
+        index: 0,
+        toggle: 'MODE0',
+        switch: 'MODE1',
+      },
+
+      set_all_relay_status: '',
+    },
+    history: {
+      command: 'EVENTOS?',
+    },
   },
   loading: {
     eng: 'Loading...',
@@ -347,6 +569,9 @@ const state = {
         },
 
         set_all_relay_status: '',
+      },
+      history: {
+        command: 'EVENTOS?',
       },
     },
   ],
@@ -618,12 +843,24 @@ const state = {
         hour: 'Hour',
         search: 'Search',
         not_selected: 'Not selected',
+        alerts: {
+          search: 'Do you want to search?',
+          cancel: 'Cancel',
+          ok: 'Confirm',
+          confirmation: 'Confirmation',
+        },
       },
       esp: {
         date: 'Fecha',
         hour: 'Hora',
         search: 'Buscar',
         not_selected: 'No seleccionada',
+        alerts: {
+          search: 'Quieres buscar?',
+          cancel: 'Cancelar',
+          ok: 'Confirmar',
+          confirmation: 'Confirmacion',
+        },
       },
     },
     settings_check_system: {
