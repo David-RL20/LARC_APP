@@ -133,7 +133,6 @@ class AplicacionPlatzi extends Component {
       (device) => device.phoneNumber == this.phoneNumber,
     );
     this.device = this.device[0];
-    console.log(this.device);
     this.password = this.device.password;
     this.prefix = this.device.prefix;
     this.command = this.device.history.command;

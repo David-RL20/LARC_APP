@@ -78,8 +78,6 @@ const state = {
     },
   },
   device_default: {
-    name: '',
-    phoneNumber: '',
     currentChannel: 1,
     currentChannelIn: 1,
     prefix: '#PWD',

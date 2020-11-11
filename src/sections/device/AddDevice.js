@@ -6,14 +6,25 @@ import React, {useState} from 'react';
 import {Button, Overlay, Input} from 'react-native-elements';
 import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
+import {addNewDevice} from '../../../Actions';
 
 const AddDevice = (props) => {
-  const [visible, setVisible] = useState(false);
+  const [state, set] = useState({
+    visible: false,
+    phoneNumber: '',
+    name: '',
+  });
 
   const toggleOverlay = () => {
-    setVisible(!visible);
+    set({...state, visible: !state.visible});
   };
-
+  const handleAddDevice = () => {
+    props.addNewDevice({
+      name: state.name,
+      phoneNumber: state.phoneNumber,
+    });
+    toggleOverlay();
+  };
   return (
     <View
       style={{
@@ -33,7 +44,7 @@ const AddDevice = (props) => {
           style.Overlay,
           {backgroundColor: props.theme.overlay_background},
         ]}
-        isVisible={visible}
+        isVisible={state.visible}
         onBackdropPress={toggleOverlay}>
         <View style={[style.container]}>
           <View style={style.container_form}>
@@ -45,6 +56,12 @@ const AddDevice = (props) => {
               containerStyle={style.input_container}
               placeholder={props.device_screen.name_placeholder_label}
               inputStyle={{color: props.theme.overlay_title}}
+              onChangeText={(text) => {
+                set({
+                  ...state,
+                  name: text,
+                });
+              }}
             />
           </View>
           <View style={style.container_form}>
@@ -57,6 +74,13 @@ const AddDevice = (props) => {
               containerStyle={style.input_container}
               placeholder="664*******"
               inputStyle={{color: props.theme.overlay_title}}
+              onChangeText={(text) => {
+                set({
+                  ...state,
+                  phoneNumber: text,
+                });
+              }}
+              maxLength={10}
             />
           </View>
           <View style={style.container_buttons}>
@@ -76,19 +100,13 @@ const AddDevice = (props) => {
                 {backgroundColor: props.theme.overlay_button_primary},
               ]}
               titleStyle={{color: props.theme.overlay_button_title}}
+              onPress={handleAddDevice}
             />
           </View>
         </View>
       </Overlay>
     </View>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    theme: state.themes[state.currentTheme],
-    device_screen: state.screens.device[state.currentLanguage],
-  };
 };
 
 const style = StyleSheet.create({
@@ -132,4 +150,13 @@ const style = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps)(AddDevice);
+const mapStateToProps = (state) => {
+  return {
+    theme: state.themes[state.currentTheme],
+    device_screen: state.screens.device[state.currentLanguage],
+  };
+};
+const mapDispatchToProps = {
+  addNewDevice,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AddDevice);

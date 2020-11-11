@@ -84,3 +84,9 @@ export const setPassword = (payLoad) => ({
   type: 'SET_PASSWORD',
   payLoad,
 });
+
+/****************DEVICE********************* */
+export const addNewDevice = (payLoad) => ({
+  type: 'ADD_DEVICE',
+  payLoad,
+});

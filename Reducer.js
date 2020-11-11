@@ -481,7 +481,19 @@ function Reducer(state, action) {
           }
         }),
       };
-
+    /******************DEVICE******************* */
+    case 'ADD_DEVICE':
+      return {
+        ...state,
+        devices: [
+          ...state.devices,
+          {
+            ...state.device_default,
+            name: action.payLoad.name,
+            phoneNumber: action.payLoad.phoneNumber,
+          },
+        ],
+      };
     default:
       return state;
   }
