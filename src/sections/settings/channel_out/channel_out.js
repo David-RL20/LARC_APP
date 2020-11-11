@@ -19,6 +19,7 @@ import {
   setActivationMessage,
   setFeedBMessage,
   setChannelOutName,
+  setCurrentStatus,
 } from '../../../../Actions';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
@@ -30,11 +31,10 @@ class ChannelOut extends Component {
   constructor() {
     super();
     this.state = {
-      activationTypeIndex: 0,
-      timeBaseIndex: 0,
       selectedIndex: 0,
+      OffOnIndex: 0,
     };
-
+    this.updateOffOnIndex = this.updateOffOnIndex.bind(this);
     this.updateTimeBase = this.updateTimeBase.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
   }
@@ -112,6 +112,13 @@ class ChannelOut extends Component {
       phoneNumber: this.phoneNumber,
     });
   }
+  updateOffOnIndex(OffOnIndex) {
+    this.props.setCurrentStatus({
+      phoneNumber: this.phoneNumber,
+      value: this.currentChannel,
+      currentStatus: OffOnIndex,
+    });
+  }
   findDevices() {
     this.device = this.props.devices.filter(
       (device) => device.phoneNumber == this.phoneNumber,
@@ -122,6 +129,7 @@ class ChannelOut extends Component {
     this.password = this.device.password;
     this.channel = this.device.channels[this.device.currentChannel - 1];
     this.prefix = this.device.prefix;
+    this.currentOnOff = this.channel.configs.channel_out.currentStatus;
 
     this.time = this.channel.configs.channel_out.base_time;
 
@@ -135,19 +143,21 @@ class ChannelOut extends Component {
 
     this.activationTime = this.channel.configs.channel_out.activation_time.value;
 
-    this.activationMessage = this.channel.configs.channel_out.activation_message.value;
-
-    this.feedBMessage = this.channel.configs.channel_out.feedBMessage.value;
-
     this.cmd_activation_time = this.channel.configs.channel_out.activation_time.command;
 
-    this.cmd_activation_message = this.channel.configs.channel_out.activation_message.command;
+    this.placeHolderActivationMessage = this.channel.configs.channel_out.on_off[
+      this.currentOnOff
+    ].activation_message.value;
+    this.ActivationMessageCmd = this.channel.configs.channel_out.on_off[
+      this.currentOnOff
+    ].activation_message.command;
 
-    this.cmd_feedback_message = this.channel.configs.channel_out.feedBMessage.command;
-
-    const statusArray = ['-OFF', '-ON'];
-    this.currentStatusCMD =
-      statusArray[this.channel.configs.channel_out.currentStatus];
+    this.placeHolderFeedBMessage = this.channel.configs.channel_out.on_off[
+      this.currentOnOff
+    ].feedBMessage.value;
+    this.feedBMessageCmd = this.channel.configs.channel_out.on_off[
+      this.currentOnOff
+    ].feedBMessage.command;
   }
   handleChannelNameChange() {
     Alert.alert(
@@ -207,6 +217,7 @@ class ChannelOut extends Component {
       ],
     );
   }
+
   handleActivationSmsChange() {
     Alert.alert(
       this.props.screen_settings_out.alerts.confirmation,
@@ -224,16 +235,17 @@ class ChannelOut extends Component {
             this.props.setActivationMessage({
               phoneNumber: this.phoneNumber,
               value: this.currentChannel,
+              currentStatus: this.currentOnOff,
               activation_message: this.activation_message_input,
             });
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
-                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.ActivationMessageCmd}${this.activation_message_input}`,
                 this.phoneNumber,
               );
             Platform.OS === 'android' &&
               this.sendMessageAndroid(
-                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_activation_message}${this.activation_message_input}`,
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.ActivationMessageCmd}${this.activation_message_input}`,
                 this.phoneNumber,
               );
           },
@@ -241,6 +253,7 @@ class ChannelOut extends Component {
       ],
     );
   }
+
   handleFeedBMessage() {
     Alert.alert(
       this.props.screen_settings_out.alerts.confirmation,
@@ -258,16 +271,17 @@ class ChannelOut extends Component {
             this.props.setFeedBMessage({
               phoneNumber: this.phoneNumber,
               value: this.currentChannel,
+              currentStatus: this.currentOnOff,
               feedBMessage: this.feedBMessageInput,
             });
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
-                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.feedBMessageCmd}${this.feedBMessageInput}`,
                 this.phoneNumber,
               );
             Platform.OS === 'android' &&
               this.sendMessageAndroid(
-                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.currentStatusCMD}${this.cmd_feedback_message}${this.feedBMessageInput}`,
+                `${this.prefix}${this.password}#OUT${this.currentChannel}${this.feedBMessageCmd}${this.feedBMessageInput}`,
                 this.phoneNumber,
               );
           },
@@ -289,6 +303,8 @@ class ChannelOut extends Component {
     const timeBaseIndex = this.device.channels[this.currentChannel - 1].configs
       .channel_out.base_time.index;
 
+    const OffOnIndex = this.currentOnOff;
+    const offOnButtons = ['On', 'Off'];
     const buttons = [1, 2, 3, 4];
 
     return (
@@ -355,12 +371,19 @@ class ChannelOut extends Component {
                 onSubmitEditing={this.handleActivationTimeChange.bind(this)}
               />
             </FormWrapper>
+            <FormWrapper title={'On/Off'}>
+              <ButtonGroupCustumized
+                action={this.updateOffOnIndex}
+                index={OffOnIndex}
+                buttons={offOnButtons}
+              />
+            </FormWrapper>
             <FormWrapper
               title={this.props.screen_settings_out.activation_message}>
               <Input
                 containerStyle={{paddingHorizontal: 0}}
                 placeholder={
-                  this.activationMessage ||
+                  this.placeHolderActivationMessage ||
                   this.props.screen_settings_out.activation_holder
                 }
                 style={{fontSize: 13}}
@@ -371,12 +394,13 @@ class ChannelOut extends Component {
                 onSubmitEditing={this.handleActivationSmsChange.bind(this)}
               />
             </FormWrapper>
+
             <FormWrapper
               title={this.props.screen_settings_out.feedback_message}>
               <Input
                 containerStyle={{paddingHorizontal: 0}}
                 placeholder={
-                  this.feedBMessage ||
+                  this.placeHolderFeedBMessage ||
                   this.props.screen_settings_out.feedback_holder
                 }
                 style={{fontSize: 13}}
@@ -425,6 +449,7 @@ const mapDispatchToProps = {
   setActivationMessage,
   setFeedBMessage,
   setChannelOutName,
+  setCurrentStatus,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelOut);

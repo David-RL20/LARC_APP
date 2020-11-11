@@ -20,6 +20,11 @@ export const setActivationTime = (payLoad) => ({
   payLoad,
 });
 
+export const setCurrentStatus = (payLoad) => ({
+  type: 'SET_CURRENT_STATUS',
+  payLoad,
+});
+
 export const setActivationMessage = (payLoad) => ({
   type: 'SET_ACTIVATION_MESSAGE',
   payLoad,

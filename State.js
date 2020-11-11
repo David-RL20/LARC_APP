@@ -123,7 +123,6 @@ const state = {
             history: [],
             channel_out: {
               name: '',
-              currentStatus: 1,
               base_time: {
                 index: 0,
                 milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
@@ -131,14 +130,31 @@ const state = {
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: {
-                value: '',
-                command: '-TEXT:',
-              },
-              feedBMessage: {
-                value: '',
-                command: '-REPLY-TEXT:',
-              },
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
             },
           },
         },
@@ -158,14 +174,31 @@ const state = {
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: {
-                value: '',
-                command: '-ON-TEXT:',
-              },
-              feedBMessage: {
-                value: '',
-                command: '-ON-REPLY-TEXT:',
-              },
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
             },
           },
         },
@@ -185,14 +218,31 @@ const state = {
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: {
-                value: '',
-                command: '-ON-TEXT:',
-              },
-              feedBMessage: {
-                value: '',
-                command: '-ON-REPLY-TEXT:',
-              },
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
             },
           },
         },
@@ -212,14 +262,31 @@ const state = {
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
               activation_time: 0,
-              activation_message: {
-                value: '',
-                command: '-ON-TEXT:',
-              },
-              feedBMessage: {
-                value: '',
-                command: '-ON-REPLY-TEXT:',
-              },
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
             },
           },
         },

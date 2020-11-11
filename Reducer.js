@@ -137,6 +137,35 @@ function Reducer(state, action) {
         }),
       };
 
+    case 'SET_CURRENT_STATUS':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              channels: device.channels.map((channel) => {
+                if (channel.value == action.payLoad.value) {
+                  return {
+                    ...channel,
+                    configs: {
+                      ...channel.configs,
+                      channel_out: {
+                        ...channel.configs.channel_out,
+                        currentStatus: action.payLoad.currentStatus,
+                      },
+                    },
+                  };
+                }
+                return channel;
+              }),
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
     case 'SET_ACTIVATION_MESSAGE':
       return {
         ...state,
@@ -152,10 +181,21 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        activation_message: {
-                          ...channel.configs.channel_out.activation_message,
-                          value: action.payLoad.activation_message,
-                        },
+                        on_off: channel.configs.channel_out.on_off.map(
+                          (onOff) => {
+                            if (onOff.value == action.payLoad.currentStatus) {
+                              return {
+                                ...onOff,
+                                activation_message: {
+                                  ...onOff.activation_message,
+                                  value: action.payLoad.activation_message,
+                                },
+                              };
+                            } else {
+                              return onOff;
+                            }
+                          },
+                        ),
                       },
                     },
                   };
@@ -184,10 +224,21 @@ function Reducer(state, action) {
                       ...channel.configs,
                       channel_out: {
                         ...channel.configs.channel_out,
-                        feedBMessage: {
-                          ...channel.configs.channel_out.feedBMessage,
-                          value: action.payLoad.feedBMessage,
-                        },
+                        on_off: channel.configs.channel_out.on_off.map(
+                          (onOff) => {
+                            if (onOff.value == action.payLoad.currentStatus) {
+                              return {
+                                ...onOff,
+                                feedBMessage: {
+                                  ...onOff.feedBMessage,
+                                  value: action.payLoad.feedBMessage,
+                                },
+                              };
+                            } else {
+                              return onOff;
+                            }
+                          },
+                        ),
                       },
                     },
                   };
@@ -200,6 +251,7 @@ function Reducer(state, action) {
           }
         }),
       };
+
     /********************Channel In********************** */
     case 'SET_CURRENT_CHANNEL_IN':
       return {
