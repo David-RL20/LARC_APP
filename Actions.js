@@ -90,3 +90,8 @@ export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',
   payLoad,
 });
+
+export const deleteDevice = (payLoad) => ({
+  type: 'DELETE_DEVICE',
+  payLoad,
+});

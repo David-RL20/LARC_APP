@@ -494,6 +494,13 @@ function Reducer(state, action) {
           },
         ],
       };
+    case 'DELETE_DEVICE':
+      return {
+        ...state,
+        devices: state.devices.filter(
+          (device) => device.phoneNumber !== action.payLoad.phoneNumber,
+        ),
+      };
     default:
       return state;
   }

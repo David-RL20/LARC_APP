@@ -1,10 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
+import {connect} from 'react-redux';
+import {deleteDevice} from '../../../Actions';
 import Icon from '../../utils/Icon';
-const ListItem = ({item, theme, navigation}) => {
+const ListItem = ({item, theme, navigation, deleteDevice}) => {
   const width = 20;
   const height = 24;
+  const handleDeleteDevice = () => {
+    deleteDevice({
+      phoneNumber: item.phoneNumber,
+    });
+  };
   return (
     <View style={[style.container, {borderColor: theme.device_list_border}]}>
       <TouchableOpacity
@@ -28,7 +34,7 @@ const ListItem = ({item, theme, navigation}) => {
       </TouchableOpacity>
 
       <View style={style.icons_container}>
-        <TouchableOpacity style={style.icon}>
+        <TouchableOpacity onPress={handleDeleteDevice} style={style.icon}>
           <Icon width={width} height={height} name="delete" />
         </TouchableOpacity>
         <TouchableOpacity style={style.icon}>
@@ -76,5 +82,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 7,
   },
 });
-
-export default ListItem;
+const mapDispatchToProps = {
+  deleteDevice,
+};
+export default connect(null, mapDispatchToProps)(ListItem);

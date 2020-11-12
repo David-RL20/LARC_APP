@@ -1,6 +1,6 @@
 const state = {
   currentTheme: 'light',
-  currentLanguage: 'eng',
+  currentLanguage: 'esp',
   themes: {
     dark: {
       header_background: 'rgb(75,75,75)',

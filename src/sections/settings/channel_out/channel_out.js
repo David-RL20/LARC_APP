@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,9 +7,9 @@ import {
   SafeAreaView,
   Alert,
 } from 'react-native';
-import {Input, ButtonGroup} from 'react-native-elements';
+import { Input, ButtonGroup } from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
 import {
   setCurrentChannel,
@@ -49,11 +49,11 @@ class ChannelOut extends Component {
       (completed, cancelled, error) => {
         console.log(
           'SMS Callback: completed: ' +
-            completed +
-            ' cancelled: ' +
-            cancelled +
-            'error: ' +
-            error,
+          completed +
+          ' cancelled: ' +
+          cancelled +
+          'error: ' +
+          error,
         );
       },
     );
@@ -103,7 +103,7 @@ class ChannelOut extends Component {
           },
         },
       ],
-      {cancelable: true},
+      { cancelable: true },
     );
   }
   updateIndex(selectedIndex) {
@@ -184,38 +184,13 @@ class ChannelOut extends Component {
     );
   }
   handleActivationTimeChange() {
-    Alert.alert(
-      this.props.screen_settings_out.alerts.confirmation,
-      this.props.screen_settings_out.alerts.change_activationTime,
-      [
-        {
-          text: this.props.screen_settings_out.alerts.cancel,
-          onPress: () => {
-            console.log('cancel');
-          },
-        },
-        {
-          text: this.props.screen_settings_out.alerts.ok,
-          onPress: () => {
-            Platform.OS === 'ios' &&
-              this.sendMessageIOS(
-                `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
-                this.phoneNumber,
-              );
-            Platform.OS === 'android' &&
-              this.sendMessageAndroid(
-                `${this.prefix}${this.password}#${this.cmd_activation_time}${this.currentChannel}=${this.activation_time_input}`,
-                this.phoneNumber,
-              );
-            this.props.setActivationTime({
-              phoneNumber: this.phoneNumber,
-              value: this.currentChannel,
-              activation_time: this.activation_time_input,
-            });
-          },
-        },
-      ],
-    );
+
+    this.props.setActivationTime({
+      phoneNumber: this.phoneNumber,
+      value: this.currentChannel,
+      activation_time: this.activation_time_input,
+    });
+
   }
 
   handleActivationSmsChange() {
@@ -310,7 +285,7 @@ class ChannelOut extends Component {
     return (
       <SafeAreaView
         style={[
-          {flex: 1},
+          { flex: 1 },
           {
             backgroundColor: this.props.theme.body_background,
           },
@@ -321,7 +296,7 @@ class ChannelOut extends Component {
               <Text
                 style={[
                   style.labelChannel,
-                  {color: this.props.theme.control_title},
+                  { color: this.props.theme.control_title },
                 ]}>
                 {this.props.screen_channel.title} :
               </Text>
@@ -339,12 +314,12 @@ class ChannelOut extends Component {
             </View>
             <FormWrapper title={this.props.screen_settings_out.channel_name}>
               <Input
-                containerStyle={{paddingHorizontal: 0}}
+                containerStyle={{ paddingHorizontal: 0 }}
                 placeholder={
                   this.name || this.props.screen_settings_out.channel_holder
                 }
-                style={{fontSize: 13}}
-                inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                style={{ fontSize: 13 }}
+                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
                 onSubmitEditing={this.handleChannelNameChange.bind(this)}
                 onChangeText={(text) => {
                   this.channel_name_input = text;
@@ -361,14 +336,14 @@ class ChannelOut extends Component {
             <FormWrapper title={this.props.screen_settings_out.activation_time}>
               <Input
                 keyboardType={'numeric'}
-                containerStyle={{paddingHorizontal: 0}}
+                containerStyle={{ paddingHorizontal: 0 }}
                 placeholder={this.activationTime || 'Set Activation time'}
-                style={{fontSize: 13}}
-                inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                style={{ fontSize: 13 }}
+                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
                 onChangeText={(text) => {
                   this.activation_time_input = text;
                 }}
-                onSubmitEditing={this.handleActivationTimeChange.bind(this)}
+                onEndEditing={this.handleActivationTimeChange.bind(this)}
               />
             </FormWrapper>
             <FormWrapper title={'On/Off'}>
@@ -381,13 +356,13 @@ class ChannelOut extends Component {
             <FormWrapper
               title={this.props.screen_settings_out.activation_message}>
               <Input
-                containerStyle={{paddingHorizontal: 0}}
+                containerStyle={{ paddingHorizontal: 0 }}
                 placeholder={
                   this.placeHolderActivationMessage ||
                   this.props.screen_settings_out.activation_holder
                 }
-                style={{fontSize: 13}}
-                inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                style={{ fontSize: 13 }}
+                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
                 onChangeText={(text) => {
                   this.activation_message_input = text;
                 }}
@@ -398,13 +373,13 @@ class ChannelOut extends Component {
             <FormWrapper
               title={this.props.screen_settings_out.feedback_message}>
               <Input
-                containerStyle={{paddingHorizontal: 0}}
+                containerStyle={{ paddingHorizontal: 0 }}
                 placeholder={
                   this.placeHolderFeedBMessage ||
                   this.props.screen_settings_out.feedback_holder
                 }
-                style={{fontSize: 13}}
-                inputStyle={{color: this.props.theme.settings_out_subtitle}}
+                style={{ fontSize: 13 }}
+                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
                 onChangeText={(text) => {
                   this.feedBMessageInput = text;
                 }}
