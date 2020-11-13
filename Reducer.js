@@ -502,20 +502,34 @@ function Reducer(state, action) {
         ),
       };
 
-      case 'EDIT_DEVICE':
+    case 'EDIT_DEVICE':
       return {
         ...state,
         devices: state.devices.map((device) => {
-          if (device.phoneNumber == action.payLoad.phoneNumber && device.name==action.payLoad.name) {
+          if (
+            device.phoneNumber == action.payLoad.phoneNumber &&
+            device.name == action.payLoad.name
+          ) {
             return {
               ...device,
               phoneNumber: action.payLoad.phoneEdit,
-              name:action.payLoad.nameEdit
+              name: action.payLoad.nameEdit,
             };
           } else {
             return device;
           }
         }),
+      };
+    /******************CONFIGS******************* */
+    case 'SET_LANGUAGE':
+      return {
+        ...state,
+        currentLanguage: action.payLoad,
+      };
+    case 'SET_THEME':
+      return {
+        ...state,
+        currentTheme: action.payLoad,
       };
     default:
       return state;

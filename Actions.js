@@ -100,3 +100,11 @@ export const editDevice = (payLoad) => ({
   type: 'EDIT_DEVICE',
   payLoad,
 });
+export const setTheme = (payLoad) => ({
+  type: 'SET_THEME',
+  payLoad,
+});
+export const setLanguage = (payLoad) => ({
+  type: 'SET_LANGUAGE',
+  payLoad,
+});
