@@ -1,6 +1,6 @@
 const state = {
   currentTheme: 'light',
-  currentLanguage: 'esp',
+  currentLanguage: 'eng',
   themes: {
     dark: {
       header_background: 'rgb(75,75,75)',
@@ -595,27 +595,59 @@ const state = {
     device: {
       eng: {
         add: 'Add Device',
+        edit:'Edit Device',
         add_cancel_label: 'Cancel',
         add_confirm_label: 'Confirm',
         name_label: 'Name :',
         cel_label: 'Cellphone :',
         name_placeholder_label: 'Main door',
+        alerts:{
+          delete:'Delete',
+          deleteAsk:'Do you want to delete this device?',
+          add_cancel_label: 'Cancel',
+          add_confirm_label: 'Confirm',
+        }
       },
       esp: {
         add: 'Agregar Dispositivo',
+        edit:'Edit Device',
         add_cancel_label: 'Cancelar',
         add_confirm_label: 'Confirmar',
         name_label: 'Nombre :',
         cel_label: 'Celular :',
         name_placeholder_label: 'Puerta principal',
+        alerts:{
+          delete:'Eliminar',
+          deleteAsk:'Desea eliminar este dispositivo?',
+          add_cancel_label: 'Cancelar',
+          add_confirm_label: 'Confirmar',
+        }
       },
     },
     device_control: {
       eng: {
         title: 'Channel',
+        alert:{
+          confirmation:'Confirmation',
+          call:'Do you want to make a call to',
+          close:'Do you want to close the device?',
+          open:'Do you want to open the device?',
+          time:'Do you want to open with time the device?',
+          cancel:'Cancel',
+          ok:'Confirm'
+        }
       },
       esp: {
         title: 'Canal',
+        alert:{
+          confirmation:'Confirmacion',
+          call:'Desea llamar a',
+          close:'Desea cerrar el dispositivo?',
+          open:'Desea abrir el dispositivo?',
+          time:'Desea abrir por tiempo el dispositivo?',
+          cancel:'Cancelar',
+          ok:'Confirmar'
+        }
       },
     },
     device_settings: {

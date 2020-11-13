@@ -95,3 +95,8 @@ export const deleteDevice = (payLoad) => ({
   type: 'DELETE_DEVICE',
   payLoad,
 });
+
+export const editDevice = (payLoad) => ({
+  type: 'EDIT_DEVICE',
+  payLoad,
+});

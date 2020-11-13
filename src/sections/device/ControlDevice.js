@@ -38,17 +38,17 @@ class Controll extends Component {
 
   makeCall() {
     Alert.alert(
-      'Confirmacion',
-      'Desea llamar a ' + this.phoneNumber + ' ?',
+      this.props.screen.alert.confirmation,
+      `${this.props.screen.alert.call} ${this.phoneNumber}?`,
       [
         {
-          text: 'Cancel',
+          text:  this.props.screen.alert.cancel,
           onPress: () => {
             console.log('Cancell');
           },
         },
         {
-          text: 'Ok',
+          text:  this.props.screen.alert.ok,
           onPress: () => {
             RNImmediatePhoneCall.immediatePhoneCall(this.phoneNumber);
           },
@@ -91,17 +91,17 @@ class Controll extends Component {
   }
   lockDevice() {
     Alert.alert(
-      'Confirmacion',
-      'Desea abrir el dispositivo ?',
+      this.props.screen.alert.confirmation,
+      this.props.screen.alert.close,
       [
         {
-          text: 'Cancel',
+          text:  this.props.screen.alert.cancel,
           onPress: () => {
             console.log('Canceled');
           },
         },
         {
-          text: 'Ok',
+          text:  this.props.screen.alert.ok,
           onPress: () => {
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
@@ -121,17 +121,17 @@ class Controll extends Component {
   }
   unlockDevice() {
     Alert.alert(
-      'Confirmacion',
-      'Desea cerrar el dispositivo ?',
+      this.props.screen.alert.confirmation,
+      this.props.screen.alert.open,
       [
         {
-          text: 'Cancel',
+          text: this.props.screen.alert.cancel,
           onPress: () => {
             console.log('Cancell');
           },
         },
         {
-          text: 'Ok',
+          text: this.props.screen.alert.ok,
           onPress: () => {
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
@@ -151,17 +151,18 @@ class Controll extends Component {
   }
   jogDevice() {
     Alert.alert(
-      'Confirmacion',
-      'Desea abrir por tiempo el dispositivo ?',
+      this.props.screen.alert.confirmation,
+      this.props.screen.alert.time,
       [
         {
-          text: 'Cancel',
+      
+      text:this.props.screen.alert.cancel, 
           onPress: () => {
             console.log('Cancell');
           },
         },
         {
-          text: 'Ok',
+          text: this.props.screen.alert.ok,
           onPress: () => {
             Platform.OS === 'ios' &&
               this.sendMessageIOS(

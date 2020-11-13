@@ -501,6 +501,22 @@ function Reducer(state, action) {
           (device) => device.phoneNumber !== action.payLoad.phoneNumber,
         ),
       };
+
+      case 'EDIT_DEVICE':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber && device.name==action.payLoad.name) {
+            return {
+              ...device,
+              phoneNumber: action.payLoad.phoneEdit,
+              name:action.payLoad.nameEdit
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
     default:
       return state;
   }

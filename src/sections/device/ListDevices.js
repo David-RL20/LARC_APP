@@ -16,6 +16,7 @@ class ListaDispositivos extends Component {
         navigation={this.props.navigation}
         theme={this.props.theme}
         item={item}
+        screen={this.props.overlay_Screen}
       />
     );
   }
@@ -61,6 +62,7 @@ const mapStateToProps = (state) => {
   return {
     device_list: state.devices,
     theme: state.themes[state.currentTheme],
+    overlay_Screen:state.screens.device[state.currentLanguage]
   };
 };
 export default connect(mapStateToProps)(ListaDispositivos);
