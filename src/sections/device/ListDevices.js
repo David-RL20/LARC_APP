@@ -15,8 +15,9 @@ class ListaDispositivos extends Component {
       <ListItem
         navigation={this.props.navigation}
         theme={this.props.theme}
-        item={item}
         screen={this.props.overlay_Screen}
+        item={item}
+        
       />
     );
   }

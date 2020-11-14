@@ -16,6 +16,8 @@ import Icon from '../../utils/Icon';
 import RNImmediatePhoneCall from 'react-native-immediate-phone-call';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
+import Toast from 'react-native-simple-toast';
+
 class Controll extends Component {
   constructor() {
     super();
@@ -44,7 +46,7 @@ class Controll extends Component {
         {
           text:  this.props.screen.alert.cancel,
           onPress: () => {
-            console.log('Cancell');
+            Toast.show(this.props.screen.toasts.call_cancel);
           },
         },
         {
@@ -82,10 +84,10 @@ class Controll extends Component {
       phone,
       msg,
       (fail) => {
-        console.log('Failed with this error: ' + fail);
+        Toast.show(this.props.screen.toasts.sms_fail);
       },
       (success) => {
-        console.log('SMS sent successfully');
+        Toast.show(this.props.screen.toasts.sms);
       },
     );
   }

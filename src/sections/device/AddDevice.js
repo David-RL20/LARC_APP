@@ -2,11 +2,12 @@
 Es una especie de over layout que recibe un formulario que debe ser completado todos sus campos
 ademas despues de confirmarlo este se debe agregar ala memoria
 */
-import React, {useState} from 'react';
-import {Button, Overlay, Input} from 'react-native-elements';
-import {View, Text, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
-import {addNewDevice} from '../../../Actions';
+import React, { useState } from 'react';
+import { Button, Overlay, Input } from 'react-native-elements';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { addNewDevice } from '../../../Actions';
+import Toast from 'react-native-simple-toast';
 
 const AddDevice = (props) => {
   const [state, set] = useState({
@@ -16,14 +17,24 @@ const AddDevice = (props) => {
   });
 
   const toggleOverlay = () => {
-    set({...state, visible: !state.visible});
+    set({ ...state, visible: !state.visible });
   };
   const handleAddDevice = () => {
-    props.addNewDevice({
-      name: state.name,
-      phoneNumber: state.phoneNumber,
-    });
-    toggleOverlay();
+    if (state.phoneNumber == '' || state.name == '') {
+      Toast.show(props.device_screen.toasts.add_fail);
+
+    } else {
+      props.addNewDevice({
+        name: state.name,
+        phoneNumber: state.phoneNumber,
+      });
+      Toast.show(props.device_screen.toasts.add);
+      state.name = '';
+      state.phoneNumber = '';
+      toggleOverlay();
+    }
+
+
   };
   return (
     <View
@@ -35,27 +46,27 @@ const AddDevice = (props) => {
         buttonStyle={{
           backgroundColor: props.theme.device_add_background,
         }}
-        titleStyle={{color: props.theme.device_add_title}}
+        titleStyle={{ color: props.theme.device_add_title }}
         onPress={toggleOverlay}
       />
 
       <Overlay
         overlayStyle={[
           style.Overlay,
-          {backgroundColor: props.theme.overlay_background},
+          { backgroundColor: props.theme.overlay_background },
         ]}
         isVisible={state.visible}
         onBackdropPress={toggleOverlay}>
         <View style={[style.container]}>
           <View style={style.container_form}>
-            <Text style={[style.label, {color: props.theme.overlay_title}]}>
+            <Text style={[style.label, { color: props.theme.overlay_title }]}>
               {props.device_screen.name_label}
             </Text>
             <Input
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder={props.device_screen.name_placeholder_label}
-              inputStyle={{color: props.theme.overlay_title}}
+              inputStyle={{ color: props.theme.overlay_title }}
               onChangeText={(text) => {
                 set({
                   ...state,
@@ -65,7 +76,7 @@ const AddDevice = (props) => {
             />
           </View>
           <View style={style.container_form}>
-            <Text style={[style.label, {color: props.theme.overlay_title}]}>
+            <Text style={[style.label, { color: props.theme.overlay_title }]}>
               {props.device_screen.cel_label}
             </Text>
             <Input
@@ -73,7 +84,7 @@ const AddDevice = (props) => {
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder="664*******"
-              inputStyle={{color: props.theme.overlay_title}}
+              inputStyle={{ color: props.theme.overlay_title }}
               onChangeText={(text) => {
                 set({
                   ...state,
@@ -88,18 +99,18 @@ const AddDevice = (props) => {
               title={props.device_screen.add_cancel_label}
               buttonStyle={[
                 style.button_cancel,
-                {backgroundColor: props.theme.overlay_button_regular},
+                { backgroundColor: props.theme.overlay_button_regular },
               ]}
               onPress={toggleOverlay}
-              titleStyle={{color: props.theme.overlay_button_title}}
+              titleStyle={{ color: props.theme.overlay_button_title }}
             />
             <Button
               title={props.device_screen.add_confirm_label}
               buttonStyle={[
                 style.button_confirm,
-                {backgroundColor: props.theme.overlay_button_primary},
+                { backgroundColor: props.theme.overlay_button_primary },
               ]}
-              titleStyle={{color: props.theme.overlay_button_title}}
+              titleStyle={{ color: props.theme.overlay_button_title }}
               onPress={handleAddDevice}
             />
           </View>

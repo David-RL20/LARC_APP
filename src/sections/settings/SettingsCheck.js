@@ -11,6 +11,8 @@ import {
 import {connect} from 'react-redux';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
+import Toast from 'react-native-simple-toast';
+
 class SettingsCheck extends Component {
   sendMessageIOS(msg, phone) {
     SendSMS.send(
@@ -37,10 +39,10 @@ class SettingsCheck extends Component {
       phone,
       msg,
       (fail) => {
-        console.log('Failed with this error: ' + fail);
+        Toast.show(this.props.screen.toasts.sms_fail);
       },
       (success) => {
-        console.log('SMS sent successfully');
+        Toast.show(this.props.screen.toasts.sms);
       },
     );
   }

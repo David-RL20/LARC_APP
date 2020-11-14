@@ -23,6 +23,7 @@ import {
 } from '../../../../Actions';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
+import Toast from 'react-native-simple-toast';
 
 // import {ScrollView} from 'react-native-gesture-handler';
 
@@ -63,10 +64,11 @@ class ChannelOut extends Component {
       phone,
       msg,
       (fail) => {
-        console.log('Failed with this error: ' + fail);
+        Toast.show(this.props.screen_settings_out.toasts.sms_fail)
       },
       (success) => {
-        console.log('SMS sent successfully');
+        Toast.show(this.props.screen_settings_out.toasts.sms)
+        
       },
     );
   }

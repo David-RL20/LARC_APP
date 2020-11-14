@@ -13,6 +13,8 @@ import {
   setWorkingMode,
   setPassword,
 } from '../../../../Actions';
+import Toast from 'react-native-simple-toast';
+
 class SystemSettings extends Component {
   constructor() {
     super();
@@ -56,10 +58,10 @@ class SystemSettings extends Component {
       phone,
       msg,
       (fail) => {
-        console.log('Failed with this error: ' + fail);
+        Toast.show(this.props.screen.toasts.sms_fail);
       },
       (success) => {
-        console.log('SMS sent successfully');
+        Toast.show(this.props.screen.toasts.sms);
       },
     );
   }
