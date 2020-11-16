@@ -53,8 +53,11 @@ const ListItem = ({
         nameEdit: state.nameEdit || item.name,
       });
       Toast.show(screen.toasts.edit);
-      state.phoneEdit = '';
-      state.nameEdit = '';
+      set({
+        ...state,
+        phoneEdit: '',
+        nameEdit: '',
+      });
       toggleOverlayEdit();
     }
   };
@@ -62,37 +65,39 @@ const ListItem = ({
   const toggleOverlayEdit = () => {
     set({...state, visible: !state.visible});
   };
+  console.log(state.visible);
   return (
-    <View style={[style.container, {borderColor: theme.device_list_border}]}>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('DeviceControl', {phone: item.phoneNumber})
-        }
-        style={[
-          style.picture_name_container,
-          {backgroundColor: theme.body_background},
-        ]}>
-        <Icon width="37" height="38" name="profile" />
-        <View style={style.name_phone_container}>
-          <Text style={[style.name_device, {color: theme.device_list_title}]}>
-            {item.name}
-          </Text>
-          <Text
-            style={[style.phone_device, {color: theme.device_list_subtitle}]}>
-            {item.phoneNumber}
-          </Text>
+    <>
+      <View style={[style.container, {borderColor: theme.device_list_border}]}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('DeviceControl', {phone: item.phoneNumber})
+          }
+          style={[
+            style.picture_name_container,
+            {backgroundColor: theme.body_background},
+          ]}>
+          <Icon width="37" height="38" name="profile" />
+          <View style={style.name_phone_container}>
+            <Text style={[style.name_device, {color: theme.device_list_title}]}>
+              {item.name}
+            </Text>
+            <Text
+              style={[style.phone_device, {color: theme.device_list_subtitle}]}>
+              {item.phoneNumber}
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <View style={style.icons_container}>
+          <TouchableOpacity onPress={handleDeleteDevice} style={style.icon}>
+            <Icon width={width} height={height} name="delete" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={toggleOverlayEdit} style={style.icon}>
+            <Icon width={width} height={height} name="edit" />
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-
-      <View style={style.icons_container}>
-        <TouchableOpacity onPress={handleDeleteDevice} style={style.icon}>
-          <Icon width={width} height={height} name="delete" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={toggleOverlayEdit} style={style.icon}>
-          <Icon width={width} height={height} name="edit" />
-        </TouchableOpacity>
       </View>
-
       {/*****************Ovarlay Edit******************* */}
       <View
         style={{
@@ -168,7 +173,7 @@ const ListItem = ({
           </View>
         </Overlay>
       </View>
-    </View>
+    </>
   );
 };
 const style = StyleSheet.create({
@@ -217,7 +222,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    width: '80%',
+    width: '90%',
     paddingVertical: 30,
     paddingHorizontal: 10,
   },
