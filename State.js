@@ -1,5 +1,5 @@
 const state = {
-  currentTheme: 'light',
+  currentTheme: 'dark',
   currentLanguage: 'esp',
   themes: {
     dark: {
@@ -574,7 +574,6 @@ const state = {
         command: 'EVENTOS?',
       },
     },
-  
   ],
   contacts: [
     {
@@ -610,15 +609,14 @@ const state = {
           add_cancel_label: 'Cancel',
           add_confirm_label: 'Confirm',
         },
-        toasts:{
-          edit_fail:'The phone number or name has not been modified',
-          edit:'The phone number or name has been modified',
-          delete:'The device has been deleted',
-          delete_cancel:'the device has not been deleted',
-          add_fail:'The phone number or name has not been registered',
-          add:'The device has been added',
-          
-        }
+        toasts: {
+          edit_fail: 'The phone number or name has not been modified',
+          edit: 'The phone number or name has been modified',
+          delete: 'The device has been deleted',
+          delete_cancel: 'the device has not been deleted',
+          add_fail: 'The phone number or name has not been registered',
+          add: 'The device has been added',
+        },
       },
       esp: {
         add: 'Agregar Dispositivo',
@@ -634,16 +632,16 @@ const state = {
           add_cancel_label: 'Cancelar',
           add_confirm_label: 'Confirmar',
         },
-        toasts:{
-          edit_fail:'El numero de telefono y/o el nombre no han sido modificados',
-          edit:'El numero de telefono y/o el nombre han sido modificados',
-          delete:'El dispositivo ha sido eliminado',
-          delete_cancel:'El dispositivo no ha sido eliminado',
-          add_fail:'El numero de telefono y/o el nombre no han sido registrados',
-          add:'El dispositivo ha sido añadido',
-
-          
-        }
+        toasts: {
+          edit_fail:
+            'El numero de telefono y/o el nombre no han sido modificados',
+          edit: 'El numero de telefono y/o el nombre han sido modificados',
+          delete: 'El dispositivo ha sido eliminado',
+          delete_cancel: 'El dispositivo no ha sido eliminado',
+          add_fail:
+            'El numero de telefono y/o el nombre no han sido registrados',
+          add: 'El dispositivo ha sido añadido',
+        },
       },
     },
     device_control: {
@@ -662,11 +660,11 @@ const state = {
           cancel: 'Cancel',
           ok: 'Confirm',
         },
-        toasts:{
-          sms:'SMS sent successfully',
-          sms_fail:'SMS has not been sent',
-          call_cancel:'Call has been canceled'
-        }
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+          call_cancel: 'Call has been canceled',
+        },
       },
       esp: {
         title: 'Canal',
@@ -683,12 +681,11 @@ const state = {
           cancel: 'Cancelar',
           ok: 'Confirmar',
         },
-        toasts:{
-          sms:'SMS enviado exitosamente',
-          sms_fail:'El SMS no ha sido enviado',
-          call_cancel:'Se ha cancelado la llamada'
-
-        }
+        toasts: {
+          sms: 'SMS enviado exitosamente',
+          sms_fail: 'El SMS no ha sido enviado',
+          call_cancel: 'Se ha cancelado la llamada',
+        },
       },
     },
     device_settings: {
@@ -827,11 +824,10 @@ const state = {
           cancel: 'Cancel',
           ok: 'Confirm',
         },
-        toasts:{
-          sms:'SMS sent successfully',
-          sms_fail:'SMS has not been sent',
-          
-        }
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+        },
       },
       esp: {
         channel_name: 'Nombre del canal',
@@ -855,11 +851,10 @@ const state = {
           cancel: 'Cancelar',
           ok: 'Confirmar',
         },
-        toasts:{
-          sms:'SMS Enviado exitosamente',
-          sms_fail:'SMS no ha sido enviado',
-          
-        }
+        toasts: {
+          sms: 'SMS Enviado exitosamente',
+          sms_fail: 'SMS no ha sido enviado',
+        },
       },
     },
     settings_system_settings: {
@@ -889,11 +884,10 @@ const state = {
           password: 'Do you want to change the password ?',
           relay_status: 'Do you want to set all relay status ?',
         },
-        toasts:{
-          sms:'SMS sent successfully',
-          sms_fail:'SMS has not been sent',
-          
-        }
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+        },
       },
       esp: {
         control_label: 'Control libre',
@@ -921,11 +915,10 @@ const state = {
           password: 'Quieres cambiar la contraseña ?',
           relay_status: 'Quieres establecer el status del relay?',
         },
-        toasts:{
-          sms:'SMS Enviado exitosamente',
-          sms_fail:'SMS no ha sido enviado',
-          
-        }
+        toasts: {
+          sms: 'SMS Enviado exitosamente',
+          sms_fail: 'SMS no ha sido enviado',
+        },
       },
     },
     settings_history: {
@@ -940,11 +933,10 @@ const state = {
           ok: 'Confirm',
           confirmation: 'Confirmation',
         },
-        toasts:{
-          sms:'SMS sent successfully',
-          sms_fail:'SMS has not been sent',
-          
-        }
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+        },
       },
       esp: {
         date: 'Fecha',
@@ -957,11 +949,10 @@ const state = {
           ok: 'Confirmar',
           confirmation: 'Confirmacion',
         },
-        toasts:{
-          sms:'SMS Enviado exitosamente',
-          sms_fail:'SMS no ha sido enviado',
-          
-        }
+        toasts: {
+          sms: 'SMS Enviado exitosamente',
+          sms_fail: 'SMS no ha sido enviado',
+        },
       },
     },
     settings_check_system: {
@@ -970,22 +961,20 @@ const state = {
         check: 'Do you want to check the device status?',
         cancel: 'Cancel',
         Ok: 'Ok',
-        toasts:{
-          sms:'SMS sent successfully',
-          sms_fail:'SMS has not been sent',
-          
-        }
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+        },
       },
       esp: {
         status: 'Estatus',
         check: 'Desea checar el estatus del dispositivo?',
         cancel: 'Cancelar',
         Ok: 'Ok',
-        toasts:{
-          sms:'SMS Enviado exitosamente',
-          sms_fail:'SMS no ha sido enviado',
-          
-        }
+        toasts: {
+          sms: 'SMS Enviado exitosamente',
+          sms_fail: 'SMS no ha sido enviado',
+        },
       },
     },
   },
