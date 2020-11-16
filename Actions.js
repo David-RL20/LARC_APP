@@ -70,6 +70,10 @@ export const setSystemFeedback = (payLoad) => ({
   type: 'SET_SYSTEM_FEEDBACK',
   payLoad,
 });
+export const setSystemReply = (payLoad) => ({
+  type: 'SET_SYSTEM_REPLY',
+  payLoad,
+});
 
 export const setCallOrRingtone = (payLoad) => ({
   type: 'SET_CALL_OR_RINGTONE',

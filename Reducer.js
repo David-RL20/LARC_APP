@@ -426,6 +426,27 @@ function Reducer(state, action) {
         }),
       };
 
+    case 'SET_SYSTEM_REPLY':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              settings_system: {
+                ...device.settings_system,
+                replyMessage: {
+                  ...device.settings_system.replyMessage,
+                  index: action.payLoad.index,
+                },
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
     case 'SET_CALL_OR_RINGTONE':
       return {
         ...state,

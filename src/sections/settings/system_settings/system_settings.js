@@ -12,6 +12,7 @@ import {
   setCallOrRingtone,
   setWorkingMode,
   setPassword,
+  setSystemReply,
 } from '../../../../Actions';
 import Toast from 'react-native-simple-toast';
 
@@ -32,6 +33,7 @@ class SystemSettings extends Component {
     this.updateWorkingModeIndex = this.updateWorkingModeIndex.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSetAllRelayStatus = this.handleSetAllRelayStatus.bind(this);
+    this.updateReplyMessageIndex = this.updateReplyMessageIndex.bind(this);
   }
   sendMessageIOS(msg, phone) {
     SendSMS.send(
@@ -135,6 +137,42 @@ class SystemSettings extends Component {
       {cancelable: true},
     );
   }
+  updateReplyMessageIndex(replyMessageIndex) {
+    const cmds = [this.replycmd.turn_off, this.replycmd.turn_on];
+    Alert.alert(
+      this.props.screen.alert.confirm,
+      this.props.screen.alert.reply,
+      [
+        {
+          text: this.props.screen.alert.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alert.ok,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${cmds[replyMessageIndex]}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${cmds[replyMessageIndex]}`,
+                this.phoneNumber,
+              );
+            this.props.setSystemReply({
+              phoneNumber: this.phoneNumber,
+              index: replyMessageIndex,
+            });
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  }
+
   updateRingToneIndex(ringToneIndex) {
     const cmds = [this.callOrRcmd.dial, this.callOrRcmd.dtmf];
     Alert.alert(
@@ -220,6 +258,10 @@ class SystemSettings extends Component {
     this.indexFreeControl = this.freeCmd.index;
     this.feedcmd = this.device.settings_system.feedBMessage;
     this.indexFeedback = this.feedcmd.index;
+
+    this.replycmd = this.device.settings_system.replyMessage;
+    this.indexReply = this.replycmd.index;
+
     this.callOrRcmd = this.device.settings_system.call_ring_tone;
     this.indexCallOrRington = this.callOrRcmd.index;
     this.workModecmd = this.device.settings_system.working_mode;
@@ -312,7 +354,7 @@ class SystemSettings extends Component {
       this.props.screen.control_off,
       this.props.screen.control_on,
     ];
-    const ringsAvailable = ['Dial', 'DTMF'];
+    const ringsAvailable = [this.props.screen.call, 'DTMF'];
 
     const workingModeTitles = [
       this.props.screen.working_mode_button1,
@@ -322,6 +364,7 @@ class SystemSettings extends Component {
     const ringToneIndex = this.indexCallOrRington;
     const workingModeIndex = this.indexWorkingMode;
     const feedBackMessageIndex = this.indexFeedback;
+    const replyMessageIndex = this.indexReply;
     const freeControlIndex = this.indexFreeControl;
     return (
       <SafeAreaView
@@ -341,6 +384,13 @@ class SystemSettings extends Component {
             <ButtonGroupCustumized
               action={this.updateFeedBackMessageIndex}
               index={feedBackMessageIndex}
+              buttons={activeOptions}
+            />
+          </FormWrapper>
+          <FormWrapper title={this.props.screen.replyMessage}>
+            <ButtonGroupCustumized
+              action={this.updateReplyMessageIndex}
+              index={replyMessageIndex}
               buttons={activeOptions}
             />
           </FormWrapper>
@@ -427,5 +477,6 @@ const mapDistpatchToProps = {
   setCallOrRingtone,
   setWorkingMode,
   setPassword,
+  setSystemReply,
 };
 export default connect(mapStateToProps, mapDistpatchToProps)(SystemSettings);
