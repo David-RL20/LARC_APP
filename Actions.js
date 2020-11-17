@@ -94,6 +94,12 @@ export const setHistoryIndex = (payLoad) => ({
   type: 'SET_HISTORY_INDEX',
   payLoad,
 });
+/****************CALENDAR********************* */
+export const setCalendarIndex = (payLoad) => ({
+  type: 'SET_CALENDAR_INDEX',
+  payLoad,
+});
+
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',

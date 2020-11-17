@@ -524,6 +524,29 @@ function Reducer(state, action) {
           }
         }),
       };
+
+    /******************CALENDAR******************* */
+    case 'SET_CALENDAR_INDEX':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                search: {
+                  ...device.calendar.search,
+                  index: action.payLoad.index,
+                },
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
       return {

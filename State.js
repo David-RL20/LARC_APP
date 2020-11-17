@@ -336,6 +336,31 @@ const state = {
       prefix: '#PWD',
       password: '123456',
       check_system_status: '#STATUS?',
+      calendar: {
+        search: {
+          index: 0,
+          phoneNumber: 'QUERY',
+          serial: 'WHL',
+        },
+        contacts: [
+          {
+            number: 1,
+            phoneNumber: 66421345112,
+          },
+          {
+            number: 2,
+            phoneNumber: 66421345112,
+          },
+          {
+            number: 3,
+            phoneNumber: 66421345112,
+          },
+          {
+            number: 4,
+            phoneNumber: 66421345112,
+          },
+        ],
+      },
       channels: [
         {
           name: 'OUT1',
@@ -585,24 +610,6 @@ const state = {
       },
     },
   ],
-  contacts: [
-    {
-      number: 1,
-      phoneNumber: 66421345112,
-    },
-    {
-      number: 2,
-      phoneNumber: 66421345112,
-    },
-    {
-      number: 3,
-      phoneNumber: 66421345112,
-    },
-    {
-      number: 4,
-      phoneNumber: 66421345112,
-    },
-  ],
   screens: {
     device: {
       eng: {
@@ -767,7 +774,11 @@ const state = {
     settings_calendar: {
       eng: {
         searchLabel: 'Search',
-        icon_search: 'search',
+        searchButtonLabel: 'Search by:',
+        searchBy: {
+          phoneNumber: 'Phone number',
+          serial: 'Serial number',
+        },
         RegisterNumber: 'Register Num',
         cel_label: 'Cellphone',
         add_cancel_label: 'Cancel',
@@ -777,7 +788,11 @@ const state = {
       },
       esp: {
         searchLabel: 'Buscar',
-        icon_search: 'search',
+        searchButtonLabel: 'Buscar por:',
+        searchBy: {
+          phoneNumber: 'Numero de telefono',
+          serial: 'Numero de serie',
+        },
         RegisterNumber: 'No.Registro',
         cel_label: 'Celular',
         add_cancel_label: 'Cancelar',
