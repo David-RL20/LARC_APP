@@ -1,24 +1,16 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
-
+import CustomizedButtonGroup from '../../../utils/ButtonComponentStyle';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import Wrapper from '../../../utils/FormWrapperHorizontal';
+import FormWrapper from '../../../utils/FormWrapper';
 import {connect} from 'react-redux';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
 import Toast from 'react-native-simple-toast';
-
+import {setHistoryIndex} from '../../../../Actions';
 class AplicacionPlatzi extends Component {
   constructor() {
     super();
@@ -29,6 +21,7 @@ class AplicacionPlatzi extends Component {
       isVisibleTime: false,
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.updateHistoryIndex = this.updateHistoryIndex.bind(this);
   }
 
   handlePicker = (date) => {
@@ -99,7 +92,6 @@ class AplicacionPlatzi extends Component {
     );
   }
   handleSearch() {
-    console.log('searching...');
     Alert.alert(
       this.props.screen.alerts.confirmation,
       this.props.screen.alerts.search,
@@ -129,6 +121,40 @@ class AplicacionPlatzi extends Component {
       {cancelable: true},
     );
   }
+  updateHistoryIndex(index) {
+    Alert.alert(
+      this.props.screen.alerts.confirmation,
+      this.props.screen.alerts.history_automatic,
+      [
+        {
+          text: this.props.screen.alerts.cancel,
+          onPress: () => {
+            console.log('Canceled');
+          },
+        },
+        {
+          text: this.props.screen.alerts.ok,
+          onPress: () => {
+            this.props.setHistoryIndex({
+              index: index,
+              phoneNumber: this.phoneNumber,
+            });
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}#${this.history_automatic_prefix}=${this.history_automatic_command}`,
+                this.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}#${this.history_automatic_prefix}=${this.history_automatic_command}`,
+                this.phoneNumber,
+              );
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  }
   findDevice() {
     this.device = this.props.devices.filter(
       (device) => device.phoneNumber == this.phoneNumber,
@@ -137,11 +163,17 @@ class AplicacionPlatzi extends Component {
     this.password = this.device.password;
     this.prefix = this.device.prefix;
     this.command = this.device.history.command;
+    this.history_automatic_index = this.device.history.automatic.index;
+    this.history_automatic_prefix = this.device.history.automatic.prefix;
+    this.history_automatic_command = this.device.history.automatic.commands[
+      this.history_automatic_index
+    ];
   }
 
   render() {
     this.phoneNumber = this.props.route.params.cellphone;
     this.findDevice();
+    const buttons = [this.props.screen.off, this.props.screen.on];
     return (
       <>
         <SafeAreaView
@@ -149,6 +181,16 @@ class AplicacionPlatzi extends Component {
             styles.container,
             {backgroundColor: this.props.theme.body_background},
           ]}>
+          <FormWrapper
+            containerStyle={{width: '100%', paddingVertical: 30, height: 150}}
+            title={this.props.screen.history_automatic}>
+            <CustomizedButtonGroup
+              containerStyle={{marginTop: 10}}
+              action={this.updateHistoryIndex}
+              buttons={buttons}
+              index={this.history_automatic_index}
+            />
+          </FormWrapper>
           <Wrapper
             theme={this.props.theme}
             title={this.props.screen.date + ' :'}>
@@ -194,7 +236,8 @@ class AplicacionPlatzi extends Component {
               },
             ]}
             onPress={this.handleSearch.bind(this)}
-            titleStyle={{color: this.props.theme.settings_history_button_title}}
+            tit
+            leStyle={{color: this.props.theme.settings_history_button_title}}
           />
 
           <DateTimePickerModal
@@ -240,4 +283,8 @@ const mapStateToProps = (state) => {
     devices: state.devices,
   };
 };
-export default connect(mapStateToProps)(AplicacionPlatzi);
+
+const mapDispatchToProps = {
+  setHistoryIndex,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AplicacionPlatzi);

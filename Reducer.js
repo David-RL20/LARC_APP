@@ -502,6 +502,28 @@ function Reducer(state, action) {
           }
         }),
       };
+
+    /******************HISTORY******************* */
+    case 'SET_HISTORY_INDEX':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              history: {
+                ...device.history,
+                automatic: {
+                  ...device.history.automatic,
+                  index: action.payLoad.index,
+                },
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
       return {
@@ -552,6 +574,7 @@ function Reducer(state, action) {
         ...state,
         currentTheme: action.payLoad,
       };
+
     default:
       return state;
   }

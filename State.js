@@ -577,6 +577,11 @@ const state = {
       },
       history: {
         command: 'EVENTOS?',
+        automatic: {
+          index: 0,
+          prefix: 'EVENTOS-AUT',
+          commands: ['OFF', 'ON'],
+        },
       },
     },
   ],
@@ -939,11 +944,15 @@ const state = {
         hour: 'Hour',
         search: 'Search',
         not_selected: 'Not selected',
+        history_automatic: 'Automatic history sending',
+        on: 'ON',
+        off: 'OFF',
         alerts: {
           search: 'Do you want to search?',
           cancel: 'Cancel',
           ok: 'Confirm',
           confirmation: 'Confirmation',
+          history_automatic: 'Do you want to chance history automatic sending?',
         },
         toasts: {
           sms: 'SMS sent successfully',
@@ -955,11 +964,15 @@ const state = {
         hour: 'Hora',
         search: 'Buscar',
         not_selected: 'No seleccionada',
+        history_automatic: 'Envio automatico de historial',
+        on: 'Prendido',
+        off: 'Apagado',
         alerts: {
           search: 'Quieres buscar?',
           cancel: 'Cancelar',
           ok: 'Confirmar',
           confirmation: 'Confirmacion',
+          history_automatic: 'Desea cambiar el envio automatico de historial?',
         },
         toasts: {
           sms: 'SMS Enviado exitosamente',

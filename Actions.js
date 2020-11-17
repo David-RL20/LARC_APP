@@ -89,6 +89,11 @@ export const setPassword = (payLoad) => ({
   payLoad,
 });
 
+/****************HISTORY********************* */
+export const setHistoryIndex = (payLoad) => ({
+  type: 'SET_HISTORY_INDEX',
+  payLoad,
+});
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',
