@@ -564,8 +564,8 @@ const state = {
         update_pwd_cap: 'CAP',
         call_ring_tone: {
           index: 0,
-          dial: 'ON',
-          dtmf: 'OFF',
+          dial: 'A1',
+          dtmf: 'A2',
         },
         working_mode: {
           index: 0,
