@@ -24,7 +24,7 @@ class ListaDispositivos extends Component {
     );
   }
   keyExtractor(item) {
-    return item.name;
+    return item.phoneNumber + item.name;
   }
   renderSeparator() {
     return <Separator />;

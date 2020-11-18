@@ -8,6 +8,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {addNewDevice} from '../../../Actions';
 import Toast from 'react-native-simple-toast';
+import {State} from 'react-native-gesture-handler';
 
 const AddDevice = (props) => {
   const [state, set] = useState({
@@ -15,22 +16,35 @@ const AddDevice = (props) => {
     phoneNumber: '',
     name: '',
   });
-
   const toggleOverlay = () => {
     set({...state, visible: !state.visible});
+  };
+  const isAvailable = (phoneNumber) => {
+    const exists = props.devices.find(
+      (device) => device.phoneNumber == phoneNumber,
+    );
+    if (exists) {
+      return false;
+    } else {
+      return true;
+    }
   };
   const handleAddDevice = () => {
     if (state.phoneNumber == '' || state.name == '') {
       Toast.show(props.device_screen.toasts.add_fail);
     } else {
-      props.addNewDevice({
-        name: state.name,
-        phoneNumber: state.phoneNumber,
-      });
-      Toast.show(props.device_screen.toasts.add);
-      state.name = '';
-      state.phoneNumber = '';
-      toggleOverlay();
+      if (isAvailable(state.phoneNumber)) {
+        props.addNewDevice({
+          name: state.name,
+          phoneNumber: state.phoneNumber,
+        });
+        Toast.show(props.device_screen.toasts.add);
+        state.name = '';
+        state.phoneNumber = '';
+        toggleOverlay();
+      } else {
+        Toast.show(props.device_screen.toasts.add_repitation);
+      }
     }
   };
   return (
@@ -170,6 +184,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.device[state.currentLanguage],
+    devices: state.devices,
   };
 };
 const mapDispatchToProps = {

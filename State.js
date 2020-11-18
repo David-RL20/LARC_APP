@@ -339,8 +339,8 @@ const state = {
       calendar: {
         search: {
           index: 0,
-          phoneNumber: 'QUERY',
-          serial: 'WHL',
+          phoneNumber: '#QUERY',
+          serial: '#WHL',
         },
         contacts: [
           {
@@ -610,6 +610,7 @@ const state = {
       },
     },
   ],
+ 
   screens: {
     device: {
       eng: {
@@ -625,6 +626,7 @@ const state = {
           deleteAsk: 'Do you want to delete this device?',
           add_cancel_label: 'Cancel',
           add_confirm_label: 'Confirm',
+          
         },
         toasts: {
           edit_fail: 'The phone number or name has not been modified',
@@ -633,6 +635,7 @@ const state = {
           delete_cancel: 'the device has not been deleted',
           add_fail: 'The phone number or name has not been registered',
           add: 'The device has been added',
+          add_repitation:'Name or phone number already exists',
         },
       },
       esp: {
@@ -648,6 +651,8 @@ const state = {
           deleteAsk: 'Desea eliminar este dispositivo?',
           add_cancel_label: 'Cancelar',
           add_confirm_label: 'Confirmar',
+          
+
         },
         toasts: {
           edit_fail:
@@ -658,6 +663,7 @@ const state = {
           add_fail:
             'El numero de telefono y/o el nombre no han sido registrados',
           add: 'El dispositivo ha sido añadido',
+          add_repitation:'El nombre o el número de teléfono ya existen',
         },
       },
     },
@@ -775,6 +781,8 @@ const state = {
       eng: {
         searchLabel: 'Search',
         searchButtonLabel: 'Search by:',
+        placeholder_search_phoneNumber:'Write a phone number',
+        placeholder_search_serial:'Write a serial number (001-400)',
         searchBy: {
           phoneNumber: 'Phone number',
           serial: 'Serial number',
@@ -785,10 +793,23 @@ const state = {
         add_confirm_label: 'Confirm',
         name_placeholder_label: '#number',
         add: 'Add Contact',
+        alerts: {
+          confirmation: 'Confirmation',
+          message_search:'Do you want to search the number',
+          cancel: 'Cancel',
+          ok: 'Confirm',
+        },
+        toasts: {
+          sms: 'SMS sent successfully',
+          sms_fail: 'SMS has not been sent',
+          void:'you have not written anything'
+        },
       },
       esp: {
         searchLabel: 'Buscar',
         searchButtonLabel: 'Buscar por:',
+        placeholder_search_phoneNumber:'Escribe un telefono',
+        placeholder_search_serial:'Escribe un numero de serie (001-400)',
         searchBy: {
           phoneNumber: 'Numero de telefono',
           serial: 'Numero de serie',
@@ -799,6 +820,17 @@ const state = {
         add_confirm_label: 'Confirmar',
         name_placeholder_label: '#numero',
         add: 'Agregar Contacto',
+        alerts: {
+          confirmation: 'Confirmacion',
+          message_search:'Desea buscar el numero',
+          cancel: 'Cancelar',
+          ok: 'Confirmar',
+        },
+        toasts: {
+          sms: 'SMS Enviado exitosamente',
+          sms_fail: 'SMS no ha sido enviado',
+          void:'No has escrito nada'
+        },
       },
     },
     settings_channel_in: {
