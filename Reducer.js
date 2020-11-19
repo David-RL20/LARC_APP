@@ -547,6 +547,23 @@ function Reducer(state, action) {
         }),
       };
 
+    case 'DELETE_CONTACT':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                contacts: device.calendar.contacts.filter(
+                  (contact) => contact.number !== action.payLoad.number,
+                ),
+              },
+            };
+          } else return device;
+        }),
+      };
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
       return {

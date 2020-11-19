@@ -13,7 +13,7 @@ const ScreenCalendar = (props) => {
           {backgroundColor: props.theme.body_background},
         ]}>
         <Search cellphone={props.route.params.cellphone} />
-        <ListContact />
+        <ListContact cellphone={props.route.params.cellphone} />
       </SafeAreaView>
       <AddContact />
     </>

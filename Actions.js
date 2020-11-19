@@ -100,6 +100,11 @@ export const setCalendarIndex = (payLoad) => ({
   payLoad,
 });
 
+export const deleteContact = (payLoad) => ({
+  type: 'DELETE_CONTACT',
+  payLoad,
+});
+
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
-import { OverLay, Button, Input } from 'react-native-elements';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {View, Text, FlatList, StyleSheet, Alert} from 'react-native';
+import {OverLay, Button, Input} from 'react-native-elements';
+import {connect} from 'react-redux';
 import FormWrapper from '../../../utils/FormWrapperHorizontal';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
-import { setCalendarIndex } from '../../../../Actions';
+import {setCalendarIndex} from '../../../../Actions';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
 import Toast from 'react-native-simple-toast';
@@ -24,11 +24,11 @@ class Calendar extends Component {
       (completed, cancelled, error) => {
         console.log(
           'SMS Callback: completed: ' +
-          completed +
-          ' cancelled: ' +
-          cancelled +
-          'error: ' +
-          error,
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
         );
       },
     );
@@ -38,11 +38,10 @@ class Calendar extends Component {
       phone,
       msg,
       (fail) => {
-        Toast.show(this.props.calendar.toasts.sms_fail)
+        Toast.show(this.props.calendar.toasts.sms_fail);
       },
       (success) => {
-        Toast.show(this.props.calendar.toasts.sms)
-
+        Toast.show(this.props.calendar.toasts.sms);
       },
     );
   }
@@ -54,7 +53,6 @@ class Calendar extends Component {
     });
   }
   handleSearchMessage() {
-    
     if (this.inputSearch == '') {
       Toast.show(this.props.calendar.toasts.void);
     } else {
@@ -71,23 +69,26 @@ class Calendar extends Component {
           {
             text: this.props.calendar.alerts.ok,
             onPress: () => {
-              Platform.OS === 'ios' &&
-                this.sendMessageIOS(
-                  `${this.prefix}${this.password}${this.currentChannel}${this.feedBMessageCmd}${this.feedBMessageInput}`,
-                  this.phoneNumber,
-                );
-              Platform.OS === 'android' &&
-                (this.searchIndex == 0) ? this.sendMessageAndroid(
-                  `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
-                  this.phoneNumber,
-                ) :
-                this.sendMessageAndroid(
-                  `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
-                  this.phoneNumber);
-                
-                this.inputSearch='';
+              Platform.OS === 'ios' && this.searchIndex == 0
+                ? this.sendMessageIOS(
+                    `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
+                    this.phoneNumber,
+                  )
+                : this.sendMessageIOS(
+                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
+                    this.phoneNumber,
+                  );
+              Platform.OS === 'android' && this.searchIndex == 0
+                ? this.sendMessageAndroid(
+                    `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
+                    this.phoneNumber,
+                  )
+                : this.sendMessageAndroid(
+                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
+                    this.phoneNumber,
+                  );
 
-
+              this.inputSearch = '';
             },
           },
         ],
@@ -115,7 +116,7 @@ class Calendar extends Component {
       this.props.calendar.searchBy.serial,
     ];
     const searchMessageIndex = this.searchIndex;
-    this.inputSearch='';
+    this.inputSearch = '';
     return (
       <View style={style.container_search}>
         <FormWrapper
@@ -130,13 +131,16 @@ class Calendar extends Component {
         <Input
           keyboardType="numeric"
           containerStyle={style.container_style}
-          placeholder={(searchMessageIndex == 0) ? this.props.calendar.placeholder_search_phoneNumber
-            : this.props.calendar.placeholder_search_serial}
+          placeholder={
+            searchMessageIndex == 0
+              ? this.props.calendar.placeholder_search_phoneNumber
+              : this.props.calendar.placeholder_search_serial
+          }
           inputContainerStyle={style.input_container_style}
-          inputStyle={{ color: this.props.theme.settings_calendar_title }}
-          maxLength={(searchMessageIndex == 0) ? 10 : 3}
+          inputStyle={{color: this.props.theme.settings_calendar_title}}
+          maxLength={searchMessageIndex == 0 ? 10 : 3}
           onChangeText={(Text) => {
-            this.inputSearch = Text
+            this.inputSearch = Text;
           }}
           onSubmitEditing={this.handleSearchMessage.bind(this)}
         />
@@ -150,12 +154,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingHorizontal: 10,
-
   },
   container_style: {
-
     height: 60,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   label_search: {
     fontFamily: 'Roboto_Bold',
@@ -163,7 +165,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   input_container_style: {
-
     width: '100%',
   },
 });

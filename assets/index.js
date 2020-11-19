@@ -15,6 +15,8 @@ const images = {
     settings: require('./images/dark_settings.png'),
     time: require('./images/dark_time.png'),
     unlock: require('./images/dark_unlock.png'),
+    check: require('./images/dark_check.png'),
+    mark: require('./images/dark_suspend.png'),
   },
   light: {
     logo: require('./images/light_larc.png'),
@@ -32,6 +34,8 @@ const images = {
     settings: require('./images/light_settings.png'),
     time: require('./images/light_time.png'),
     unlock: require('./images/light_unlock.png'),
+    check: require('./images/light_check.png'),
+    mark: require('./images/light_suspend.png'),
   },
 };
 

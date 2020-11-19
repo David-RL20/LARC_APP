@@ -342,22 +342,19 @@ const state = {
           phoneNumber: '#QUERY',
           serial: '#WHL',
         },
+        calendar_prefix: '#WHL',
         contacts: [
           {
-            number: 1,
-            phoneNumber: 66421345112,
+            name: 'Contact 001',
+            isSupended: false,
+            number: '001',
+            phoneNumber: '6642134511',
           },
           {
-            number: 2,
-            phoneNumber: 66421345112,
-          },
-          {
-            number: 3,
-            phoneNumber: 66421345112,
-          },
-          {
-            number: 4,
-            phoneNumber: 66421345112,
+            name: 'Contact 002',
+            isSupended: false,
+            number: '002',
+            phoneNumber: '6645124895',
           },
         ],
       },
@@ -610,7 +607,7 @@ const state = {
       },
     },
   ],
- 
+
   screens: {
     device: {
       eng: {
@@ -626,7 +623,6 @@ const state = {
           deleteAsk: 'Do you want to delete this device?',
           add_cancel_label: 'Cancel',
           add_confirm_label: 'Confirm',
-          
         },
         toasts: {
           edit_fail: 'The phone number or name has not been modified',
@@ -635,7 +631,7 @@ const state = {
           delete_cancel: 'the device has not been deleted',
           add_fail: 'The phone number or name has not been registered',
           add: 'The device has been added',
-          add_repitation:'Name or phone number already exists',
+          add_repitation: 'Name or phone number already exists',
         },
       },
       esp: {
@@ -651,8 +647,6 @@ const state = {
           deleteAsk: 'Desea eliminar este dispositivo?',
           add_cancel_label: 'Cancelar',
           add_confirm_label: 'Confirmar',
-          
-
         },
         toasts: {
           edit_fail:
@@ -663,7 +657,7 @@ const state = {
           add_fail:
             'El numero de telefono y/o el nombre no han sido registrados',
           add: 'El dispositivo ha sido añadido',
-          add_repitation:'El nombre o el número de teléfono ya existen',
+          add_repitation: 'El nombre o el número de teléfono ya existen',
         },
       },
     },
@@ -781,8 +775,8 @@ const state = {
       eng: {
         searchLabel: 'Search',
         searchButtonLabel: 'Search by:',
-        placeholder_search_phoneNumber:'Write a phone number',
-        placeholder_search_serial:'Write a serial number (001-400)',
+        placeholder_search_phoneNumber: 'Write a phone number',
+        placeholder_search_serial: 'Write a serial number (001-400)',
         searchBy: {
           phoneNumber: 'Phone number',
           serial: 'Serial number',
@@ -795,21 +789,24 @@ const state = {
         add: 'Add Contact',
         alerts: {
           confirmation: 'Confirmation',
-          message_search:'Do you want to search the number',
+          message_search: 'Do you want to search the number',
           cancel: 'Cancel',
           ok: 'Confirm',
+          delete_contact: 'Do you want to delete the contact',
+          suspend_contact: 'Do you want suspend the contact',
+          activate_contact: 'Do you want re-activate the contact',
         },
         toasts: {
           sms: 'SMS sent successfully',
           sms_fail: 'SMS has not been sent',
-          void:'you have not written anything'
+          void: 'you have not written anything',
         },
       },
       esp: {
         searchLabel: 'Buscar',
         searchButtonLabel: 'Buscar por:',
-        placeholder_search_phoneNumber:'Escribe un telefono',
-        placeholder_search_serial:'Escribe un numero de serie (001-400)',
+        placeholder_search_phoneNumber: 'Escribe un telefono',
+        placeholder_search_serial: 'Escribe un numero de serie (001-400)',
         searchBy: {
           phoneNumber: 'Numero de telefono',
           serial: 'Numero de serie',
@@ -822,14 +819,17 @@ const state = {
         add: 'Agregar Contacto',
         alerts: {
           confirmation: 'Confirmacion',
-          message_search:'Desea buscar el numero',
+          message_search: 'Desea buscar el numero',
           cancel: 'Cancelar',
           ok: 'Confirmar',
+          delete_contact: 'Desea eliminar el contacto',
+          suspend_contact: 'Quieres suspender el contacto',
+          activate_contact: 'Quieres re-activar el contacto',
         },
         toasts: {
           sms: 'SMS Enviado exitosamente',
           sms_fail: 'SMS no ha sido enviado',
-          void:'No has escrito nada'
+          void: 'No has escrito nada',
         },
       },
     },

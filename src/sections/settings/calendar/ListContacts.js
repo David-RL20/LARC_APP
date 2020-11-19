@@ -5,7 +5,13 @@ import {connect} from 'react-redux';
 import Separator from '../../../utils/horizontalPaddingSeparator';
 class ListContact extends Component {
   renderItem({item}) {
-    return <ContactItem item={item} theme={this.props.theme} />;
+    return (
+      <ContactItem
+        phoneNumber={this.device.phoneNumber}
+        item={item}
+        theme={this.props.theme}
+      />
+    );
   }
   keyExtractor(item) {
     return item.number.toString();
@@ -13,12 +19,20 @@ class ListContact extends Component {
   renderSeparator() {
     return <Separator />;
   }
+  findDevice() {
+    this.device = this.props.devices.filter(
+      (device) => device.phoneNumber == this.phoneNumber,
+    );
+    this.device = this.device[0];
+  }
   render() {
+    this.phoneNumber = this.props.cellphone;
+    this.findDevice();
     return (
       <View style={style.FlatList_container}>
         <FlatList
           style={style.FlatList}
-          data={this.props.contacts}
+          data={this.device.calendar.contacts}
           renderItem={this.renderItem.bind(this)}
           keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={this.renderSeparator}
@@ -40,7 +54,7 @@ const style = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
-    contacts: state.contacts,
+    devices: state.devices,
   };
 };
 
