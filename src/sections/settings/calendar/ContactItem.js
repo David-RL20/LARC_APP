@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import Icon from '../../../utils/Icon';
 import {connect} from 'react-redux';
-import {deleteContact} from '../../../../Actions';
+import {
+  deleteContact,
+  suspendContact,
+  activateContact,
+} from '../../../../Actions';
 import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
 import Toast from 'react-native-simple-toast';
@@ -12,6 +16,8 @@ class ListItem extends Component {
     this.width = 20;
     this.height = 24;
     this.handleDeleteContact = this.handleDeleteContact.bind(this);
+    this.handleSuspendContact = this.handleSuspendContact.bind(this);
+    this.handleActivateContact = this.handleActivateContact.bind(this);
   }
   sendMessageIOS(msg, phone) {
     SendSMS.send(
@@ -78,6 +84,74 @@ class ListItem extends Component {
       ],
     );
   }
+  handleSuspendContact() {
+    Alert.alert(
+      this.props.screen.alerts.confirmation,
+      `${this.props.screen.alerts.suspend_contact} ${this.props.item.number}?`,
+      [
+        {
+          text: this.props.screen.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
+        },
+        {
+          text: this.props.screen.alerts.ok,
+          onPress: () => {
+            this.props.suspendContact({
+              phoneNumber: this.props.phoneNumber,
+              isSuspended: true,
+              number: this.props.item.number,
+            });
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}${this.deletePrefix}${this.props.item.number}=00`,
+                this.props.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}${this.deletePrefix}${this.props.item.number}=00`,
+                this.props.phoneNumber,
+              );
+          },
+        },
+      ],
+    );
+  }
+  handleActivateContact() {
+    Alert.alert(
+      this.props.screen.alerts.confirmation,
+      `${this.props.screen.alerts.activate_contact} ${this.props.item.number}?`,
+      [
+        {
+          text: this.props.screen.alerts.cancel,
+          onPress: () => {
+            console.log('cancel');
+          },
+        },
+        {
+          text: this.props.screen.alerts.ok,
+          onPress: () => {
+            this.props.activateContact({
+              phoneNumber: this.props.phoneNumber,
+              isSuspended: false,
+              number: this.props.item.number,
+            });
+            Platform.OS === 'ios' &&
+              this.sendMessageIOS(
+                `${this.prefix}${this.password}${this.deletePrefix}${this.props.item.number}=${this.props.item.phoneNumber}`,
+                this.props.phoneNumber,
+              );
+            Platform.OS === 'android' &&
+              this.sendMessageAndroid(
+                `${this.prefix}${this.password}${this.deletePrefix}${this.props.item.number}=${this.props.item.phoneNumber}`,
+                this.props.phoneNumber,
+              );
+          },
+        },
+      ],
+    );
+  }
   findDevice() {
     this.device = this.props.devices.filter((device) => {
       if (device.phoneNumber == this.props.phoneNumber) {
@@ -91,7 +165,7 @@ class ListItem extends Component {
   }
   render() {
     this.findDevice();
-
+    console.log(this.props.item.isSuspended);
     return (
       <View style={style.container}>
         <View
@@ -132,10 +206,14 @@ class ListItem extends Component {
             style.icons_container,
             {backgroundColor: this.props.theme.background},
           ]}>
-          <TouchableOpacity style={style.icon}>
+          <TouchableOpacity
+            style={style.icon}
+            onPress={this.handleActivateContact}>
             <Icon width={this.width} height={this.height} name="check" />
           </TouchableOpacity>
-          <TouchableOpacity style={style.icon}>
+          <TouchableOpacity
+            style={style.icon}
+            onPress={this.handleSuspendContact}>
             <Icon width={this.width} height={this.height} name="mark" />
           </TouchableOpacity>
           <TouchableOpacity
@@ -205,5 +283,7 @@ const mapStateToProps = (state) => {
 };
 const mapDistpatchToProps = {
   deleteContact,
+  suspendContact,
+  activateContact,
 };
 export default connect(mapStateToProps, mapDistpatchToProps)(ListItem);

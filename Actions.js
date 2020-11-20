@@ -105,6 +105,15 @@ export const deleteContact = (payLoad) => ({
   payLoad,
 });
 
+export const suspendContact = (payLoad) => ({
+  type: 'SUSPEND_CONTACT',
+  payLoad,
+});
+export const activateContact = (payLoad) => ({
+  type: 'ACTIVATE_CONTACT',
+  payLoad,
+});
+
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',

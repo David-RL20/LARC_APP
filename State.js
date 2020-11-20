@@ -346,13 +346,13 @@ const state = {
         contacts: [
           {
             name: 'Contact 001',
-            isSupended: false,
+            isSuspended: false,
             number: '001',
             phoneNumber: '6642134511',
           },
           {
             name: 'Contact 002',
-            isSupended: false,
+            isSuspended: false,
             number: '002',
             phoneNumber: '6645124895',
           },
