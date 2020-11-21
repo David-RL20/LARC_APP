@@ -630,18 +630,39 @@ function Reducer(state, action) {
                       ...contact,
                       name: action.payLoad.name,
                       number: action.payLoad.numberContact,
-                      phoneNumber: action.payLoad.phoneNumberContact
-                    }
-                  } else return contact
-                })
-              }
+                      phoneNumber: action.payLoad.phoneNumberContact,
+                    };
+                  } else return contact;
+                }),
+              },
+            };
+          } else return device;
+        }),
+      };
 
-
-            }
-          } else return device
-        })
-      }
-
+    case 'ADD_CONTACT':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumberDevice) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                contacts: [
+                  ...device.calendar.contacts,
+                  {
+                    name: action.payLoad.name,
+                    isSuspended: false,
+                    number: action.payLoad.number,
+                    phoneNumber: action.payLoad.phoneNumber,
+                  },
+                ],
+              },
+            };
+          } else return device;
+        }),
+      };
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
       return {

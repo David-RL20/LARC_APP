@@ -119,6 +119,11 @@ export const editContact = (payLoad) => ({
   payLoad,
 });
 
+export const addContact = (payLoad) => ({
+  type: 'ADD_CONTACT',
+  payLoad,
+});
+
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',
