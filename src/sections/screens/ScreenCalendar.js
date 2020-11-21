@@ -1,19 +1,20 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView} from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Search from '../settings/calendar/SearchContact';
 import ListContact from '../settings/calendar/ListContacts';
 import AddContact from '../settings/calendar/AddContact';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 const ScreenCalendar = (props) => {
   return (
     <>
       <SafeAreaView
         style={[
           style.container,
-          {backgroundColor: props.theme.body_background},
+          { backgroundColor: props.theme.body_background },
         ]}>
         <Search cellphone={props.route.params.cellphone} />
-        <ListContact cellphone={props.route.params.cellphone} />
+        <ListContact cellphone={props.route.params.cellphone}
+          navigation={props.navigation} />
       </SafeAreaView>
       <AddContact />
     </>

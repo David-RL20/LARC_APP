@@ -15,6 +15,8 @@ import SettingOut from './sections/settings/channel_out/channel_out';
 import SettingSystem from './sections/settings/system_settings/system_settings';
 import SettingCheck from './sections/settings/SettingsCheck';
 import EditDevice from './sections/device/EditDevice';
+import EditContact from './sections/settings/calendar/EditContact';
+
 import {connect} from 'react-redux';
 import Icon from './utils/Icon';
 const Stack = createStackNavigator();
@@ -74,6 +76,7 @@ function App(props) {
         <Stack.Screen name="settings_system" component={SettingSystem} />
         <Stack.Screen name="settings_check" component={SettingCheck} />
         <Stack.Screen name="EditDevice" component={EditDevice} />
+        <Stack.Screen name="EditContact" component={EditContact} />
       </Stack.Navigator>
     </NavigationContainer>
   );

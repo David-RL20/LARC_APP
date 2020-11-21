@@ -3,13 +3,17 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import ContactItem from './ContactItem';
 import {connect} from 'react-redux';
 import Separator from '../../../utils/horizontalPaddingSeparator';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 class ListContact extends Component {
   renderItem({item}) {
     return (
       <ContactItem
+        navigation={this.props.navigation}
         phoneNumber={this.device.phoneNumber}
         item={item}
         theme={this.props.theme}
+        
       />
     );
   }
@@ -28,6 +32,8 @@ class ListContact extends Component {
   render() {
     this.phoneNumber = this.props.cellphone;
     this.findDevice();
+    
+
     return (
       <View style={style.FlatList_container}>
         <FlatList

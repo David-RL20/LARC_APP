@@ -31,6 +31,7 @@ class ListaDispositivos extends Component {
   }
 
   render() {
+    
     return (
       <View
         style={[

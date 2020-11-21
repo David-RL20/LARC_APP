@@ -114,6 +114,11 @@ export const activateContact = (payLoad) => ({
   payLoad,
 });
 
+export const editContact = (payLoad) => ({
+  type: 'EDIT_CONTACT',
+  payLoad,
+});
+
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',
