@@ -4,7 +4,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
-import Loading from './sections/screens/Loading';
+import Loading from './sections/screens/LoadingScreen';
 import DevicesScreen from './sections/screens/DeviceScreen';
 import DeviceControl from './sections/device/ControlDevice';
 import SettingsDevice from './sections/settings/SettingsDevice';
@@ -16,7 +16,7 @@ import SettingSystem from './sections/settings/system_settings/system_settings';
 import SettingCheck from './sections/settings/SettingsCheck';
 import EditDevice from './sections/device/EditDevice';
 import EditContact from './sections/settings/calendar/EditContact';
-
+import InfoScreen from './sections/screens/InfoScreen';
 import {connect} from 'react-redux';
 import Icon from './utils/Icon';
 const Stack = createStackNavigator();
@@ -47,7 +47,16 @@ function App(props) {
         <Stack.Screen
           name="DevicesScreen"
           component={DevicesScreen}
-          options={{headerLeft: null}}
+          options={({navigation}) => {
+            return {
+              headerLeft: () => {
+                return <InfoIcon navigation={navigation} />;
+              },
+              headerLeftContainerStyle: {
+                padding: 10,
+              },
+            };
+          }}
         />
         <Stack.Screen
           name="DeviceControl"
@@ -77,6 +86,7 @@ function App(props) {
         <Stack.Screen name="settings_check" component={SettingCheck} />
         <Stack.Screen name="EditDevice" component={EditDevice} />
         <Stack.Screen name="EditContact" component={EditContact} />
+        <Stack.Screen name="InfoScreen" component={InfoScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -90,6 +100,16 @@ const SettingsIcon = (props) => {
         navigation.navigate('SettingsDevice', {cellphone: props.cellphone});
       }}>
       <Icon name="settings" width="40" height="40" />
+    </TouchableOpacity>
+  );
+};
+const InfoIcon = ({navigation}) => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('InfoScreen');
+      }}>
+      <Icon name="help" width="40" height="40" />
     </TouchableOpacity>
   );
 };
