@@ -40,6 +40,8 @@ const state = {
       settings_in_subtitle: '#D4D4D4',
       settings_system_subtitle: '#D4D4D4',
       switch_background: '#f5dd4b',
+      company_name_color: '#BC4343',
+      version_color: '#FCFCFC',
     },
     light: {
       header_background: '#FDDB3A',
@@ -79,6 +81,8 @@ const state = {
       settings_in_subtitle: '#41444B',
       settings_system_subtitle: '#41444B',
       switch_background: '#f4f3f4',
+      company_name_color: '#52575D',
+      version_color: '#41444B',
     },
   },
   device_default: {
