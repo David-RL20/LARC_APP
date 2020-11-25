@@ -91,6 +91,7 @@ class InfoScreen extends Component {
                 source={require('../../../assets/images/email.png')}
               />
               <Text
+                selectable={true}
                 style={{
                   color: this.props.theme.header_title,
                   fontSize: 10,
@@ -105,6 +106,7 @@ class InfoScreen extends Component {
                 source={require('../../../assets/images/cellphone.png')}
               />
               <Text
+                selectable={true}
                 style={{
                   color: this.props.theme.header_title,
                   fontSize: 12,
