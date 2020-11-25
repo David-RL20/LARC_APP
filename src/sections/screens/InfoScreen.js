@@ -1,12 +1,37 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import Icon from '../../utils/Icon';
 import {connect} from 'react-redux';
 
 class InfoScreen extends Component {
   constructor() {
     super();
+    this.openFB = this.openFB.bind(this);
+    this.openWebPage = this.openWebPage.bind(this);
   }
+  openFB = async () => {
+    try {
+      await Linking.openURL(
+        'https://www.facebook.com/Larc-gsm-access-517092142115235',
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  openWebPage = async () => {
+    try {
+      await Linking.openURL('https://larc-gsm-access.negocio.site/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   render() {
     return (
@@ -31,7 +56,6 @@ class InfoScreen extends Component {
                   color: this.props.theme.version_color,
                 },
               ]}>
-              {' '}
               Version: 1.0.0
             </Text>
           </View>
@@ -46,10 +70,12 @@ class InfoScreen extends Component {
           </Text>
           <View style={style.container_icons}>
             <View style={style.container_item}>
-              <Image
-                style={[style.icon_container, {resizeMode: 'contain'}]}
-                source={require('../../../assets/images/fb.png')}
-              />
+              <TouchableOpacity onPress={this.openFB}>
+                <Image
+                  style={[style.icon_container, {resizeMode: 'contain'}]}
+                  source={require('../../../assets/images/fb.png')}
+                />
+              </TouchableOpacity>
               <Text
                 style={{
                   color: this.props.theme.header_title,
@@ -88,10 +114,12 @@ class InfoScreen extends Component {
             </View>
 
             <View style={style.container_item}>
-              <Image
-                style={[style.icon_container, {resizeMode: 'contain'}]}
-                source={require('../../../assets/images/web.png')}
-              />
+              <TouchableOpacity onPress={this.openWebPage}>
+                <Image
+                  style={[style.icon_container, {resizeMode: 'contain'}]}
+                  source={require('../../../assets/images/web.png')}
+                />
+              </TouchableOpacity>
               <Text
                 style={{
                   color: this.props.theme.header_title,
