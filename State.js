@@ -91,6 +91,28 @@ const state = {
     prefix: '#PWD',
     password: '123456',
     check_system_status: '#STATUS?',
+    calendar: {
+      search: {
+        index: 0,
+        phoneNumber: '#QUERY',
+        serial: '#WHL',
+      },
+      calendar_prefix: '#WHL',
+      contacts: [
+        {
+          name: 'Contact 001',
+          isSuspended: false,
+          number: '001',
+          phoneNumber: '6642134511',
+        },
+        {
+          name: 'Contact 002',
+          isSuspended: false,
+          number: '002',
+          phoneNumber: '6645124895',
+        },
+      ],
+    },
     channels: [
       {
         name: 'OUT1',
@@ -311,11 +333,16 @@ const state = {
         turn_on: 'REPORT=ON',
         turn_off: 'REPORT=OFF',
       },
+      replyMessage: {
+        index: 0,
+        turn_on: 'REPLY=ON',
+        turn_off: 'REPLY=OFF',
+      },
       update_pwd_cap: 'CAP',
       call_ring_tone: {
         index: 0,
-        dial: 'ON',
-        dtmf: 'OFF',
+        dial: 'A1',
+        dtmf: 'A2',
       },
       working_mode: {
         index: 0,
@@ -327,6 +354,11 @@ const state = {
     },
     history: {
       command: 'EVENTOS?',
+      automatic: {
+        index: 0,
+        prefix: 'EVENTOS-AUT',
+        commands: ['OFF', 'ON'],
+      },
     },
   },
   loading: {
