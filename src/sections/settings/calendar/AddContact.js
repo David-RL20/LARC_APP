@@ -55,6 +55,23 @@ const AddDevice = (props) => {
         <View style={[style.container]}>
           <View style={style.container_form}>
             <Text style={[style.label, {color: props.theme.overlay_title}]}>
+              {props.device_screen.name_label} :
+            </Text>
+            <Input
+              inputContainerStyle={style.input_container_style}
+              containerStyle={style.input_container}
+              placeholder={props.device_screen.name_placeholder_label}
+              inputStyle={{color: props.theme.overlay_title}}
+              onChangeText={(text) => {
+                setState({
+                  ...state,
+                  input_name: text,
+                });
+              }}
+            />
+          </View>
+          <View style={style.container_form}>
+            <Text style={[style.label, {color: props.theme.overlay_title}]}>
               {props.device_screen.RegisterNumber} :
             </Text>
             <Input
@@ -68,24 +85,6 @@ const AddDevice = (props) => {
                 setState({
                   ...state,
                   input_register_number: text,
-                });
-              }}
-            />
-          </View>
-
-          <View style={style.container_form}>
-            <Text style={[style.label, {color: props.theme.overlay_title}]}>
-              {props.device_screen.name_label} :
-            </Text>
-            <Input
-              inputContainerStyle={style.input_container_style}
-              containerStyle={style.input_container}
-              placeholder={props.device_screen.name_placeholder_label}
-              inputStyle={{color: props.theme.overlay_title}}
-              onChangeText={(text) => {
-                setState({
-                  ...state,
-                  input_name: text,
                 });
               }}
             />

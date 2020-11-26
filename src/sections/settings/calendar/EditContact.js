@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button, Overlay, Input } from 'react-native-elements';
+import React, {Component, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {Button, Overlay, Input} from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
-import { connect } from 'react-redux';
-import { editContact } from '../../../../Actions'
+import {connect} from 'react-redux';
+import {editContact} from '../../../../Actions';
 
 //import {editContact} from '../../../Actions';
 class EditContact extends Component {
@@ -14,23 +14,26 @@ class EditContact extends Component {
       nameEdit: '',
       numberEdit: '',
       phoneEdit: '',
-
     };
     this.handleEditContact = this.handleEditContact.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
   handleEditContact = () => {
-    if (this.state.phoneEdit == '' && this.state.nameEdit == '' && this.state.numberEdit == '') {
+    if (
+      this.state.phoneEdit == '' &&
+      this.state.nameEdit == '' &&
+      this.state.numberEdit == ''
+    ) {
       Toast.show(this.props.screen.toasts.edit_fail);
     } else {
       this.props.editContact({
         phoneNumber: this.props.route.params.cellPhone,
-        number:this.props.route.params.number,
+        number: this.props.route.params.number,
         name: this.state.nameEdit || this.props.route.params.name,
         numberContact: this.state.numberEdit || this.props.route.params.number,
-        phoneNumberContact: this.state.phoneEdit || this.props.route.params.phoneNumber
-
+        phoneNumberContact:
+          this.state.phoneEdit || this.props.route.params.phoneNumber,
       });
       Toast.show(this.props.screen.toasts.edit);
       this.goBack();
@@ -45,8 +48,6 @@ class EditContact extends Component {
   }
 
   render() {
-  
-
     return (
       <View
         style={{
@@ -55,7 +56,7 @@ class EditContact extends Component {
         <Overlay
           overlayStyle={[
             styles.Overlay,
-            { backgroundColor: this.props.theme.overlay_background },
+            {backgroundColor: this.props.theme.overlay_background},
           ]}
           isVisible={this.state.visible}
           onBackdropPress={this.goBack}>
@@ -63,20 +64,20 @@ class EditContact extends Component {
             <Text
               style={[
                 styles.editTitle,
-                { color: this.props.theme.overlay_title },
+                {color: this.props.theme.overlay_title},
               ]}>
               {this.props.screen.edit_contact}
             </Text>
             <View style={styles.container_form}>
               <Text
-                style={[styles.label, { color: this.props.theme.overlay_title }]}>
+                style={[styles.label, {color: this.props.theme.overlay_title}]}>
                 {this.props.screen.name_label}
               </Text>
               <Input
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
                 placeholder={this.props.route.params.name}
-                inputStyle={{ color: this.props.theme.overlay_title }}
+                inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({
                     nameEdit: text,
@@ -86,15 +87,15 @@ class EditContact extends Component {
             </View>
             <View style={styles.container_form}>
               <Text
-                style={[styles.label, { color: this.props.theme.overlay_title }]}>
+                style={[styles.label, {color: this.props.theme.overlay_title}]}>
                 {this.props.screen.number_label}
               </Text>
               <Input
-                keyboardType={"numeric"}
+                keyboardType={'numeric'}
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
                 placeholder={this.props.route.params.number}
-                inputStyle={{ color: this.props.theme.overlay_title }}
+                inputStyle={{color: this.props.theme.overlay_title}}
                 maxLength={3}
                 onChangeText={(text) => {
                   this.setState({
@@ -105,7 +106,7 @@ class EditContact extends Component {
             </View>
             <View style={styles.container_form}>
               <Text
-                style={[styles.label, { color: this.props.theme.overlay_title }]}>
+                style={[styles.label, {color: this.props.theme.overlay_title}]}>
                 {this.props.screen.cel_label}
               </Text>
               <Input
@@ -113,7 +114,7 @@ class EditContact extends Component {
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
                 placeholder={this.props.route.params.phoneNumber}
-                inputStyle={{ color: this.props.theme.overlay_title }}
+                inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({
                     phoneEdit: text,
@@ -127,18 +128,18 @@ class EditContact extends Component {
                 title={this.props.screen.add_cancel_label}
                 buttonStyle={[
                   styles.button_cancel,
-                  { backgroundColor: this.props.theme.overlay_button_regular },
+                  {backgroundColor: this.props.theme.overlay_button_regular},
                 ]}
                 onPress={this.goBack}
-                titleStyle={{ color: this.props.theme.overlay_button_title }}
+                titleStyle={{color: this.props.theme.overlay_button_title}}
               />
               <Button
                 title={this.props.screen.add_confirm_label}
                 buttonStyle={[
                   styles.button_confirm,
-                  { backgroundColor: this.props.theme.overlay_button_primary },
+                  {backgroundColor: this.props.theme.overlay_button_primary},
                 ]}
-                titleStyle={{ color: this.props.theme.overlay_button_title }}
+                titleStyle={{color: this.props.theme.overlay_button_title}}
                 onPress={this.handleEditContact}
               />
             </View>

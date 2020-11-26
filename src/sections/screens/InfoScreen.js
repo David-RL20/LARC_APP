@@ -111,7 +111,7 @@ class InfoScreen extends Component {
                   color: this.props.theme.header_title,
                   fontSize: 12,
                 }}>
-                6641074669
+                6641174669
               </Text>
             </View>
 

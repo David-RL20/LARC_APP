@@ -8,8 +8,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 const persistedReducer = persistReducer(persistConfig, Reducer);
-///persistedReducer
-const store = createStore(Reducer, state);
+const store = createStore(persistedReducer, state);
 const persistor = persistStore(store);
 
 export {store, persistor};
