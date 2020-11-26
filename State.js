@@ -483,7 +483,7 @@ const state = {
           route: 'settings_system',
         },
         {
-          title: 'Check system settings',
+          title: 'Check system status',
           logo: 'settings',
           route: 'settings_check',
         },
@@ -500,7 +500,7 @@ const state = {
           route: 'settings_history',
         },
         {
-          title: 'Ajustes del canal out',
+          title: 'Ajustes del canal salidad',
           logo: 'settings_out',
           route: 'settings_out',
         },
@@ -515,7 +515,7 @@ const state = {
           route: 'settings_system',
         },
         {
-          title: 'Verificar las configuraciones del sistema',
+          title: 'Verificar estado del sistema',
           logo: 'settings',
           route: 'settings_check',
         },
