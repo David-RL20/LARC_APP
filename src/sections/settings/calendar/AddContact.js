@@ -7,6 +7,8 @@ import {Button, Overlay, Input} from 'react-native-elements';
 import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {addContact} from '../../../../Actions';
+import Toast from 'react-native-simple-toast';
+
 const AddDevice = (props) => {
   const [state, setState] = useState({
     isVisible: false,
@@ -22,13 +24,36 @@ const AddDevice = (props) => {
     });
   };
   const addContact = () => {
-    props.addContact({
-      name: state.input_name,
-      number: state.input_register_number,
-      phoneNumber: state.input_cellphone,
-      phoneNumberDevice: props.cellphone,
-    });
-    toggleOverlay();
+    if (
+      state.input_name !== '' &&
+      state.input_register_number !== '' &&
+      state.input_cellphone !== ''
+    ) {
+      if (
+        state.input_cellphone.length !== 10 ||
+        state.input_register_number.length !== 3
+      ) {
+        Toast.show('Falta numeros');
+      } else {
+        const range = parseInt(state.input_register_number);
+        if (range < 0 || range > 400) {
+          Toast.show('Superaste el limite');
+        } else {
+          props.addContact({
+            name: state.input_name,
+            number: state.input_register_number,
+            phoneNumber: state.input_cellphone,
+            phoneNumberDevice: props.cellphone,
+          });
+          state.input_register_number = '';
+          state.input_cellphone = '';
+          state.input_name = '';
+          toggleOverlay();
+        }
+      }
+    } else {
+      Toast.show('Algunos campos no han sido registrados');
+    }
   };
 
   return (

@@ -30,21 +30,27 @@ const AddDevice = (props) => {
     }
   };
   const handleAddDevice = () => {
-    if (state.phoneNumber == '' || state.name == '') {
-      Toast.show(props.device_screen.toasts.add_fail);
-    } else {
-      if (isAvailable(state.phoneNumber)) {
-        props.addNewDevice({
-          name: state.name,
-          phoneNumber: state.phoneNumber,
-        });
-        Toast.show(props.device_screen.toasts.add);
-        state.name = '';
-        state.phoneNumber = '';
-        toggleOverlay();
+    if (state.phoneNumber !== '' && state.name !== '') {
+      if (
+        state.phoneNumber.length !== 10
+      ) {
+        Toast.show('Falta numeros');
       } else {
-        Toast.show(props.device_screen.toasts.add_repitation);
+        if (isAvailable(state.phoneNumber)) {
+          props.addNewDevice({
+            name: state.name,
+            phoneNumber: state.phoneNumber,
+          });
+          Toast.show(props.device_screen.toasts.add);
+          state.name = '';
+          state.phoneNumber = '';
+          toggleOverlay();
+        } else {
+          Toast.show(props.device_screen.toasts.add_repitation);
+        }
       }
+    } else {
+      Toast.show(props.device_screen.toasts.add_fail);
     }
   };
   return (

@@ -21,22 +21,37 @@ class EditContact extends Component {
 
   handleEditContact = () => {
     if (
-      this.state.phoneEdit == '' &&
-      this.state.nameEdit == '' &&
-      this.state.numberEdit == ''
+      this.state.phoneEdit !== '' &&
+      this.state.nameEdit !== '' &&
+      this.state.numberEdit !== ''
     ) {
-      Toast.show(this.props.screen.toasts.edit_fail);
+      if (
+        this.state.phoneEdit.length !== 10 ||
+        this.state.numberEdit.length !== 3
+      ) {
+        Toast.show('Falta numeros');
+      } else {
+        this.range = parseInt(this.state.numberEdit);
+
+        if (this.range < 0 || this.range > 400) {
+          Toast.show('Superaste el limite');
+        } else {
+          this.props.editContact({
+            phoneNumber: this.props.route.params.cellPhone,
+            number: this.props.route.params.number,
+            name: this.state.nameEdit || this.props.route.params.name,
+            numberContact:
+              this.state.numberEdit || this.props.route.params.number,
+            phoneNumberContact:
+              this.state.phoneEdit || this.props.route.params.phoneNumber,
+          });
+          Toast.show(this.props.screen.toasts.edit);
+          this.goBack();
+        }
+        
+      }
     } else {
-      this.props.editContact({
-        phoneNumber: this.props.route.params.cellPhone,
-        number: this.props.route.params.number,
-        name: this.state.nameEdit || this.props.route.params.name,
-        numberContact: this.state.numberEdit || this.props.route.params.number,
-        phoneNumberContact:
-          this.state.phoneEdit || this.props.route.params.phoneNumber,
-      });
-      Toast.show(this.props.screen.toasts.edit);
-      this.goBack();
+      Toast.show(this.props.screen.toasts.edit_fail);
     }
   };
   goBack() {

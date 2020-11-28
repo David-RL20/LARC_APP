@@ -17,17 +17,22 @@ class EditDevice extends Component {
   }
 
   handleEditDevice = () => {
-    if (this.state.phoneEdit == '' && this.state.nameEdit == '') {
-      Toast.show(this.props.screen.toasts.edit_fail);
+    if (this.state.phoneEdit !== '' && this.state.nameEdit !== '') {
+      if (this.state.phoneEdit.length !== 10) {
+        Toast.show('Falta numeros');
+      } else {
+        this.props.editDevice({
+          phoneNumber: this.props.route.params.phoneNumber,
+          name: this.props.route.params.name,
+          phoneEdit:
+            this.state.phoneEdit || this.props.route.params.phoneNumber,
+          nameEdit: this.state.nameEdit || this.props.route.params.name,
+        });
+        Toast.show(this.props.screen.toasts.edit);
+        this.goBack();
+      }
     } else {
-      this.props.editDevice({
-        phoneNumber: this.props.route.params.phoneNumber,
-        name: this.props.route.params.name,
-        phoneEdit: this.state.phoneEdit || this.props.route.params.phoneNumber,
-        nameEdit: this.state.nameEdit || this.props.route.params.name,
-      });
-      Toast.show(this.props.screen.toasts.edit);
-      this.goBack();
+      Toast.show(this.props.screen.toasts.edit_fail);
     }
   };
   goBack() {
