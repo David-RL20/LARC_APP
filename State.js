@@ -355,6 +355,20 @@ const state = {
   devices: [],
 
   screens: {
+    general: {
+      eng: {
+        missing_numbers_label: 'Phone number must be 10 digits',
+        missing_numbers: 'You are missing numbers',
+        over_limits_toast: 'You have super the contact limit (400)',
+        missing_fields: 'Missing parameters',
+      },
+      esp: {
+        missing_numbers_label: 'Numero de celular debe tener 10 digitos',
+        missing_numbers: 'Faltan numeros',
+        over_limits_toast: 'Haz superado el limite de los contactos (400)',
+        missing_fields: 'Hacen falta algunos parametros',
+      },
+    },
     device: {
       eng: {
         add: 'Add Device',

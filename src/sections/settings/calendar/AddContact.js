@@ -33,11 +33,11 @@ const AddDevice = (props) => {
         state.input_cellphone.length !== 10 ||
         state.input_register_number.length !== 3
       ) {
-        Toast.show('Falta numeros');
+        Toast.show(props.screen_general.missing_numbers);
       } else {
         const range = parseInt(state.input_register_number);
         if (range < 0 || range > 400) {
-          Toast.show('Superaste el limite');
+          Toast.show(props.screen_general.super_limits);
         } else {
           props.addContact({
             name: state.input_name,
@@ -52,7 +52,7 @@ const AddDevice = (props) => {
         }
       }
     } else {
-      Toast.show('Algunos campos no han sido registrados');
+      Toast.show(props.screen_general.missing_fields);
     }
   };
 
@@ -206,6 +206,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.settings_calendar[state.currentLanguage],
+    screen_general: state.screens.general[state.currentLanguage],
   };
 };
 

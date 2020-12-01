@@ -29,12 +29,12 @@ class EditContact extends Component {
         this.state.phoneEdit.length !== 10 ||
         this.state.numberEdit.length !== 3
       ) {
-        Toast.show('Falta numeros');
+        Toast.show(this.props.screen_general.missing_numbers);
       } else {
         this.range = parseInt(this.state.numberEdit);
 
         if (this.range < 0 || this.range > 400) {
-          Toast.show('Superaste el limite');
+          Toast.show(this.props.screen_general.over_limits_toast);
         } else {
           this.props.editContact({
             phoneNumber: this.props.route.params.cellPhone,
@@ -48,7 +48,6 @@ class EditContact extends Component {
           Toast.show(this.props.screen.toasts.edit);
           this.goBack();
         }
-        
       }
     } else {
       Toast.show(this.props.screen.toasts.edit_fail);
@@ -216,6 +215,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     screen: state.screens.device[state.currentLanguage],
+    screen_general: state.screens.general[state.currentLanguage],
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(EditContact);

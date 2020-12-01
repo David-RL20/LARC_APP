@@ -31,10 +31,8 @@ const AddDevice = (props) => {
   };
   const handleAddDevice = () => {
     if (state.phoneNumber !== '' && state.name !== '') {
-      if (
-        state.phoneNumber.length !== 10
-      ) {
-        Toast.show('Falta numeros');
+      if (state.phoneNumber.length !== 10) {
+        Toast.show(props.general_screen.missing_numbers_label);
       } else {
         if (isAvailable(state.phoneNumber)) {
           props.addNewDevice({
@@ -190,6 +188,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.device[state.currentLanguage],
+    general_screen: state.screens.general[state.currentLanguage],
     devices: state.devices,
   };
 };

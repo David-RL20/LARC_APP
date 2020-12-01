@@ -15,9 +15,9 @@ import {store, persistor} from './store';
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <AppStack />
-      </PersistGate>
+      {/* <PersistGate persistor={persistor}> */}
+      <AppStack />
+      {/* </PersistGate> */}
     </Provider>
   );
 };

@@ -19,7 +19,7 @@ class EditDevice extends Component {
   handleEditDevice = () => {
     if (this.state.phoneEdit !== '' && this.state.nameEdit !== '') {
       if (this.state.phoneEdit.length !== 10) {
-        Toast.show('Falta numeros');
+        Toast.show(this.props.screen_general.missing_numbers_label);
       } else {
         this.props.editDevice({
           phoneNumber: this.props.route.params.phoneNumber,
@@ -178,6 +178,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     screen: state.screens.device[state.currentLanguage],
+    screen_general: state.screens.general[state.currentLanguage],
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(EditDevice);
