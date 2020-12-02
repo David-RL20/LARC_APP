@@ -115,7 +115,7 @@ const state = {
               seconds: 'TIMER-DELAY-AT-SECOND',
               minutes: 'TIMER-DELAY-AT-MINUTE',
             },
-            activation_time: 0,
+            activation_time: '005',
             currentStatus: 0,
             on_off: [
               {
@@ -159,7 +159,7 @@ const state = {
               seconds: 'TIMER-DELAY-AT-SECOND',
               minutes: 'TIMER-DELAY-AT-MINUTE',
             },
-            activation_time: 0,
+            activation_time: '005',
             currentStatus: 0,
             on_off: [
               {
@@ -203,7 +203,7 @@ const state = {
               seconds: 'TIMER-DELAY-AT-SECOND',
               minutes: 'TIMER-DELAY-AT-MINUTE',
             },
-            activation_time: 0,
+            activation_time: '005',
             currentStatus: 0,
             on_off: [
               {
@@ -247,7 +247,7 @@ const state = {
               seconds: 'TIMER-DELAY-AT-SECOND',
               minutes: 'TIMER-DELAY-AT-MINUTE',
             },
-            activation_time: 0,
+            activation_time: '005',
             currentStatus: 0,
             on_off: [
               {
@@ -385,7 +385,7 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: 0,
+              activation_time: '005',
               currentStatus: 0,
               on_off: [
                 {
@@ -429,7 +429,7 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: 0,
+              activation_time: '005',
               currentStatus: 0,
               on_off: [
                 {
@@ -473,7 +473,7 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: 0,
+              activation_time: '005',
               currentStatus: 0,
               on_off: [
                 {
@@ -517,7 +517,7 @@ const state = {
                 seconds: 'TIMER-DELAY-AT-SECOND',
                 minutes: 'TIMER-DELAY-AT-MINUTE',
               },
-              activation_time: 0,
+              activation_time: '005',
               currentStatus: 0,
               on_off: [
                 {
@@ -910,6 +910,10 @@ const state = {
         activation_holder: 'Write an activation message',
         feedback_message: 'Feedback message',
         feedback_holder: 'Write a feedback message',
+        activation_time_placeholder: 'Set activation time',
+        personalized_command_title: 'Customized command message',
+        on: 'ON',
+        off: 'OFF',
         alerts: {
           confirmation: 'Confirmation',
           change_name: 'Do you want to change the name?',
@@ -938,13 +942,19 @@ const state = {
         activation_holder: 'Escribe un mensaje de activacion',
         feedback_message: 'Mensaje de retroalimentacion',
         feedback_holder: 'Escribe un mensaje de retroalimentacion',
+        activation_time_placeholder: 'Escribe el tiempo de activacion',
+        personalized_command_title: 'Personalizacion de mensaje',
+        on: 'Encendido',
+        off: 'Apagado',
         alerts: {
           confirmation: 'Confirmacion',
           change_name: 'Desea cambiar el nombre?',
           change_baseTime: 'Desea cambiar el tiempo base?',
-          change_activationTime: 'Desea cambiar el tiempo de activacion?',
+          change_activationTime:
+            'Desea cambiar el mensaje de activacion personalizado?',
           change_activationMessage: 'Desea cambiar el mensaje de activacion?',
-          change_feedbackMessage: 'Desea cambiar el mensaje de respuesta?',
+          change_feedbackMessage:
+            'Desea cambiar el mensaje de retroalimentacion?',
           cancel: 'Cancelar',
           ok: 'Confirmar',
         },

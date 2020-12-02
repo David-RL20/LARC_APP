@@ -15,18 +15,27 @@ class EditDevice extends Component {
     this.handleEditDevice = this.handleEditDevice.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-
-  handleEditDevice = () => {
+  verifyEmptyValues() {
+    this.state = {
+      visible: true,
+      phoneEdit: this.state.phoneEdit || this.props.route.params.phoneNumber,
+      nameEdit: this.state.nameEdit || this.props.route.params.name,
+    };
     if (this.state.phoneEdit !== '' && this.state.nameEdit !== '') {
+      return true;
+    }
+    return false;
+  }
+  handleEditDevice = () => {
+    if (this.verifyEmptyValues()) {
       if (this.state.phoneEdit.length !== 10) {
         Toast.show(this.props.screen_general.missing_numbers_label);
       } else {
         this.props.editDevice({
           phoneNumber: this.props.route.params.phoneNumber,
           name: this.props.route.params.name,
-          phoneEdit:
-            this.state.phoneEdit || this.props.route.params.phoneNumber,
-          nameEdit: this.state.nameEdit || this.props.route.params.name,
+          phoneEdit: this.state.phoneEdit,
+          nameEdit: this.state.nameEdit,
         });
         Toast.show(this.props.screen.toasts.edit);
         this.goBack();
@@ -72,7 +81,7 @@ class EditDevice extends Component {
               <Input
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
-                placeholder={this.props.route.params.name}
+                defaultValue={this.props.route.params.name}
                 inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({
@@ -90,7 +99,7 @@ class EditDevice extends Component {
                 keyboardType="numeric"
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
-                placeholder={this.props.route.params.phoneNumber}
+                defaultValue={this.props.route.params.phoneNumber}
                 inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({

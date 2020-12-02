@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,9 +7,9 @@ import {
   SafeAreaView,
   Alert,
 } from 'react-native';
-import { Input, ButtonGroup } from 'react-native-elements';
+import {Input, ButtonGroup} from 'react-native-elements';
 import FormWrapper from '../../../utils/FormWrapper';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import ButtonGroupCustumized from '../../../utils/ButtonComponentStyle';
 import {
   setCurrentChannel,
@@ -50,11 +50,11 @@ class ChannelOut extends Component {
       (completed, cancelled, error) => {
         console.log(
           'SMS Callback: completed: ' +
-          completed +
-          ' cancelled: ' +
-          cancelled +
-          'error: ' +
-          error,
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
         );
       },
     );
@@ -64,11 +64,10 @@ class ChannelOut extends Component {
       phone,
       msg,
       (fail) => {
-        Toast.show(this.props.screen_settings_out.toasts.sms_fail)
+        Toast.show(this.props.screen_settings_out.toasts.sms_fail);
       },
       (success) => {
-        Toast.show(this.props.screen_settings_out.toasts.sms)
-        
+        Toast.show(this.props.screen_settings_out.toasts.sms);
       },
     );
   }
@@ -105,7 +104,7 @@ class ChannelOut extends Component {
           },
         },
       ],
-      { cancelable: true },
+      {cancelable: true},
     );
   }
   updateIndex(selectedIndex) {
@@ -143,9 +142,7 @@ class ChannelOut extends Component {
 
     this.baseTime = this.channel.configs.channel_out.base_time;
 
-    this.activationTime = this.channel.configs.channel_out.activation_time.value;
-
-    this.cmd_activation_time = this.channel.configs.channel_out.activation_time.command;
+    this.activationTime = this.channel.configs.channel_out.activation_time;
 
     this.placeHolderActivationMessage = this.channel.configs.channel_out.on_off[
       this.currentOnOff
@@ -186,13 +183,11 @@ class ChannelOut extends Component {
     );
   }
   handleActivationTimeChange() {
-
     this.props.setActivationTime({
       phoneNumber: this.phoneNumber,
       value: this.currentChannel,
       activation_time: this.activation_time_input,
     });
-
   }
 
   handleActivationSmsChange() {
@@ -281,13 +276,15 @@ class ChannelOut extends Component {
       .channel_out.base_time.index;
 
     const OffOnIndex = this.currentOnOff;
-    const offOnButtons = ['On', 'Off'];
+    const offOnButtons = [
+      this.props.screen_settings_out.on,
+      this.props.screen_settings_out.off,
+    ];
     const buttons = [1, 2, 3, 4];
-
     return (
       <SafeAreaView
         style={[
-          { flex: 1 },
+          {flex: 1},
           {
             backgroundColor: this.props.theme.body_background,
           },
@@ -298,7 +295,7 @@ class ChannelOut extends Component {
               <Text
                 style={[
                   style.labelChannel,
-                  { color: this.props.theme.control_title },
+                  {color: this.props.theme.control_title},
                 ]}>
                 {this.props.screen_channel.title} :
               </Text>
@@ -316,12 +313,11 @@ class ChannelOut extends Component {
             </View>
             <FormWrapper title={this.props.screen_settings_out.channel_name}>
               <Input
-                containerStyle={{ paddingHorizontal: 0 }}
-                placeholder={
-                  this.name || this.props.screen_settings_out.channel_holder
-                }
-                style={{ fontSize: 13 }}
-                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
+                containerStyle={{paddingHorizontal: 0}}
+                placeholder={this.props.screen_settings_out.channel_holder}
+                defaultValue={this.name}
+                style={{fontSize: 13}}
+                inputStyle={{color: this.props.theme.settings_out_subtitle}}
                 onSubmitEditing={this.handleChannelNameChange.bind(this)}
                 onChangeText={(text) => {
                   this.channel_name_input = text;
@@ -338,17 +334,21 @@ class ChannelOut extends Component {
             <FormWrapper title={this.props.screen_settings_out.activation_time}>
               <Input
                 keyboardType={'numeric'}
-                containerStyle={{ paddingHorizontal: 0 }}
-                placeholder={this.activationTime || 'Set Activation time'}
-                style={{ fontSize: 13 }}
-                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
+                containerStyle={{paddingHorizontal: 0}}
+                placeholder={
+                  this.props.screen_settings_out.activation_time_placeholder
+                }
+                defaultValue={this.activationTime}
+                style={{fontSize: 13}}
+                inputStyle={{color: this.props.theme.settings_out_subtitle}}
                 onChangeText={(text) => {
                   this.activation_time_input = text;
                 }}
                 onEndEditing={this.handleActivationTimeChange.bind(this)}
               />
             </FormWrapper>
-            <FormWrapper title={'On/Off'}>
+            <FormWrapper
+              title={this.props.screen_settings_out.personalized_command_title}>
               <ButtonGroupCustumized
                 action={this.updateOffOnIndex}
                 index={OffOnIndex}
@@ -358,13 +358,11 @@ class ChannelOut extends Component {
             <FormWrapper
               title={this.props.screen_settings_out.activation_message}>
               <Input
-                containerStyle={{ paddingHorizontal: 0 }}
-                placeholder={
-                  this.placeHolderActivationMessage ||
-                  this.props.screen_settings_out.activation_holder
-                }
-                style={{ fontSize: 13 }}
-                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
+                containerStyle={{paddingHorizontal: 0}}
+                placeholder={this.props.screen_settings_out.activation_holder}
+                defaultValue={this.placeHolderActivationMessage}
+                style={{fontSize: 13}}
+                inputStyle={{color: this.props.theme.settings_out_subtitle}}
                 onChangeText={(text) => {
                   this.activation_message_input = text;
                 }}
@@ -375,13 +373,11 @@ class ChannelOut extends Component {
             <FormWrapper
               title={this.props.screen_settings_out.feedback_message}>
               <Input
-                containerStyle={{ paddingHorizontal: 0 }}
-                placeholder={
-                  this.placeHolderFeedBMessage ||
-                  this.props.screen_settings_out.feedback_holder
-                }
-                style={{ fontSize: 13 }}
-                inputStyle={{ color: this.props.theme.settings_out_subtitle }}
+                containerStyle={{paddingHorizontal: 0}}
+                placeholder={this.props.screen_settings_out.feedback_holder}
+                defaultValue={this.placeHolderFeedBMessage}
+                style={{fontSize: 13}}
+                inputStyle={{color: this.props.theme.settings_out_subtitle}}
                 onChangeText={(text) => {
                   this.feedBMessageInput = text;
                 }}
