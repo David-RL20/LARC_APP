@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Switch, Text} from 'react-native';
+import {View, StyleSheet, Switch, Text, ActivityIndicator} from 'react-native';
 import ButtonGroupCustumized from '../../utils/ButtonComponentStyle';
 import {connect} from 'react-redux';
 import {setTheme, setLanguage} from '../../../Actions';
+import {Overlay} from 'react-native-elements';
 class ControlSettings extends Component {
   constructor() {
     super();
+    this.state = {
+      isVisible: false,
+    };
   }
 
   setTheme = () => {
     if (this.props.currentTheme == 'dark') this.props.setTheme('light');
     if (this.props.currentTheme == 'light') this.props.setTheme('dark');
+    this.handleOverLay();
   };
   setLanguage = () => {
     if (this.props.currentLanguage == 'eng') this.props.setLanguage('esp');
     if (this.props.currentLanguage == 'esp') this.props.setLanguage('eng');
+    this.handleOverLay();
   };
 
   mapVariables() {
@@ -22,6 +28,17 @@ class ControlSettings extends Component {
     this.isDarkMode = this.props.currentTheme == 'dark';
     this.availableLanguages = [this.props.screen.eng, this.props.screen.esp];
     this.selectedLanguage = this.props.currentLanguage == 'eng' ? 0 : 1;
+  }
+
+  handleOverLay() {
+    this.setState({
+      isVisible: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        isVisible: false,
+      });
+    }, 1500);
   }
 
   render() {
@@ -57,10 +74,41 @@ class ControlSettings extends Component {
             height={45}
           />
         </View>
+        <Overlay
+          overlayStyle={[
+            overlayStyle.overlay,
+            {backgroundColor: this.props.theme.overlay_background},
+          ]}
+          isVisible={this.state.isVisible}
+          onBackdropPress={this.goBack}>
+          <View>
+            <ActivityIndicator
+              size="large"
+              color={this.props.theme.header_background}
+            />
+            <Text
+              style={{
+                color: this.props.theme.header_title,
+                fontSize: 15,
+                paddingTop: 20,
+              }}>
+              {this.props.general.change_configuration_label}
+            </Text>
+          </View>
+        </Overlay>
       </View>
     );
   }
 }
+const overlayStyle = StyleSheet.create({
+  overlay: {
+    height: 200,
+    width: '70%',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 const style = StyleSheet.create({
   container: {
@@ -92,6 +140,7 @@ const mapStateToProps = (state) => {
     currentTheme: state.currentTheme,
     screen: state.screens.device_control[state.currentLanguage],
     theme: state.themes[state.currentTheme],
+    general: state.screens.general[state.currentLanguage],
   };
 };
 const mapDispatchToProps = {

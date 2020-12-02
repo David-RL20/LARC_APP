@@ -361,12 +361,14 @@ const state = {
         missing_numbers: 'You are missing numbers',
         over_limits_toast: 'You have super the contact limit (400)',
         missing_fields: 'Missing parameters',
+        change_configuration_label: 'Configuration changed ...',
       },
       esp: {
         missing_numbers_label: 'Numero de celular debe tener 10 digitos',
         missing_numbers: 'Faltan numeros',
         over_limits_toast: 'Haz superado el limite de los contactos (400)',
         missing_fields: 'Hacen falta algunos parametros',
+        change_configuration_label: 'La configuración cambio ...',
       },
     },
     device: {
