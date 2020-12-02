@@ -61,38 +61,47 @@ class SettingsCheck extends Component {
     this.phoneNumber = this.props.route.params.cellphone;
     this.findDevices();
 
-    Alert.alert(this.props.screen.status, this.props.screen.check, [
-      {
-        text: this.props.screen.cancel,
-        onPress: () => {
-          console.log('cancel');
-          this.props.navigation.goBack();
-        },
-      },
-      {
-        text: this.props.screen.ok,
-        onPress: () => {
-          Platform.OS === 'ios' &&
-            this.sendMessageIOS(
-              `${this.prefix}${this.password}${this.status}`,
-              this.phoneNumber,
-            );
-          Platform.OS === 'android' &&
-            this.sendMessageAndroid(
-              `${this.prefix}${this.password}${this.status}`,
-              this.phoneNumber,
-            );
-          this.props.navigation.goBack();
-        },
-      },
-    ]);
-    return null;
+    return (
+      <>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: this.props.theme.body_background,
+          }}></View>
+        {Alert.alert(this.props.screen.status, this.props.screen.check, [
+          {
+            text: this.props.screen.cancel,
+            onPress: () => {
+              console.log('cancel');
+              this.props.navigation.goBack();
+            },
+          },
+          {
+            text: this.props.screen.ok,
+            onPress: () => {
+              Platform.OS === 'ios' &&
+                this.sendMessageIOS(
+                  `${this.prefix}${this.password}${this.status}`,
+                  this.phoneNumber,
+                );
+              Platform.OS === 'android' &&
+                this.sendMessageAndroid(
+                  `${this.prefix}${this.password}${this.status}`,
+                  this.phoneNumber,
+                );
+              this.props.navigation.goBack();
+            },
+          },
+        ])}
+      </>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     screen: state.screens.settings_check_system[state.currentLanguage],
+    theme: state.themes[state.currentTheme],
     devices: state.devices,
   };
 };

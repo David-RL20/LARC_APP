@@ -117,10 +117,10 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   container_control: {
-    width: '49%',
+    width: '46%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -128,7 +128,7 @@ const style = StyleSheet.create({
     marginHorizontal: 2,
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     marginHorizontal: 2,
   },
