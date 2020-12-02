@@ -11,24 +11,44 @@ class EditContact extends Component {
     super();
     this.state = {
       visible: true,
-      nameEdit: '',
-      numberEdit: '',
-      phoneEdit: '',
+      nameEdit: undefined,
+      numberEdit: undefined,
+      phoneEdit: undefined,
     };
     this.handleEditContact = this.handleEditContact.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
-  handleEditContact = () => {
+  verifyEmptyValues() {
+    this.state = {
+      visible: true,
+      nameEdit: this.state.phoneEdit || this.props.route.params.name,
+      numberEdit: this.state.nameEdit || this.props.route.params.number,
+      phoneEdit: this.state.numberEdit || this.props.route.params.phoneNumber,
+    };
     if (
       this.state.phoneEdit !== '' &&
       this.state.nameEdit !== '' &&
       this.state.numberEdit !== ''
     ) {
-      if (
-        this.state.phoneEdit.length !== 10 ||
-        this.state.numberEdit.length !== 3
-      ) {
+      return true;
+    }
+    return false;
+  }
+
+  verifyLength() {
+    if (
+      this.state.phoneEdit.length !== 10 ||
+      this.state.numberEdit.length !== 3
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  handleEditContact = () => {
+    if (this.verifyEmptyValues()) {
+      if (this.verifyLength()) {
         Toast.show(this.props.screen_general.missing_numbers);
       } else {
         this.range = parseInt(this.state.numberEdit);
@@ -90,7 +110,7 @@ class EditContact extends Component {
               <Input
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
-                placeholder={this.props.route.params.name}
+                defaultValue={this.props.route.params.name}
                 inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({
@@ -108,7 +128,7 @@ class EditContact extends Component {
                 keyboardType={'numeric'}
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
-                placeholder={this.props.route.params.number}
+                defaultValue={this.props.route.params.number}
                 inputStyle={{color: this.props.theme.overlay_title}}
                 maxLength={3}
                 onChangeText={(text) => {
@@ -127,7 +147,7 @@ class EditContact extends Component {
                 keyboardType="numeric"
                 inputContainerStyle={styles.input_container_style}
                 containerStyle={styles.input_container}
-                placeholder={this.props.route.params.phoneNumber}
+                defaultValue={this.props.route.params.phoneNumber}
                 inputStyle={{color: this.props.theme.overlay_title}}
                 onChangeText={(text) => {
                   this.setState({
