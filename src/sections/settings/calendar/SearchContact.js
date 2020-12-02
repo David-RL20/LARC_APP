@@ -52,47 +52,64 @@ class Calendar extends Component {
       index: searchMessageIndex,
     });
   }
+  verifyLength() {
+    if (this.searchIndex == 0 && this.inputSearch.length == 10) return true;
+    if (this.searchIndex == 1 && this.inputSearch.length == 3) return true;
+    return false;
+  }
   handleSearchMessage() {
     if (this.inputSearch == '') {
       Toast.show(this.props.calendar.toasts.void);
     } else {
-      Alert.alert(
-        this.props.calendar.alerts.confirmation,
-        `${this.props.calendar.alerts.message_search} ${this.inputSearch}?`,
-        [
-          {
-            text: this.props.calendar.alerts.cancel,
-            onPress: () => {
-              console.log('cancel');
+      if (this.verifyLength()) {
+        Alert.alert(
+          this.props.calendar.alerts.confirmation,
+          `${this.props.calendar.alerts.message_search} ${this.inputSearch}?`,
+          [
+            {
+              text: this.props.calendar.alerts.cancel,
+              onPress: () => {
+                console.log('cancel');
+              },
             },
-          },
-          {
-            text: this.props.calendar.alerts.ok,
-            onPress: () => {
-              Platform.OS === 'ios' && this.searchIndex == 0
-                ? this.sendMessageIOS(
-                    `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
-                    this.phoneNumber,
-                  )
-                : this.sendMessageIOS(
-                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
-                    this.phoneNumber,
-                  );
-              Platform.OS === 'android' && this.searchIndex == 0
-                ? this.sendMessageAndroid(
-                    `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
-                    this.phoneNumber,
-                  )
-                : this.sendMessageAndroid(
-                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
-                    this.phoneNumber,
-                  );
+            {
+              text: this.props.calendar.alerts.ok,
+              onPress: () => {
+                if (Platform.OS === 'ios') {
+                  if (this.searchIndex == 0) {
+                    this.sendMessageIOS(
+                      `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
+                      this.phoneNumber,
+                    );
+                  } else {
+                    this.sendMessageIOS(
+                      `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
+                      this.phoneNumber,
+                    );
+                  }
+                }
+                if (Platform.OS === 'android') {
+                  if (this.searchIndex == 0) {
+                    this.sendMessageAndroid(
+                      `${this.prefix}${this.password}${this.searchCmd.phoneNumber}=${this.inputSearch}`,
+                      this.phoneNumber,
+                    );
+                  } else {
+                    this.sendMessageAndroid(
+                      `${this.prefix}${this.password}${this.searchCmd.serial}${this.inputSearch}`,
+                      this.phoneNumber,
+                    );
+                  }
+                }
 
-              this.inputSearch = '';
+                this.inputSearch = '';
+              },
             },
-          },
-        ],
-      );
+          ],
+        );
+      } else {
+        Toast.show(this.props.calendar.toasts.check_length);
+      }
     }
   }
 
@@ -126,6 +143,7 @@ class Calendar extends Component {
             action={this.updateSearchIndex}
             index={searchMessageIndex}
             buttons={searchOptions}
+            textStyle={{fontSize: 12}}
           />
         </FormWrapper>
         <Input
@@ -139,6 +157,9 @@ class Calendar extends Component {
           inputContainerStyle={style.input_container_style}
           inputStyle={{color: this.props.theme.settings_calendar_title}}
           maxLength={searchMessageIndex == 0 ? 10 : 3}
+          style={{
+            fontSize: 14,
+          }}
           onChangeText={(Text) => {
             this.inputSearch = Text;
           }}
