@@ -4,35 +4,83 @@ ademas despues de confirmarlo este se debe agregar ala memoria
 */
 import React, {useState} from 'react';
 import {Button, Overlay, Input} from 'react-native-elements';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import {addContact} from '../../../../Actions';
 import Toast from 'react-native-simple-toast';
+import SmsAndroid from 'react-native-get-sms-android';
+import SendSMS from 'react-native-sms';
 
-const AddDevice = (props) => {
+const AddContact = (props) => {
+  let password, prefix, searchCmd, searchIndex;
   const [state, setState] = useState({
     isVisible: false,
     input_register_number: '',
     input_cellphone: '',
     input_name: '',
   });
-
+  function sendMessageIOS(msg, phone) {
+    SendSMS.send(
+      {
+        body: msg,
+        recipients: [phone],
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          'SMS Callback: completed: ' +
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
+        );
+      },
+    );
+  }
+  function sendMessageAndroid(msg, phone) {
+    SmsAndroid.autoSend(
+      phone,
+      msg,
+      (fail) => {
+        Toast.show(props.device_screen.toasts.sms_fail);
+      },
+      (success) => {
+        Toast.show(props.device_screen.toasts.sms);
+      },
+    );
+  }
   const toggleOverlay = () => {
     setState({
       ...state,
       isVisible: !state.isVisible,
     });
   };
-  const addContact = () => {
+  const fullValues = () => {
     if (
       state.input_name !== '' &&
       state.input_register_number !== '' &&
       state.input_cellphone !== ''
     ) {
-      if (
-        state.input_cellphone.length !== 10 ||
-        state.input_register_number.length !== 3
-      ) {
+      return true;
+    }
+
+    return false;
+  };
+  const verifyLength = () => {
+    if (
+      state.input_cellphone.length !== 10 ||
+      state.input_register_number.length !== 3
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const addContact = () => {
+    if (fullValues()) {
+      if (verifyLength()) {
         Toast.show(props.screen_general.missing_numbers);
       } else {
         const range = parseInt(state.input_register_number);
@@ -45,7 +93,17 @@ const AddDevice = (props) => {
             phoneNumber: state.input_cellphone,
             phoneNumberDevice: props.cellphone,
           });
-          state.input_register_number = '';
+          Platform.OS === 'android' &&
+            sendMessageAndroid(
+              `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+              props.cellphone,
+            );
+          Platform.OS === 'ios' &&
+            sendMessageIOS(
+              `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+              props.cellphone,
+            );
+
           state.input_cellphone = '';
           state.input_name = '';
           toggleOverlay();
@@ -56,6 +114,19 @@ const AddDevice = (props) => {
     }
   };
 
+  function findDevice() {
+    let device = props.devices.filter((device) => {
+      if (device.phoneNumber == props.cellphone) {
+        return device;
+      }
+    });
+    device = device[0];
+    password = device.password;
+    prefix = device.prefix;
+    searchCmd = device.calendar.search;
+    searchIndex = searchCmd.index;
+  }
+  findDevice();
   return (
     <View
       style={{
@@ -207,6 +278,7 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.settings_calendar[state.currentLanguage],
     screen_general: state.screens.general[state.currentLanguage],
+    devices: state.devices,
   };
 };
 
@@ -214,4 +286,4 @@ const mapDispatchToProps = {
   addContact,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDevice);
+export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
