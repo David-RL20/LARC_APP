@@ -308,43 +308,55 @@ class SystemSettings extends Component {
             {cancelable: true},
           );
         } else {
-          console.log('contraseña incorrecta');
+          Toast.show(this.props.screen.toasts.pwd_actual);
         }
+      } else {
+        Toast.show(this.props.screen.toasts.pwd_long);
       }
+    } else {
+      Toast.show(this.props.screen.toasts.pwd_empty);
     }
   }
   handleSetAllRelayStatus() {
-    if (!this.all_relay_var.match(/^[0-1]+$/)) {
-      console.log('No esta en el formato correcto');
+    if (this.all_relay_var == 'undefined') {
+      Toast.show(this.props.screen.toasts.relay_empty);
     } else {
-      Alert.alert(
-        this.props.screen.alert.confirm,
-        this.props.screen.alert.relay_status,
-        [
-          {
-            text: this.props.screen.alert.cancel,
-            onPress: () => {
-              console.log('Canceled');
-            },
-          },
-          {
-            text: this.props.screen.alert.ok,
-            onPress: () => {
-              Platform.OS === 'ios' &&
-                this.sendMessageIOS(
-                  `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
-                  this.phoneNumber,
-                );
-              Platform.OS === 'android' &&
-                this.sendMessageAndroid(
-                  `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
-                  this.phoneNumber,
-                );
-            },
-          },
-        ],
-        {cancelable: true},
-      );
+      if (this.all_relay_var.length < 4) {
+        Toast.show(this.props.screen.toasts.relay_long);
+      } else {
+        if (!this.all_relay_var.match(/^[0-1]+$/)) {
+          Toast.show(this.props.screen.toasts.relay_format);
+        } else {
+          Alert.alert(
+            this.props.screen.alert.confirm,
+            this.props.screen.alert.relay_status,
+            [
+              {
+                text: this.props.screen.alert.cancel,
+                onPress: () => {
+                  console.log('Canceled');
+                },
+              },
+              {
+                text: this.props.screen.alert.ok,
+                onPress: () => {
+                  Platform.OS === 'ios' &&
+                    this.sendMessageIOS(
+                      `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
+                      this.phoneNumber,
+                    );
+                  Platform.OS === 'android' &&
+                    this.sendMessageAndroid(
+                      `${this.prefix}${this.password}#OUT=${this.all_relay_var}`,
+                      this.phoneNumber,
+                    );
+                },
+              },
+            ],
+            {cancelable: true},
+          );
+        }
+      }
     }
   }
   render() {
@@ -366,6 +378,7 @@ class SystemSettings extends Component {
     const feedBackMessageIndex = this.indexFeedback;
     const replyMessageIndex = this.indexReply;
     const freeControlIndex = this.indexFreeControl;
+    this.all_relay_var = 'undefined';
     return (
       <SafeAreaView
         style={[

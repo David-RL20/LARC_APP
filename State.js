@@ -395,7 +395,7 @@ const state = {
           delete_cancel: 'the device has not been deleted',
           add_fail: 'The phone number or name has not been registered',
           add: 'The device has been added',
-          add_repitation: 'Name or phone number already exists',
+          add_repitation: 'Phone number already exists',
         },
       },
       esp: {
@@ -423,14 +423,14 @@ const state = {
           add_fail:
             'El numero de telefono y/o el nombre no han sido registrados',
           add: 'El dispositivo ha sido añadido',
-          add_repitation: 'El nombre o el número de teléfono ya existen',
+          add_repitation: 'El número de teléfono ya existen',
         },
       },
     },
     device_control: {
       eng: {
         title: 'Channel',
-        dark_mode: 'Dark Mode :',
+        dark_mode: 'Theme :',
         language: ' Language : ',
         esp: 'Spanish',
         eng: 'English',
@@ -451,7 +451,7 @@ const state = {
       },
       esp: {
         title: 'Canal',
-        dark_mode: 'Modo Oscuro :',
+        dark_mode: 'Tema :',
         language: 'Idioma : ',
         esp: 'Español',
         eng: 'Ingles',
@@ -516,7 +516,7 @@ const state = {
           route: 'settings_history',
         },
         {
-          title: 'Ajustes del canal salidad',
+          title: 'Ajustes del canal salida',
           logo: 'settings_out',
           route: 'settings_out',
         },
@@ -731,6 +731,12 @@ const state = {
         toasts: {
           sms: 'SMS sent successfully',
           sms_fail: 'SMS has not been sent',
+          relay_format:'The format is not correct',
+          relay_long:'The lenght is not correct',
+          relay_empty:'There are not values',
+          pwd_empty:'Both imputs are required',
+          pwd_long:'The lenght of the password is incorrect',
+          pwd_actual:'The current password is incorrect',
         },
       },
       esp: {
@@ -766,6 +772,15 @@ const state = {
         toasts: {
           sms: 'SMS Enviado exitosamente',
           sms_fail: 'SMS no ha sido enviado',
+          relay_format:'No esta en el formato correcto',
+          relay_long:'La longitud no es correcta',
+          relay_empty:'No hay valores',
+          pwd_empty:'Se necesitan los dos campos llenos',
+          pwd_long:'La longitud de la(s) contraseña(s) es incorrecta',
+          pwd_actual:'La contraseña actual es incorrecta',
+
+
+
         },
       },
     },

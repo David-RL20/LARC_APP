@@ -101,21 +101,6 @@ class InfoScreen extends Component {
             </View>
 
             <View style={style.container_item}>
-              <Image
-                style={[style.icon_container, {resizeMode: 'contain'}]}
-                source={require('../../../assets/images/cellphone.png')}
-              />
-              <Text
-                selectable={true}
-                style={{
-                  color: this.props.theme.header_title,
-                  fontSize: 12,
-                }}>
-                6641174669
-              </Text>
-            </View>
-
-            <View style={style.container_item}>
               <TouchableOpacity onPress={this.openWebPage}>
                 <Image
                   style={[style.icon_container, {resizeMode: 'contain'}]}
