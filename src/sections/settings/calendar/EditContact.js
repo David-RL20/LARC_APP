@@ -22,9 +22,9 @@ class EditContact extends Component {
   verifyEmptyValues() {
     this.state = {
       visible: true,
-      nameEdit: this.state.phoneEdit || this.props.route.params.name,
-      numberEdit: this.state.nameEdit || this.props.route.params.number,
-      phoneEdit: this.state.numberEdit || this.props.route.params.phoneNumber,
+      nameEdit: this.state.nameEdit || this.props.route.params.name,
+      numberEdit: this.state.numberEdit || this.props.route.params.number,
+      phoneEdit: this.state.phoneEdit || this.props.route.params.phoneNumber,
     };
     if (
       this.state.phoneEdit !== '' &&

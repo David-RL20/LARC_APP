@@ -82,13 +82,10 @@ class ControlSettings extends Component {
           isVisible={this.state.isVisible}
           onBackdropPress={this.goBack}>
           <View>
-            <ActivityIndicator
-              size="large"
-              color={this.props.theme.header_background}
-            />
+            <ActivityIndicator size="large" color={'#ffffff'} />
             <Text
               style={{
-                color: this.props.theme.header_title,
+                color: '#ffffff',
                 fontSize: 15,
                 paddingTop: 20,
               }}>
@@ -125,7 +122,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    marginHorizontal: 2,
+    marginHorizontal: 10,
   },
   text: {
     fontSize: 16,
