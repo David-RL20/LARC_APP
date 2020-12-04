@@ -352,7 +352,280 @@ const state = {
     eng: 'Loading...',
     esp: 'Cargando...',
   },
-  devices: [],
+  devices: [
+    {
+      name: 'David',
+      phoneNumber: '6645226208',
+      currentChannel: 1,
+      currentChannelIn: 1,
+      prefix: '#PWD',
+      password: '123456',
+      check_system_status: '#STATUS?',
+      calendar: {
+        search: {
+          index: 0,
+          phoneNumber: '#QUERY',
+          serial: '#WHL',
+        },
+        calendar_prefix: '#WHL',
+        groups: [
+          {
+            id: 1,
+            group_name: 'Ju',
+            contacts: [],
+          },
+        ],
+        contacts: [],
+      },
+      channels: [
+        {
+          name: 'OUT1',
+          value: 1,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: '005',
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          name: 'OUT2',
+          value: 2,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: '005',
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          name: 'OUT3',
+          value: 3,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: '005',
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          name: 'OUT4',
+          value: 4,
+          configs: {
+            calendar: [],
+            history: [],
+            channel_out: {
+              name: '',
+
+              base_time: {
+                index: 0,
+                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
+                seconds: 'TIMER-DELAY-AT-SECOND',
+                minutes: 'TIMER-DELAY-AT-MINUTE',
+              },
+              activation_time: '005',
+              currentStatus: 0,
+              on_off: [
+                {
+                  value: 0,
+                  activation_message: {
+                    value: '',
+                    command: '-ON-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-ON-REPLY-TEXT:',
+                  },
+                },
+                {
+                  value: 1,
+                  activation_message: {
+                    value: '',
+                    command: '-OFF-TEXT:',
+                  },
+                  feedBMessage: {
+                    value: '',
+                    command: '-OFF-REPLY-TEXT:',
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
+      channel_in: [
+        {
+          value: 1,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
+          },
+        },
+        {
+          value: 2,
+          name: '',
+          configs: {
+            emergencyCall: {
+              index: 0,
+              turn_on: '',
+              turn_off: '',
+            },
+            emergencyNumber: {
+              phone: '',
+            },
+            feedBMessage: '',
+          },
+        },
+      ],
+      settings_system: {
+        free_control: {
+          index: 0,
+          turn_on: 'ACM=ON',
+          turn_off: 'ACM=OFF',
+        },
+        feedBMessage: {
+          index: 0,
+          turn_on: 'REPORT=ON',
+          turn_off: 'REPORT=OFF',
+        },
+        replyMessage: {
+          index: 0,
+          turn_on: 'REPLY=ON',
+          turn_off: 'REPLY=OFF',
+        },
+        update_pwd_cap: 'CAP',
+        call_ring_tone: {
+          index: 0,
+          dial: 'A1',
+          dtmf: 'A2',
+        },
+        working_mode: {
+          index: 0,
+          toggle: 'MODE0',
+          switch: 'MODE1',
+        },
+
+        set_all_relay_status: '',
+      },
+      history: {
+        command: 'EVENTOS?',
+        automatic: {
+          index: 0,
+          prefix: 'EVENTOS-AUT',
+          commands: ['OFF', 'ON'],
+        },
+      },
+    },
+  ],
 
   screens: {
     general: {
@@ -731,12 +1004,12 @@ const state = {
         toasts: {
           sms: 'SMS sent successfully',
           sms_fail: 'SMS has not been sent',
-          relay_format:'The format is not correct',
-          relay_long:'The lenght is not correct',
-          relay_empty:'There are not values',
-          pwd_empty:'Both imputs are required',
-          pwd_long:'The lenght of the password is incorrect',
-          pwd_actual:'The current password is incorrect',
+          relay_format: 'The format is not correct',
+          relay_long: 'The lenght is not correct',
+          relay_empty: 'There are not values',
+          pwd_empty: 'Both imputs are required',
+          pwd_long: 'The lenght of the password is incorrect',
+          pwd_actual: 'The current password is incorrect',
         },
       },
       esp: {
@@ -772,15 +1045,12 @@ const state = {
         toasts: {
           sms: 'SMS Enviado exitosamente',
           sms_fail: 'SMS no ha sido enviado',
-          relay_format:'No esta en el formato correcto',
-          relay_long:'La longitud no es correcta',
-          relay_empty:'No hay valores',
-          pwd_empty:'Se necesitan los dos campos llenos',
-          pwd_long:'La longitud de la(s) contraseña(s) es incorrecta',
-          pwd_actual:'La contraseña actual es incorrecta',
-
-
-
+          relay_format: 'No esta en el formato correcto',
+          relay_long: 'La longitud no es correcta',
+          relay_empty: 'No hay valores',
+          pwd_empty: 'Se necesitan los dos campos llenos',
+          pwd_long: 'La longitud de la(s) contraseña(s) es incorrecta',
+          pwd_actual: 'La contraseña actual es incorrecta',
         },
       },
     },
