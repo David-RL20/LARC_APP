@@ -12,6 +12,7 @@ class ListGroup extends Component {
         phoneNumber={this.device.phoneNumber}
         item={item}
         theme={this.props.theme}
+        contacts={this.data}
       />
     );
   }
@@ -50,8 +51,6 @@ const style = StyleSheet.create({
   FlatList_container: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'red',
-    justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 20,
   },

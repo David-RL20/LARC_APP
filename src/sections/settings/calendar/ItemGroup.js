@@ -21,12 +21,12 @@ class ItemGroup extends Component {
           {borderColor: this.props.theme.settings_border},
         ]}
         onPress={this.redirect}>
-        <Icon />
-        <Text>{this.props.item.group_name}</Text>
-        <View>
-          <TouchableOpacity>
-            <Icon />
-          </TouchableOpacity>
+        <View style={style.icon_title_container}>
+          <Icon name="delete" width="40" />
+          <Text style={[style.title]}>{this.props.item.group_name}</Text>
+        </View>
+        <View style={style.delete_container}>
+          {this.props.contacts == [] && <Icon name="delete" width="40" />}
         </View>
       </TouchableOpacity>
     );
@@ -40,7 +40,22 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     height: 65,
     borderWidth: 1,
-    width: '90%',
+    paddingHorizontal: 10,
+  },
+  icon_title_container: {
+    flexDirection: 'row',
+    width: '60%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  delete_container: {
+    width: '30%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  title: {
+    fontSize: 18,
   },
 });
 
