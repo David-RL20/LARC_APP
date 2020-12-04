@@ -158,28 +158,44 @@ class ListItem extends Component {
         return device;
       }
     });
-  
+
     this.device = this.device[0];
-    
-    
+
     this.password = this.device.password;
     this.prefix = this.device.prefix;
     this.deletePrefix = this.device.calendar.calendar_prefix;
-  
   }
   render() {
     this.findDevice();
-    
+
     return (
-      <View style={(this.props.item.isSuspended==false)?[style.container]: [style.container,{backgroundColor:this.props.theme.body_background_isSuspended}]}>
+      <View
+        style={[
+          this.props.item.isSuspended == false
+            ? [style.container]
+            : [
+                style.container,
+                {backgroundColor: this.props.theme.body_background_isSuspended},
+              ],
+          {
+            borderColor: this.props.theme.settings_border,
+          },
+        ]}>
         <View
-          style={(this.props.item.isSuspended==false)?[
-            style.picture_name_container,
-            {backgroundColor: this.props.theme.body_background},
-          ] : [
-            style.picture_name_container,
-            {backgroundColor: this.props.theme.body_background_isSuspended},
-          ]}>
+          style={
+            this.props.item.isSuspended == false
+              ? [
+                  style.picture_name_container,
+                  {backgroundColor: this.props.theme.body_background},
+                ]
+              : [
+                  style.picture_name_container,
+                  {
+                    backgroundColor: this.props.theme
+                      .body_background_isSuspended,
+                  },
+                ]
+          }>
           <Icon width="37" height="38" name="profile" />
           <View style={style.name_phone_container}>
             <Text
@@ -211,7 +227,7 @@ class ListItem extends Component {
         <View
           style={[
             style.icons_container,
-            {backgroundColor: this.props.theme.background},
+            {backgroundColor: this.props.theme.body_background},
           ]}>
           <TouchableOpacity
             style={style.icon}
@@ -228,14 +244,16 @@ class ListItem extends Component {
             style={style.icon}>
             <Icon width={this.width} height={this.height} name="delete" />
           </TouchableOpacity>
-          <TouchableOpacity style={style.icon} onPress={()=>{
-            
-            this.props.navigation.navigate('EditContact',{
-                cellPhone:this.props.phoneNumber,
+          <TouchableOpacity
+            style={style.icon}
+            onPress={() => {
+              this.props.navigation.navigate('EditContact', {
+                cellPhone: this.props.phoneNumber,
                 phoneNumber: this.props.item.phoneNumber,
                 name: this.props.item.name,
-                number:this.props.item.number,
-              })}}>
+                number: this.props.item.number,
+              });
+            }}>
             <Icon width={this.width} height={this.height} name="edit" />
           </TouchableOpacity>
         </View>

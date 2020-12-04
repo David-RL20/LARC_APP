@@ -10,6 +10,7 @@ class ItemGroup extends Component {
   redirect() {
     this.props.navigation.navigate('contactScreen', {
       cellphone: this.props.phoneNumber,
+      group_id: this.props.item.id,
     });
   }
   render() {

@@ -372,10 +372,16 @@ const state = {
           {
             id: 1,
             group_name: 'Ju',
-            contacts: [],
+            contacts: [
+              {
+                name: 'Contacto 1',
+                isSuspended: false,
+                number: '001',
+                phoneNumber: '6645226280',
+              },
+            ],
           },
         ],
-        contacts: [],
       },
       channels: [
         {

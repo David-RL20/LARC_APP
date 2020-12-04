@@ -13,7 +13,6 @@ class ListContact extends Component {
         phoneNumber={this.device.phoneNumber}
         item={item}
         theme={this.props.theme}
-        
       />
     );
   }
@@ -28,17 +27,17 @@ class ListContact extends Component {
       (device) => device.phoneNumber == this.phoneNumber,
     );
     this.device = this.device[0];
+    //si el id es igual a 1, significa que esta en la posicion 0
+    this.data = this.device.calendar.groups[this.props.group_id - 1].contacts;
   }
   render() {
     this.phoneNumber = this.props.cellphone;
     this.findDevice();
-    
-
     return (
       <View style={style.FlatList_container}>
         <FlatList
           style={style.FlatList}
-          data={this.device.calendar.contacts}
+          data={this.data}
           renderItem={this.renderItem.bind(this)}
           keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={this.renderSeparator}

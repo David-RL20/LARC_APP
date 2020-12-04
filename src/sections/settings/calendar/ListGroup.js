@@ -33,7 +33,7 @@ class ListGroup extends Component {
     this.findDevice();
 
     return (
-      <View style={style.FlatList_container}>
+      <View style={[style.FlatList_container]}>
         <FlatList
           style={style.FlatList}
           data={this.device.calendar.groups}
@@ -49,6 +49,8 @@ class ListGroup extends Component {
 const style = StyleSheet.create({
   FlatList_container: {
     flex: 1,
+    width: '100%',
+    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 20,

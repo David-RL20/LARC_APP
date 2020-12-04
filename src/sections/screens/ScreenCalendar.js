@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Search from '../settings/calendar/SearchContact';
-import ListContact from '../settings/calendar/ListContacts';
-import AddContact from '../settings/calendar/AddContact';
+
 import {connect} from 'react-redux';
 import ListGroups from '../settings/calendar/ListGroup';
 const ScreenCalendar = (props) => {
@@ -14,16 +13,11 @@ const ScreenCalendar = (props) => {
           {backgroundColor: props.theme.body_background},
         ]}>
         <Search cellphone={props.route.params.cellphone} />
-        <ListGroups 
-        cellPhone={props.route.params.cellphone}
-        navigation={props.navigation}
-        />
-        {/* <ListContact
-          cellphone={props.route.params.cellphone}
+        <ListGroups
+          cellPhone={props.route.params.cellphone}
           navigation={props.navigation}
-        /> */}
+        />
       </SafeAreaView>
-      <AddContact cellphone={props.route.params.cellphone} />
     </>
   );
 };
