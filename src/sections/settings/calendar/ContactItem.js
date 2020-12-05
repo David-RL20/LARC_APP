@@ -229,8 +229,15 @@ class ListItem extends Component {
 
         <View
           style={[
+            this.props.item.isSuspended == false
+              ? [{backgroundColor: this.props.theme.body_background}]
+              : [
+                  {
+                    backgroundColor: this.props.theme
+                      .body_background_isSuspended,
+                  },
+                ],
             style.icons_container,
-            {backgroundColor: this.props.theme.body_background},
           ]}>
           <TouchableOpacity
             style={style.icon}

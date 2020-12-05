@@ -557,19 +557,15 @@ function Reducer(state, action) {
               calendar: {
                 ...device.calendar,
                 groups: device.calendar.groups.map((group) => {
-                    if (group.id == action.payLoad.id) {
-                      return {
-                        ...group,
-                        contacts: {
-                          ...group.contacts.filter(
-                            (contact) =>
-                              contact.number !== action.payLoad.number,
-                          ),
-                        },
-                      };
-                    } else return group;
-                  }),
-                
+                  if (group.id == action.payLoad.id) {
+                    return {
+                      ...group,
+                      contacts: group.contacts.filter(
+                        (contact) => contact.number !== action.payLoad.number,
+                      ),
+                    };
+                  } else return group;
+                }),
               },
             };
           } else return device;
@@ -586,23 +582,22 @@ function Reducer(state, action) {
               calendar: {
                 ...device.calendar,
                 groups: device.calendar.groups.map((group) => {
-                    if (group.id == action.payLoad.id) {
-                      return {
-                        ...group,
-                        contacts: group.contacts.map((contact) => {
-                          if (contact.number == action.payLoad.number) {
-                            return {
-                              ...contact,
-                              isSuspended: action.payLoad.isSuspended,
-                            };
-                          } else {
-                            return contact;
-                          }
-                        }),
-                      };
-                    } else return group;
-                  }),
-                
+                  if (group.id == action.payLoad.id) {
+                    return {
+                      ...group,
+                      contacts: group.contacts.map((contact) => {
+                        if (contact.number == action.payLoad.number) {
+                          return {
+                            ...contact,
+                            isSuspended: action.payLoad.isSuspended,
+                          };
+                        } else {
+                          return contact;
+                        }
+                      }),
+                    };
+                  } else return group;
+                }),
               },
             };
           } else return device;
@@ -619,23 +614,22 @@ function Reducer(state, action) {
               calendar: {
                 ...device.calendar,
                 groups: device.calendar.groups.map((group) => {
-                    if (group.id == action.payLoad.id) {
-                      return {
-                        ...group,
-                        contacts: group.contacts.map((contact) => {
-                          if (contact.number == action.payLoad.number) {
-                            return {
-                              ...contact,
-                              isSuspended: action.payLoad.isSuspended,
-                            };
-                          } else {
-                            return contact;
-                          }
-                        }),
-                      };
-                    } else return group;
-                  }),
-                
+                  if (group.id == action.payLoad.id) {
+                    return {
+                      ...group,
+                      contacts: group.contacts.map((contact) => {
+                        if (contact.number == action.payLoad.number) {
+                          return {
+                            ...contact,
+                            isSuspended: action.payLoad.isSuspended,
+                          };
+                        } else {
+                          return contact;
+                        }
+                      }),
+                    };
+                  } else return group;
+                }),
               },
             };
           } else return device;
@@ -652,23 +646,22 @@ function Reducer(state, action) {
               calendar: {
                 ...device.calendar,
                 groups: device.calendar.groups.map((group) => {
-                    if (group.id == action.payLoad.id) {
-                      return {
-                        ...group,
-                        contacts: group.contacts.map((contact) => {
-                          if (contact.number == action.payLoad.number) {
-                            return {
-                              ...contact,
-                              name: action.payLoad.name,
-                              number: action.payLoad.numberContact,
-                              phoneNumber: action.payLoad.phoneNumberContact,
-                            };
-                          } else return contact;
-                        }),
-                      };
-                    } else return group;
-                  }),
-                
+                  if (group.id == action.payLoad.id) {
+                    return {
+                      ...group,
+                      contacts: group.contacts.map((contact) => {
+                        if (contact.number == action.payLoad.number) {
+                          return {
+                            ...contact,
+                            name: action.payLoad.name,
+                            number: action.payLoad.numberContact,
+                            phoneNumber: action.payLoad.phoneNumberContact,
+                          };
+                        } else return contact;
+                      }),
+                    };
+                  } else return group;
+                }),
               },
             };
           } else return device;
@@ -685,23 +678,21 @@ function Reducer(state, action) {
               calendar: {
                 ...device.calendar,
                 groups: device.calendar.groups.map((group) => {
-                    if (group.id == action.payLoad.id) {
-                      return {
-                        ...group,
-                        contacts: [
-                          ...group.contacts,
-                          {
-                            name: action.payLoad.name,
-                            isSuspended: false,
-                            number: action.payLoad.number,
-                            phoneNumber: action.payLoad.phoneNumber,
-                          },
-                        ],
-                      };
-                    } else return group;
-                  }),
-                
-                
+                  if (group.id == action.payLoad.id) {
+                    return {
+                      ...group,
+                      contacts: [
+                        ...group.contacts,
+                        {
+                          name: action.payLoad.name,
+                          isSuspended: false,
+                          number: action.payLoad.number,
+                          phoneNumber: action.payLoad.phoneNumber,
+                        },
+                      ],
+                    };
+                  } else return group;
+                }),
               },
             };
           } else return device;

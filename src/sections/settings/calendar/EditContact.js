@@ -63,7 +63,6 @@ class EditContact extends Component {
   };
   handleEditContact = () => {
     const {availablePhoneNumber, availableRegisterNumber} = this.isAvailable();
-    console.log({availablePhoneNumber, availableRegisterNumber});
     if (this.verifyEmptyValues()) {
       if (availablePhoneNumber) {
         if (availableRegisterNumber) {
