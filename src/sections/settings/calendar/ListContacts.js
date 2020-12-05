@@ -11,6 +11,7 @@ class ListContact extends Component {
       <ContactItem
         navigation={this.props.navigation}
         phoneNumber={this.device.phoneNumber}
+        group_id={this.props.group_id}
         item={item}
         theme={this.props.theme}
       />
@@ -33,6 +34,7 @@ class ListContact extends Component {
   render() {
     this.phoneNumber = this.props.cellphone;
     this.findDevice();
+
     return (
       <View style={style.FlatList_container}>
         <FlatList

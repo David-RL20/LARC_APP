@@ -67,6 +67,7 @@ class ListItem extends Component {
           onPress: () => {
             this.props.deleteContact({
               phoneNumber: this.props.phoneNumber,
+              id: this.props.group_id,
               number: this.props.item.number,
             });
             Platform.OS === 'ios' &&
@@ -100,6 +101,7 @@ class ListItem extends Component {
           onPress: () => {
             this.props.suspendContact({
               phoneNumber: this.props.phoneNumber,
+              id: this.props.group_id,
               isSuspended: true,
               number: this.props.item.number,
             });
@@ -134,6 +136,7 @@ class ListItem extends Component {
           onPress: () => {
             this.props.activateContact({
               phoneNumber: this.props.phoneNumber,
+              id: this.props.group_id,
               isSuspended: false,
               number: this.props.item.number,
             });
@@ -252,6 +255,7 @@ class ListItem extends Component {
                 phoneNumber: this.props.item.phoneNumber,
                 name: this.props.item.name,
                 number: this.props.item.number,
+                id: this.props.group_id,
               });
             }}>
             <Icon width={this.width} height={this.height} name="edit" />

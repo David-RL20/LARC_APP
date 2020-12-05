@@ -45,34 +45,61 @@ class EditContact extends Component {
     }
     return false;
   }
-
-  handleEditContact = () => {
-    if (this.verifyEmptyValues()) {
-      if (this.verifyLength()) {
-        Toast.show(this.props.screen_general.missing_numbers);
-      } else {
-        this.range = parseInt(this.state.numberEdit);
-
-        if (this.range < 0 || this.range > 400) {
-          Toast.show(this.props.screen_general.over_limits_toast);
-        } else {
-          this.props.editContact({
-            phoneNumber: this.props.route.params.cellPhone,
-            number: this.props.route.params.number,
-            name: this.state.nameEdit || this.props.route.params.name,
-            numberContact:
-              this.state.numberEdit || this.props.route.params.number,
-            phoneNumberContact:
-              this.state.phoneEdit || this.props.route.params.phoneNumber,
-          });
-          Toast.show(this.props.screen.toasts.edit);
-          this.goBack();
+  isAvailable = () => {
+    let availablePhoneNumber = true,
+      availableRegisterNumber = true;
+    for (let i = 0; i < this.device.calendar.groups.length; i++) {
+      for (let j = 0; j < this.device.calendar.groups[i].contacts.length; j++) {
+        const contact = this.device.calendar.groups[i].contacts[j];
+        if (contact.phoneNumber == this.state.phoneEdit) {
+          availablePhoneNumber = false;
         }
+        if (contact.number == this.state.numberEdit) {
+          availableRegisterNumber = false;
+        }
+      }
+    }
+    return {availablePhoneNumber, availableRegisterNumber};
+  };
+  handleEditContact = () => {
+    const {availablePhoneNumber, availableRegisterNumber} = this.isAvailable();
+    console.log({availablePhoneNumber, availableRegisterNumber});
+    if (this.verifyEmptyValues()) {
+      if (availablePhoneNumber) {
+        if (availableRegisterNumber) {
+          if (this.verifyLength()) {
+            Toast.show(this.props.screen_general.missing_numbers);
+          } else {
+            this.range = parseInt(this.state.numberEdit);
+
+            if (this.range < 0 || this.range > 400) {
+              Toast.show(this.props.screen_general.over_limits_toast);
+            } else {
+              this.props.editContact({
+                phoneNumber: this.props.route.params.cellPhone,
+                number: this.props.route.params.number,
+                id: this.props.route.params.id,
+                name: this.state.nameEdit || this.props.route.params.name,
+                numberContact:
+                  this.state.numberEdit || this.props.route.params.number,
+                phoneNumberContact:
+                  this.state.phoneEdit || this.props.route.params.phoneNumber,
+              });
+              Toast.show(this.props.screen.toasts.edit);
+              this.goBack();
+            }
+          }
+        } else {
+          Toast.show(this.props.screen_general.registerNumber);
+        }
+      } else {
+        Toast.show(this.props.screen_general.RegisterNumber_not_available);
       }
     } else {
       Toast.show(this.props.screen.toasts.edit_fail);
     }
   };
+
   goBack() {
     this.setState({
       ...this.state,
@@ -81,7 +108,16 @@ class EditContact extends Component {
     this.props.navigation.goBack();
   }
 
+  findDevice() {
+    this.device = this.props.devices.filter(
+      (device) => device.phoneNumber == this.cellPhone,
+    );
+    this.device = this.device[0];
+  }
+
   render() {
+    this.cellPhone = this.props.route.params.cellPhone;
+    this.findDevice();
     return (
       <View
         style={{
@@ -236,6 +272,7 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     screen: state.screens.device[state.currentLanguage],
     screen_general: state.screens.general[state.currentLanguage],
+    devices: state.devices,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(EditContact);

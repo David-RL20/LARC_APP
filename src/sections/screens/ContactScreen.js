@@ -13,7 +13,10 @@ class ContactScreen extends Component {
             navigation={this.props.navigation}
           />
         </View>
-        <AddContact cellphone={this.props.route.params.cellphone} />
+        <AddContact
+          group_id={this.props.route.params.group_id}
+          cellphone={this.props.route.params.cellphone}
+        />
       </>
     );
   }

@@ -1,6 +1,6 @@
 // Este componente contiene la seleccion del canal output y el control de abrir, cerrar, por tiempo y por llamada.
 //los controles anteriormente explicados solo controlaran el dispositivo seleccionado con su canal seleccionado.
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -9,9 +9,9 @@ import {
   Platform,
   Alert,
 } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
-import { connect } from 'react-redux';
-import { setCurrentChannel } from '../../../Actions';
+import {ButtonGroup} from 'react-native-elements';
+import {connect} from 'react-redux';
+import {setCurrentChannel} from '../../../Actions';
 import Icon from '../../utils/Icon';
 import RNImmediatePhoneCall from 'react-native-immediate-phone-call';
 import SmsAndroid from 'react-native-get-sms-android';
@@ -44,19 +44,19 @@ class Controll extends Component {
       `${this.props.screen.alert.call} ${this.phoneNumber}?`,
       [
         {
-          text:  this.props.screen.alert.cancel,
+          text: this.props.screen.alert.cancel,
           onPress: () => {
             Toast.show(this.props.screen.toasts.call_cancel);
           },
         },
         {
-          text:  this.props.screen.alert.ok,
+          text: this.props.screen.alert.ok,
           onPress: () => {
             RNImmediatePhoneCall.immediatePhoneCall(this.phoneNumber);
           },
         },
       ],
-      { cancelable: true },
+      {cancelable: true},
     );
   }
   sendMessageIOS(msg, phone) {
@@ -70,11 +70,11 @@ class Controll extends Component {
       (completed, cancelled, error) => {
         console.log(
           'SMS Callback: completed: ' +
-          completed +
-          ' cancelled: ' +
-          cancelled +
-          'error: ' +
-          error,
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
         );
       },
     );
@@ -97,13 +97,13 @@ class Controll extends Component {
       this.props.screen.alert.close,
       [
         {
-          text:  this.props.screen.alert.cancel,
+          text: this.props.screen.alert.cancel,
           onPress: () => {
             console.log('Canceled');
           },
         },
         {
-          text:  this.props.screen.alert.ok,
+          text: this.props.screen.alert.ok,
           onPress: () => {
             Platform.OS === 'ios' &&
               this.sendMessageIOS(
@@ -118,7 +118,7 @@ class Controll extends Component {
           },
         },
       ],
-      { cancelable: true },
+      {cancelable: true},
     );
   }
   unlockDevice() {
@@ -148,7 +148,7 @@ class Controll extends Component {
           },
         },
       ],
-      { cancelable: true },
+      {cancelable: true},
     );
   }
   jogDevice() {
@@ -157,8 +157,7 @@ class Controll extends Component {
       this.props.screen.alert.time,
       [
         {
-      
-      text:this.props.screen.alert.cancel, 
+          text: this.props.screen.alert.cancel,
           onPress: () => {
             console.log('Cancell');
           },
@@ -179,7 +178,7 @@ class Controll extends Component {
           },
         },
       ],
-      { cancelable: true },
+      {cancelable: true},
     );
   }
   findDevice() {
@@ -192,9 +191,13 @@ class Controll extends Component {
     this.password = this.device.password;
     this.name = this.device.name;
     this.currentChannel = this.device.currentChannel;
-    this.device.channels[this.currentChannel - 1]
-    this.time = this.device.channels[this.currentChannel - 1].configs.channel_out.activation_time;
-    this.channel_out_name=this.device.channels[this.currentChannel - 1].configs.channel_out.name;
+    this.device.channels[this.currentChannel - 1];
+    this.time = this.device.channels[
+      this.currentChannel - 1
+    ].configs.channel_out.activation_time;
+    this.channel_out_name = this.device.channels[
+      this.currentChannel - 1
+    ].configs.channel_out.name;
   }
   render() {
     this.phoneNumber = this.props.route.params.phone;
@@ -204,14 +207,14 @@ class Controll extends Component {
       <View
         style={[
           style.container,
-          { backgroundColor: this.props.theme.body_background },
+          {backgroundColor: this.props.theme.body_background},
         ]}>
         {/* Channel control */}
         <View style={style.container_control}>
           <Text
             style={[
               style.labelChannel,
-              { color: this.props.theme.control_title },
+              {color: this.props.theme.control_title},
             ]}>
             {this.props.screen.title} :
           </Text>
@@ -230,7 +233,7 @@ class Controll extends Component {
             innerBorderStyle={{
               color: this.props.theme.control_channel_borders,
             }}
-            textStyle={{ color: this.props.theme.control_channel_numbers }}
+            textStyle={{color: this.props.theme.control_channel_numbers}}
             selectedButtonStyle={{
               backgroundColor: this.props.theme.control_channel_selected,
             }}
@@ -241,12 +244,12 @@ class Controll extends Component {
         </View>
         {/* Device control */}
         <View style={style.deviceControl}>
-          <View >
+          <View>
             <View style={style.namesTitles}>
               <Text
                 style={[
                   style.nameDevice,
-                  { color: this.props.theme.control_title },
+                  {color: this.props.theme.control_title},
                 ]}>
                 {this.name}
               </Text>
@@ -254,7 +257,7 @@ class Controll extends Component {
               <Text
                 style={[
                   style.nameChannel,
-                  { color: this.props.theme.control_title },
+                  {color: this.props.theme.control_title},
                 ]}>
                 {this.channel_out_name}
               </Text>
@@ -262,7 +265,7 @@ class Controll extends Component {
             <Text
               style={[
                 style.numberDevice,
-                { color: this.props.theme.control_subtitle },
+                {color: this.props.theme.control_subtitle},
               ]}>
               {this.phoneNumber}
             </Text>
@@ -342,8 +345,8 @@ const style = StyleSheet.create({
   },
   namesTitles: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 const mapStateToProps = (state) => {

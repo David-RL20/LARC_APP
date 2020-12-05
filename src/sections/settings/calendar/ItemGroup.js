@@ -23,10 +23,16 @@ class ItemGroup extends Component {
         onPress={this.redirect}>
         <View style={style.icon_title_container}>
           <Icon name="delete" width="40" />
-          <Text style={[style.title]}>{this.props.item.group_name}</Text>
+          <Text
+            style={[
+              style.title,
+              {color: this.props.theme.settings_calendar_group_title},
+            ]}>
+            {this.props.item.group_name}
+          </Text>
         </View>
         <View style={style.delete_container}>
-          {this.props.contacts == [] && <Icon name="delete" width="40" />}
+          {/* {this.props.item.contacts == [] && <Icon name="delete" width="40" />} */}
         </View>
       </TouchableOpacity>
     );
@@ -56,6 +62,7 @@ const style = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    paddingLeft: 10,
   },
 });
 

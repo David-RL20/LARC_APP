@@ -12,7 +12,7 @@ import SmsAndroid from 'react-native-get-sms-android';
 import SendSMS from 'react-native-sms';
 
 const AddContact = (props) => {
-  let password, prefix, searchCmd, searchIndex;
+  let password, prefix, searchCmd, searchIndex, device;
   const [state, setState] = useState({
     isVisible: false,
     input_register_number: '',
@@ -77,45 +77,71 @@ const AddContact = (props) => {
     }
     return false;
   };
-
-  const addContact = () => {
-    if (fullValues()) {
-      if (verifyLength()) {
-        Toast.show(props.screen_general.missing_numbers);
-      } else {
-        const range = parseInt(state.input_register_number);
-        if (range < 0 || range > 400) {
-          Toast.show(props.screen_general.super_limits);
-        } else {
-          props.addContact({
-            name: state.input_name,
-            number: state.input_register_number,
-            phoneNumber: state.input_cellphone,
-            phoneNumberDevice: props.cellphone,
-          });
-          Platform.OS === 'android' &&
-            sendMessageAndroid(
-              `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
-              props.cellphone,
-            );
-          Platform.OS === 'ios' &&
-            sendMessageIOS(
-              `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
-              props.cellphone,
-            );
-
-          state.input_cellphone = '';
-          state.input_name = '';
-          toggleOverlay();
+  const isAvailable = () => {
+    let availablePhoneNumber = true,
+      availableRegisterNumber = true;
+    for (let i = 0; i < device.calendar.groups.length; i++) {
+      for (let j = 0; j < device.calendar.groups[i].contacts.length; j++) {
+        const contact = device.calendar.groups[i].contacts[j];
+        if (contact.phoneNumber == state.input_cellphone) {
+          availablePhoneNumber = false;
+        }
+        if (contact.number == state.input_register_number) {
+          availableRegisterNumber = false;
         }
       }
+    }
+    return {availablePhoneNumber, availableRegisterNumber};
+  };
+
+  const addContact = () => {
+    const {availablePhoneNumber, availableRegisterNumber} = isAvailable();
+    if (availableRegisterNumber) {
+      if (availablePhoneNumber) {
+        if (fullValues()) {
+          if (verifyLength()) {
+            Toast.show(props.screen_general.missing_numbers);
+          } else {
+            const range = parseInt(state.input_register_number);
+            if (range < 0 || range > 400) {
+              Toast.show(props.screen_general.over_limits_toast);
+            } else {
+              props.addContact({
+                name: state.input_name,
+                number: state.input_register_number,
+                phoneNumber: state.input_cellphone,
+                phoneNumberDevice: props.cellphone,
+                id: props.group_id,
+              });
+              Platform.OS === 'android' &&
+                sendMessageAndroid(
+                  `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+                  props.cellphone,
+                );
+              Platform.OS === 'ios' &&
+                sendMessageIOS(
+                  `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+                  props.cellphone,
+                );
+
+              state.input_cellphone = '';
+              state.input_name = '';
+              toggleOverlay();
+            }
+          }
+        } else {
+          Toast.show(props.screen_general.missing_fields);
+        }
+      } else {
+        Toast.show(props.screen_general.phoneNumber_not_available);
+      }
     } else {
-      Toast.show(props.screen_general.missing_fields);
+      Toast.show(props.screen_general.RegisterNumber_not_available);
     }
   };
 
   function findDevice() {
-    let device = props.devices.filter((device) => {
+    device = props.devices.filter((device) => {
       if (device.phoneNumber == props.cellphone) {
         return device;
       }
