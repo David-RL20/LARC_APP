@@ -838,6 +838,8 @@ const state = {
         add_confirm_label: 'Confirm',
         number_placeholder_label: '#number',
         name_placeholder_label: 'Contact ###',
+        name_group_placeholder_label: 'Group ##',
+        add_group: 'Add group',
         add: 'Add Contact',
         name_label: 'Name',
         alerts: {
@@ -872,6 +874,8 @@ const state = {
         add_confirm_label: 'Confirmar',
         number_placeholder_label: '#numero',
         name_placeholder_label: 'Contacto ###',
+        name_group_placeholder_label: 'Grupo ##',
+        add_group: 'Agregar grupo',
         add: 'Agregar Contacto',
         name_label: 'Nombre',
         alerts: {

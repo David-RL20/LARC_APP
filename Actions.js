@@ -124,6 +124,11 @@ export const addContact = (payLoad) => ({
   payLoad,
 });
 
+/****************GROUP********************* */
+export const addGroup = (payLoad) => ({
+  type: 'ADD_GROUP',
+  payLoad,
+});
 /****************DEVICE********************* */
 export const addNewDevice = (payLoad) => ({
   type: 'ADD_DEVICE',

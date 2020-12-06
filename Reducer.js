@@ -698,6 +698,32 @@ function Reducer(state, action) {
           } else return device;
         }),
       };
+    /******************GROUP******************* */
+    case 'ADD_GROUP':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                groups: [
+                  ...device.calendar.groups,
+                  {
+                    id: device.calendar.groups.length + 1,
+                    group_name: action.payLoad.name,
+                    contacts: [],
+                  },
+                ],
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
+
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
       return {
