@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import Icon from '../../../utils/Icon';
-
+import {connect} from 'react-redux';
+import {deleteGroup} from '../../../../Actions';
 class ItemGroup extends Component {
   constructor() {
     super();
     this.redirect = this.redirect.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
   }
   redirect() {
     this.props.navigation.navigate('contactScreen', {
       cellphone: this.props.phoneNumber,
       group_id: this.props.item.id,
+    });
+  }
+  deleteGroup() {
+    this.props.deleteGroup({
+      phoneNumber: this.props.phoneNumber,
+      id: this.props.item.id,
     });
   }
   render() {
@@ -32,7 +40,11 @@ class ItemGroup extends Component {
           </Text>
         </View>
         <View style={style.delete_container}>
-          {/* {this.props.item.contacts == [] && <Icon name="delete" width="40" />} */}
+          {this.props.item.contacts.length == 0 && (
+            <TouchableOpacity onPress={this.deleteGroup}>
+              <Icon name="delete" width="30" />
+            </TouchableOpacity>
+          )}
         </View>
       </TouchableOpacity>
     );
@@ -66,4 +78,7 @@ const style = StyleSheet.create({
   },
 });
 
-export default ItemGroup;
+const mapDistpatchToProps = {
+  deleteGroup,
+};
+export default connect(null, mapDistpatchToProps)(ItemGroup);

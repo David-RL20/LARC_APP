@@ -723,6 +723,25 @@ function Reducer(state, action) {
           }
         }),
       };
+    case 'DELETE_GROUP':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                groups: device.calendar.groups.filter((group) => {
+                  group.id !== action.payLoad.id;
+                }),
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
 
     /******************DEVICE******************* */
     case 'ADD_DEVICE':
