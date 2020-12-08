@@ -3,12 +3,13 @@
 //boton de editar dispositivo
 //los anteriores botones se encuentran ubicados en cada elemento de la lista
 import React, {Component} from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import {FlatList, View, StyleSheet, Text} from 'react-native';
 import {connect} from 'react-redux';
 import ListItem from './ListItem';
 import Separator from '../../utils/horizontalPaddingSeparator';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {color} from 'react-native-reanimated';
 class ListaDispositivos extends Component {
   renderItem({item}) {
     return (
@@ -29,6 +30,15 @@ class ListaDispositivos extends Component {
   renderSeparator() {
     return <Separator />;
   }
+  renderEmptyComponent() {
+    return (
+      <View style={style.emptyContainer}>
+        <Text style={[{color: this.props.theme.header_title}]}>
+          {this.props.general.empty_devices}
+        </Text>
+      </View>
+    );
+  }
 
   render() {
     return (
@@ -43,6 +53,7 @@ class ListaDispositivos extends Component {
             data={this.props.device_list}
             renderItem={this.renderItem.bind(this)}
             ItemSeparatorComponent={this.renderSeparator}
+            ListEmptyComponent={this.renderEmptyComponent.bind(this)}
           />
         </View>
       </View>
@@ -59,6 +70,12 @@ const style = StyleSheet.create({
     width: '90%',
     paddingVertical: 20,
   },
+  emptyContainer: {
+    flex: 1,
+    height: 500,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 const mapStateToProps = (state) => {
@@ -66,6 +83,7 @@ const mapStateToProps = (state) => {
     device_list: state.devices,
     theme: state.themes[state.currentTheme],
     overlay_Screen: state.screens.device[state.currentLanguage],
+    general: state.screens.general[state.currentLanguage],
   };
 };
 export default connect(mapStateToProps)(ListaDispositivos);

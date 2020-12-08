@@ -18,6 +18,7 @@ const images = {
     check: require('./images/dark_check.png'),
     mark: require('./images/dark_suspend.png'),
     help: require('./images/dark_help.png'),
+    group: require('./images/dark_group.png'),
   },
   light: {
     logo: require('./images/light_larc.png'),
@@ -38,6 +39,7 @@ const images = {
     check: require('./images/light_check.png'),
     mark: require('./images/light_suspend.png'),
     help: require('./images/light_help.png'),
+    group: require('./images/light_group.png'),
   },
 };
 

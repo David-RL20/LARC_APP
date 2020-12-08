@@ -16,6 +16,7 @@ import SettingSystem from './sections/settings/system_settings/system_settings';
 import SettingCheck from './sections/settings/SettingsCheck';
 import EditDevice from './sections/device/EditDevice';
 import EditContact from './sections/settings/calendar/EditContact';
+import EditGroup from './sections/settings/calendar/EditGroup';
 import InfoScreen from './sections/screens/InfoScreen';
 import contactScreen from './sections/screens/ContactScreen';
 import {connect} from 'react-redux';
@@ -87,6 +88,7 @@ function App(props) {
         <Stack.Screen name="settings_check" component={SettingCheck} />
         <Stack.Screen name="EditDevice" component={EditDevice} />
         <Stack.Screen name="EditContact" component={EditContact} />
+        <Stack.Screen name="EditGroup" component={EditGroup} />
         <Stack.Screen name="contactScreen" component={contactScreen} />
         <Stack.Screen name="InfoScreen" component={InfoScreen} />
       </Stack.Navigator>

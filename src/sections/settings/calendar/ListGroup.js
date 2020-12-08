@@ -29,6 +29,15 @@ class ListGroup extends Component {
     );
     this.device = this.device[0];
   }
+  renderEmptyComponent() {
+    return (
+      <View style={style.emptyContainer}>
+        <Text style={[{color: this.props.theme.header_title}]}>
+          {this.props.general.empty_groups}
+        </Text>
+      </View>
+    );
+  }
   render() {
     this.phoneNumber = this.props.cellPhone;
 
@@ -42,6 +51,7 @@ class ListGroup extends Component {
           renderItem={this.renderItem.bind(this)}
           keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={this.renderSeparator}
+          ListEmptyComponent={this.renderEmptyComponent.bind(this)}
         />
       </View>
     );
@@ -54,6 +64,12 @@ const style = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     paddingVertical: 20,
+  },
+  emptyContainer: {
+    flex: 1,
+    height: 500,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 const mapStateToProps = (state) => {

@@ -100,7 +100,7 @@ const state = {
         serial: '#WHL',
       },
       calendar_prefix: '#WHL',
-      contacts: [],
+      groups: [],
     },
     channels: [
       {
@@ -354,286 +354,7 @@ const state = {
     eng: 'Loading...',
     esp: 'Cargando...',
   },
-  devices: [
-    {
-      name: 'David',
-      phoneNumber: '6645226208',
-      currentChannel: 1,
-      currentChannelIn: 1,
-      prefix: '#PWD',
-      password: '123456',
-      check_system_status: '#STATUS?',
-      calendar: {
-        search: {
-          index: 0,
-          phoneNumber: '#QUERY',
-          serial: '#WHL',
-        },
-        calendar_prefix: '#WHL',
-        groups: [
-          {
-            id: 1,
-            group_name: 'Ju',
-            contacts: [
-              {
-                name: 'Contacto 1',
-                isSuspended: false,
-                number: '001',
-                phoneNumber: '6643454982',
-              },
-            ],
-          },
-        ],
-      },
-      channels: [
-        {
-          name: 'OUT1',
-          value: 1,
-          configs: {
-            calendar: [],
-            history: [],
-            channel_out: {
-              name: '',
-              base_time: {
-                index: 0,
-                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-                seconds: 'TIMER-DELAY-AT-SECOND',
-                minutes: 'TIMER-DELAY-AT-MINUTE',
-              },
-              activation_time: '005',
-              currentStatus: 0,
-              on_off: [
-                {
-                  value: 0,
-                  activation_message: {
-                    value: '',
-                    command: '-ON-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-ON-REPLY-TEXT:',
-                  },
-                },
-                {
-                  value: 1,
-                  activation_message: {
-                    value: '',
-                    command: '-OFF-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-OFF-REPLY-TEXT:',
-                  },
-                },
-              ],
-            },
-          },
-        },
-        {
-          name: 'OUT2',
-          value: 2,
-          configs: {
-            calendar: [],
-            history: [],
-            channel_out: {
-              name: '',
-
-              base_time: {
-                index: 0,
-                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-                seconds: 'TIMER-DELAY-AT-SECOND',
-                minutes: 'TIMER-DELAY-AT-MINUTE',
-              },
-              activation_time: '005',
-              currentStatus: 0,
-              on_off: [
-                {
-                  value: 0,
-                  activation_message: {
-                    value: '',
-                    command: '-ON-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-ON-REPLY-TEXT:',
-                  },
-                },
-                {
-                  value: 1,
-                  activation_message: {
-                    value: '',
-                    command: '-OFF-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-OFF-REPLY-TEXT:',
-                  },
-                },
-              ],
-            },
-          },
-        },
-        {
-          name: 'OUT3',
-          value: 3,
-          configs: {
-            calendar: [],
-            history: [],
-            channel_out: {
-              name: '',
-
-              base_time: {
-                index: 0,
-                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-                seconds: 'TIMER-DELAY-AT-SECOND',
-                minutes: 'TIMER-DELAY-AT-MINUTE',
-              },
-              activation_time: '005',
-              currentStatus: 0,
-              on_off: [
-                {
-                  value: 0,
-                  activation_message: {
-                    value: '',
-                    command: '-ON-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-ON-REPLY-TEXT:',
-                  },
-                },
-                {
-                  value: 1,
-                  activation_message: {
-                    value: '',
-                    command: '-OFF-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-OFF-REPLY-TEXT:',
-                  },
-                },
-              ],
-            },
-          },
-        },
-        {
-          name: 'OUT4',
-          value: 4,
-          configs: {
-            calendar: [],
-            history: [],
-            channel_out: {
-              name: '',
-
-              base_time: {
-                index: 0,
-                milliseconds: 'TIMER-DELAY-AT-MILLISECOND',
-                seconds: 'TIMER-DELAY-AT-SECOND',
-                minutes: 'TIMER-DELAY-AT-MINUTE',
-              },
-              activation_time: '005',
-              currentStatus: 0,
-              on_off: [
-                {
-                  value: 0,
-                  activation_message: {
-                    value: '',
-                    command: '-ON-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-ON-REPLY-TEXT:',
-                  },
-                },
-                {
-                  value: 1,
-                  activation_message: {
-                    value: '',
-                    command: '-OFF-TEXT:',
-                  },
-                  feedBMessage: {
-                    value: '',
-                    command: '-OFF-REPLY-TEXT:',
-                  },
-                },
-              ],
-            },
-          },
-        },
-      ],
-      channel_in: [
-        {
-          value: 1,
-          name: '',
-          configs: {
-            emergencyCall: {
-              index: 0,
-              turn_on: '',
-              turn_off: '',
-            },
-            emergencyNumber: {
-              phone: '',
-            },
-            feedBMessage: '',
-          },
-        },
-        {
-          value: 2,
-          name: '',
-          configs: {
-            emergencyCall: {
-              index: 0,
-              turn_on: '',
-              turn_off: '',
-            },
-            emergencyNumber: {
-              phone: '',
-            },
-            feedBMessage: '',
-          },
-        },
-      ],
-      settings_system: {
-        free_control: {
-          index: 0,
-          turn_on: 'ACM=ON',
-          turn_off: 'ACM=OFF',
-        },
-        feedBMessage: {
-          index: 0,
-          turn_on: 'REPORT=ON',
-          turn_off: 'REPORT=OFF',
-        },
-        replyMessage: {
-          index: 0,
-          turn_on: 'REPLY=ON',
-          turn_off: 'REPLY=OFF',
-        },
-        update_pwd_cap: 'CAP',
-        call_ring_tone: {
-          index: 0,
-          dial: 'A1',
-          dtmf: 'A2',
-        },
-        working_mode: {
-          index: 0,
-          toggle: 'MODE0',
-          switch: 'MODE1',
-        },
-
-        set_all_relay_status: '',
-      },
-      history: {
-        command: 'EVENTOS?',
-        automatic: {
-          index: 0,
-          prefix: 'EVENTOS-AUT',
-          commands: ['OFF', 'ON'],
-        },
-      },
-    },
-  ],
+  devices: [],
 
   screens: {
     general: {
@@ -645,6 +366,9 @@ const state = {
         change_configuration_label: 'Configuration changed ...',
         phoneNumber_not_available: 'Phone number already exist',
         RegisterNumber_not_available: 'Register number not available contact ',
+        empty_contacts: 'No contacts registered',
+        empty_devices: 'No devices registered',
+        empty_groups: 'No groups registered',
       },
       esp: {
         missing_numbers_label: 'Numero de celular debe tener 10 digitos',
@@ -654,6 +378,9 @@ const state = {
         change_configuration_label: 'La configuración cambio ...',
         phoneNumber_not_available: 'Numero de celular ya existe',
         RegisterNumber_not_available: 'Numero de registro no disponible ',
+        empty_contacts: 'No hay contactos registrados',
+        empty_devices: 'No hay dispositivos',
+        empty_groups: 'No hay grupos',
       },
     },
     device: {
@@ -857,9 +584,9 @@ const state = {
           sms_fail: 'SMS has not been sent',
           void: 'you have not written anything',
           check_length: 'Verify number length',
-          addGroup:'Group has been added',
-          editGroup:'Group´s name has been edited',
-          deleteGroup:'Group has been deleted',
+          addGroup: 'Group has been added',
+          editGroup: 'Group´s name has been edited',
+          deleteGroup: 'Group has been deleted',
         },
       },
       esp: {
@@ -896,11 +623,9 @@ const state = {
           sms_fail: 'SMS no ha sido enviado',
           void: 'No has escrito nada',
           check_length: 'Verifica la longitud del numero',
-          addGroup:'El grupo ha sido añadido',
-          editGroup:'El nombre del grupo ha sido editado',
-          deleteGroup:'El grupo ha sido eliminado',
-
-
+          addGroup: 'El grupo ha sido añadido',
+          editGroup: 'El nombre del grupo ha sido editado',
+          deleteGroup: 'El grupo ha sido eliminado',
         },
       },
     },

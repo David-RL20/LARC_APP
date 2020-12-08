@@ -31,6 +31,15 @@ class ListContact extends Component {
     //si el id es igual a 1, significa que esta en la posicion 0
     this.data = this.device.calendar.groups[this.props.group_id - 1].contacts;
   }
+  renderEmptyComponent() {
+    return (
+      <View style={style.emptyContainer}>
+        <Text style={[{color: this.props.theme.header_title}]}>
+          {this.props.general.empty_contacts}
+        </Text>
+      </View>
+    );
+  }
   render() {
     this.phoneNumber = this.props.cellphone;
     this.findDevice();
@@ -38,11 +47,12 @@ class ListContact extends Component {
     return (
       <View style={style.FlatList_container}>
         <FlatList
-          style={[style.FlatList,]}
+          style={[style.FlatList]}
           data={this.data}
           renderItem={this.renderItem.bind(this)}
           keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={this.renderSeparator}
+          ListEmptyComponent={this.renderEmptyComponent.bind(this)}
         />
       </View>
     );
@@ -61,6 +71,7 @@ const style = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
+    general: state.screens.general[state.currentLanguage],
     devices: state.devices,
   };
 };

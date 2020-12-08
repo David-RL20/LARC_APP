@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet, ToastAndroid} from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  ToastAndroid,
+} from 'react-native';
 import Icon from '../../../utils/Icon';
 import {connect} from 'react-redux';
 import {deleteGroup} from '../../../../Actions';
 import Toast from 'react-native-simple-toast';
-
 
 class ItemGroup extends Component {
   constructor() {
@@ -12,7 +17,6 @@ class ItemGroup extends Component {
     this.redirect = this.redirect.bind(this);
     this.deleteGroup = this.deleteGroup.bind(this);
     this.editGroup = this.editGroup.bind(this);
-
   }
   redirect() {
     this.props.navigation.navigate('contactScreen', {
@@ -25,19 +29,16 @@ class ItemGroup extends Component {
       phoneNumber: this.props.phoneNumber,
       id: this.props.item.id,
     });
-    Toast.show(this.props.screen.toasts.deleteGroup)
+    Toast.show(this.props.screen.toasts.deleteGroup);
   }
-  editGroup(){
-    this.props.navigation.navigate('EditGroup',{
+  editGroup() {
+    this.props.navigation.navigate('EditGroup', {
       cellphone: this.props.phoneNumber,
       group_id: this.props.item.id,
       group_name: this.props.item.group_name,
-
-    })
+    });
   }
   render() {
-    console.log(this.props.item.id)
-    console.log(this.props.item.group_name)
     return (
       <TouchableOpacity
         style={[
@@ -46,7 +47,7 @@ class ItemGroup extends Component {
         ]}
         onPress={this.redirect}>
         <View style={style.icon_title_container}>
-          <Icon name="delete" width="40" />
+          <Icon name="group" width="40" />
           <Text
             style={[
               style.title,
@@ -58,15 +59,14 @@ class ItemGroup extends Component {
         <View style={style.delete_container}>
           {this.props.item.contacts.length == 0 && (
             <TouchableOpacity onPress={this.deleteGroup}>
-              <Icon name="delete" width="30" />
+              <Icon name="delete" width="25" />
             </TouchableOpacity>
           )}
-          
         </View>
         <View style={style.edit_container}>
-        <TouchableOpacity onPress={this.editGroup}>
-              <Icon name="edit" width="30" />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={this.editGroup}>
+            <Icon name="edit" width="25" />
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
     );
@@ -98,8 +98,8 @@ const style = StyleSheet.create({
     width: '15%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    
+    justifyContent: 'flex-start',
+    paddingLeft: 6,
   },
   title: {
     fontSize: 18,
