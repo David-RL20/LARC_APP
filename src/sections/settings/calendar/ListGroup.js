@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {connect} from 'react-redux';
 import ItemGroup from './ItemGroup';
 import Separator from '../../../utils/horizontalPaddingSeparator';
@@ -67,7 +67,7 @@ const style = StyleSheet.create({
   },
   emptyContainer: {
     flex: 1,
-    height: 500,
+    height: 400,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -77,6 +77,7 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     devices: state.devices,
     device_screen: state.screens.settings_calendar[state.currentLanguage],
+    general: state.screens.general[state.currentLanguage],
   };
 };
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
 import ContactItem from './ContactItem';
 import {connect} from 'react-redux';
 import Separator from '../../../utils/horizontalPaddingSeparator';
@@ -65,6 +65,12 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 20,
+  },
+  emptyContainer: {
+    flex: 1,
+    height: 500,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
