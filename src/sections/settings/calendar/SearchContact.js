@@ -57,6 +57,7 @@ class Calendar extends Component {
     if (this.searchIndex == 1 && this.inputSearch.length == 3) return true;
     return false;
   }
+
   handleSearchMessage() {
     if (this.inputSearch == '') {
       Toast.show(this.props.calendar.toasts.void);

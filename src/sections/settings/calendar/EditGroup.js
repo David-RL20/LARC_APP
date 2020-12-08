@@ -1,25 +1,21 @@
-/*Este componente solo se visualiza si elusuario da tap al boton de agregar dispositivo
-Es una especie de over layout que recibe un formulario que debe ser completado todos sus campos
-ademas despues de confirmarlo este se debe agregar ala memoria
-*/
 import React, {useState} from 'react';
 import {Button, Overlay, Input} from 'react-native-elements';
 import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {addGroup} from '../../../../Actions';
+import {editGroup} from '../../../../Actions';
 import Toast from 'react-native-simple-toast';
 
-const AddContact = (props) => {
+const EditGroup = (props) => {
   let [state, setState] = useState({
-    isVisible: false,
-    input_name: '',
+    isVisible: true,
+    
   });
-  
   const toggleOverlay = () => {
     setState({
       ...state,
       isVisible: !state.isVisible,
     });
+    props.navigation.goBack();
   };
   const fullValues = () => {
     if (state.input_name !== '') {
@@ -28,35 +24,29 @@ const AddContact = (props) => {
     return false;
   };
 
-  const addGroup = () => {
+  const editGroup = () => {
     if (fullValues()) {
-      props.addGroup({
-        name: state.input_name,
-        phoneNumber: props.phoneNumber,
+      props.editGroup({
+        phoneNumber: props.route.params.cellphone,
+        id:props.route.params.group_id,
+        name: state.input_name || props.route.params.group_name,
+        
       });
-      state.input_name='';
-      Toast.show(props.device_screen.toasts.addGroup)
+      Toast.show(props.device_screen.toasts.editGroup);
+
       toggleOverlay();
-      
     } else {
       Toast.show(props.screen_general.missing_fields);
     }
   };
 
+ 
   return (
+    
     <View
       style={{
         backgroundColor: props.theme.overlay_background,
       }}>
-      <Button
-        title={props.device_screen.add_group}
-        buttonStyle={{
-          backgroundColor: props.theme.overlay_background,
-        }}
-        titleStyle={{color: props.theme.overlay_title}}
-        onPress={toggleOverlay}
-      />
-
       <Overlay
         overlayStyle={[
           style.Overlay,
@@ -73,6 +63,7 @@ const AddContact = (props) => {
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder={props.device_screen.name_group_placeholder_label}
+              defaultValue={props.route.params.group_name}
               inputStyle={{color: props.theme.overlay_title}}
               onChangeText={(text) => {
                 setState({
@@ -99,7 +90,7 @@ const AddContact = (props) => {
                 {backgroundColor: props.theme.overlay_button_primary},
               ]}
               titleStyle={{color: props.theme.overlay_button_title}}
-              onPress={addGroup}
+              onPress={editGroup}
             />
           </View>
         </View>
@@ -154,12 +145,12 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.settings_calendar[state.currentLanguage],
     screen_general: state.screens.general[state.currentLanguage],
-    devices: state.devices,
+    
   };
 };
 
 const mapDispatchToProps = {
-  addGroup,
+  editGroup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
+export default connect(mapStateToProps, mapDispatchToProps)(EditGroup);

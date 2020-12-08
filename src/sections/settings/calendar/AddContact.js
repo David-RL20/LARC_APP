@@ -96,9 +96,9 @@ const AddContact = (props) => {
 
   const addContact = () => {
     const {availablePhoneNumber, availableRegisterNumber} = isAvailable();
-    if (availableRegisterNumber) {
-      if (availablePhoneNumber) {
-        if (fullValues()) {
+    if (fullValues()) {
+      if (availableRegisterNumber) {
+        if (availablePhoneNumber) {
           if (verifyLength()) {
             Toast.show(props.screen_general.missing_numbers);
           } else {
@@ -130,13 +130,13 @@ const AddContact = (props) => {
             }
           }
         } else {
-          Toast.show(props.screen_general.missing_fields);
+          Toast.show(props.screen_general.phoneNumber_not_available);
         }
       } else {
-        Toast.show(props.screen_general.phoneNumber_not_available);
+        Toast.show(props.screen_general.RegisterNumber_not_available);
       }
     } else {
-      Toast.show(props.screen_general.RegisterNumber_not_available);
+      Toast.show(props.screen_general.missing_fields);
     }
   };
 

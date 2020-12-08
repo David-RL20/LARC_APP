@@ -279,6 +279,8 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     height: 65,
     borderWidth: 1,
+    
+    
   },
   picture_name_container: {
     flexDirection: 'row',

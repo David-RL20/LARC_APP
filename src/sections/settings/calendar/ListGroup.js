@@ -12,6 +12,7 @@ class ListGroup extends Component {
         phoneNumber={this.device.phoneNumber}
         item={item}
         theme={this.props.theme}
+        screen={this.props.device_screen}
         contacts={this.data}
       />
     );
@@ -59,6 +60,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
     devices: state.devices,
+    device_screen: state.screens.settings_calendar[state.currentLanguage],
   };
 };
 

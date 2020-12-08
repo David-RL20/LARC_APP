@@ -17,6 +17,7 @@ const ScreenCalendar = (props) => {
           <ListGroups
             cellPhone={props.route.params.cellphone}
             navigation={props.navigation}
+           
           />
         </View>
         <AddGroup phoneNumber={props.route.params.cellphone} />
@@ -33,6 +34,8 @@ const style = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     theme: state.themes[state.currentTheme],
+    
+
   };
 };
 export default connect(mapStateToProps)(ScreenCalendar);

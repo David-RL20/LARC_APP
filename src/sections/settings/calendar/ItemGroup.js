@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet, ToastAndroid} from 'react-native';
 import Icon from '../../../utils/Icon';
 import {connect} from 'react-redux';
 import {deleteGroup} from '../../../../Actions';
+import Toast from 'react-native-simple-toast';
+
+
 class ItemGroup extends Component {
   constructor() {
     super();
     this.redirect = this.redirect.bind(this);
     this.deleteGroup = this.deleteGroup.bind(this);
+    this.editGroup = this.editGroup.bind(this);
+
   }
   redirect() {
     this.props.navigation.navigate('contactScreen', {
@@ -20,8 +25,19 @@ class ItemGroup extends Component {
       phoneNumber: this.props.phoneNumber,
       id: this.props.item.id,
     });
+    Toast.show(this.props.screen.toasts.deleteGroup)
+  }
+  editGroup(){
+    this.props.navigation.navigate('EditGroup',{
+      cellphone: this.props.phoneNumber,
+      group_id: this.props.item.id,
+      group_name: this.props.item.group_name,
+
+    })
   }
   render() {
+    console.log(this.props.item.id)
+    console.log(this.props.item.group_name)
     return (
       <TouchableOpacity
         style={[
@@ -45,6 +61,12 @@ class ItemGroup extends Component {
               <Icon name="delete" width="30" />
             </TouchableOpacity>
           )}
+          
+        </View>
+        <View style={style.edit_container}>
+        <TouchableOpacity onPress={this.editGroup}>
+              <Icon name="edit" width="30" />
+        </TouchableOpacity>
         </View>
       </TouchableOpacity>
     );
@@ -67,10 +89,17 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   delete_container: {
-    width: '30%',
+    width: '20%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  edit_container: {
+    width: '15%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    
   },
   title: {
     fontSize: 18,

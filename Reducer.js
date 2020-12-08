@@ -723,6 +723,34 @@ function Reducer(state, action) {
           }
         }),
       };
+      case 'EDIT_GROUP':
+      return {
+        ...state,
+        devices: state.devices.map((device) => {
+          if (device.phoneNumber == action.payLoad.phoneNumber) {
+            return {
+              ...device,
+              calendar: {
+                ...device.calendar,
+                groups:device.calendar.groups.map((group)=>{
+                  if (group.id== action.payLoad.id) {
+                    return{
+                      ...group,
+                      group_name:action.payLoad.name
+                    }
+                    
+                  }else return group
+                }),
+                  
+        
+                 
+              },
+            };
+          } else {
+            return device;
+          }
+        }),
+      };
     case 'DELETE_GROUP':
       return {
         ...state,
@@ -732,9 +760,9 @@ function Reducer(state, action) {
               ...device,
               calendar: {
                 ...device.calendar,
-                groups: device.calendar.groups.filter((group) => {
-                  group.id !== action.payLoad.id;
-                }),
+                groups: device.calendar.groups.filter(
+                  (group) => group.id !== action.payLoad.id
+                ),
               },
             };
           } else {

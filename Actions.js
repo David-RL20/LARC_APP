@@ -129,6 +129,10 @@ export const addGroup = (payLoad) => ({
   type: 'ADD_GROUP',
   payLoad,
 });
+export const editGroup = (payLoad) => ({
+  type: 'EDIT_GROUP',
+  payLoad,
+});
 export const deleteGroup = (payLoad) => ({
   type: 'DELETE_GROUP',
   payLoad,

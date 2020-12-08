@@ -857,6 +857,9 @@ const state = {
           sms_fail: 'SMS has not been sent',
           void: 'you have not written anything',
           check_length: 'Verify number length',
+          addGroup:'Group has been added',
+          editGroup:'Group´s name has been edited',
+          deleteGroup:'Group has been deleted',
         },
       },
       esp: {
@@ -893,6 +896,11 @@ const state = {
           sms_fail: 'SMS no ha sido enviado',
           void: 'No has escrito nada',
           check_length: 'Verifica la longitud del numero',
+          addGroup:'El grupo ha sido añadido',
+          editGroup:'El nombre del grupo ha sido editado',
+          deleteGroup:'El grupo ha sido eliminado',
+
+
         },
       },
     },

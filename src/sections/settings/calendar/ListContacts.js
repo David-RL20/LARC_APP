@@ -38,7 +38,7 @@ class ListContact extends Component {
     return (
       <View style={style.FlatList_container}>
         <FlatList
-          style={style.FlatList}
+          style={[style.FlatList,]}
           data={this.data}
           renderItem={this.renderItem.bind(this)}
           keyExtractor={this.keyExtractor}
