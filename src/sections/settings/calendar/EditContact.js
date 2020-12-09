@@ -4,6 +4,8 @@ import {Button, Overlay, Input} from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
 import {connect} from 'react-redux';
 import {editContact} from '../../../../Actions';
+import SmsAndroid from 'react-native-get-sms-android';
+import SendSMS from 'react-native-sms';
 
 //import {editContact} from '../../../Actions';
 class EditContact extends Component {
@@ -17,6 +19,38 @@ class EditContact extends Component {
     };
     this.handleEditContact = this.handleEditContact.bind(this);
     this.goBack = this.goBack.bind(this);
+  }
+  sendMessageIOS(msg, phone) {
+    SendSMS.send(
+      {
+        body: msg,
+        recipients: [phone],
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          'SMS Callback: completed: ' +
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
+        );
+      },
+    );
+  }
+  sendMessageAndroid(msg, phone) {
+    SmsAndroid.autoSend(
+      phone,
+      msg,
+      (fail) => {
+        Toast.show(this.props.device_screen.toasts.sms_fail);
+      },
+      (success) => {
+        Toast.show(this.props.device_screen.toasts.sms);
+      },
+    );
   }
   verifyEmptyValues() {
     if (
@@ -74,18 +108,34 @@ class EditContact extends Component {
             if (this.range < 0 || this.range > 400) {
               Toast.show(this.props.screen_general.over_limits_toast);
             } else {
-              this.props.editContact({
-                phoneNumber: this.props.route.params.cellPhone,
-                number: this.props.route.params.number,
-                id: this.props.route.params.id,
-                name: this.state.nameEdit || this.props.route.params.name,
-                numberContact:
-                  this.state.numberEdit || this.props.route.params.number,
-                phoneNumberContact:
-                  this.state.phoneEdit || this.props.route.params.phoneNumber,
-              });
-              Toast.show(this.props.screen.toasts.edit);
-              this.goBack();
+              if (
+                this.state.phoneEdit.match(/^[0-9]+$/) &&
+                this.state.numberEdit.match(/^[0-9]+$/)
+              ) {
+                this.props.editContact({
+                  phoneNumber: this.props.route.params.cellPhone,
+                  number: this.props.route.params.number,
+                  id: this.props.route.params.id,
+                  name: this.state.nameEdit,
+                  numberContact: this.state.numberEdit,
+                  phoneNumberContact: this.state.phoneEdit,
+                });
+                Platform.OS === 'android' &&
+                  this.sendMessageAndroid(
+                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.state.numberEdit}=${this.state.phoneEdit}`,
+                    this.cellPhone,
+                  );
+                Platform.OS === 'ios' &&
+                  this.sendMessageIOS(
+                    `${this.prefix}${this.password}${this.searchCmd.serial}${this.state.numberEdit}=${this.state.phoneEdit}`,
+                    this.cellPhone,
+                  );
+                this.deleteFromDevice(this.state.numberEdit);
+                Toast.show(this.props.screen.toasts.edit);
+                this.goBack();
+              } else {
+                Toast.show(this.props.screen.toasts.only_numbers);
+              }
             }
           }
         } else {
@@ -98,7 +148,22 @@ class EditContact extends Component {
       Toast.show(this.props.screen.toasts.edit_fail);
     }
   };
-
+  deleteFromDevice(number) {
+    if (this.props.route.params.number !== number) {
+      setTimeout(() => {
+        Platform.OS === 'android' &&
+          this.sendMessageAndroid(
+            `${this.prefix}${this.password}${this.searchCmd.serial}${this.props.route.params.number}=00`,
+            this.cellPhone,
+          );
+        Platform.OS === 'ios' &&
+          this.sendMessageIOS(
+            `${this.prefix}${this.password}${this.searchCmd.serial}${this.props.route.params.number}=00`,
+            this.cellPhone,
+          );
+      }, 5000);
+    }
+  }
   goBack() {
     this.setState({
       ...this.state,
@@ -112,6 +177,9 @@ class EditContact extends Component {
       (device) => device.phoneNumber == this.cellPhone,
     );
     this.device = this.device[0];
+    this.prefix = this.device.prefix;
+    this.password = this.device.password;
+    this.searchCmd = this.device.calendar.search;
   }
 
   render() {
@@ -271,6 +339,7 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     screen: state.screens.device[state.currentLanguage],
     screen_general: state.screens.general[state.currentLanguage],
+    device_screen: state.screens.settings_calendar[state.currentLanguage],
     devices: state.devices,
   };
 };

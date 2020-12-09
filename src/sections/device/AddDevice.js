@@ -31,21 +31,25 @@ const AddDevice = (props) => {
   };
   const handleAddDevice = () => {
     if (state.phoneNumber !== '' && state.name !== '') {
-      if (state.phoneNumber.length !== 10) {
-        Toast.show(props.general_screen.missing_numbers_label);
-      } else {
-        if (isAvailable(state.phoneNumber)) {
-          props.addNewDevice({
-            name: state.name,
-            phoneNumber: state.phoneNumber,
-          });
-          Toast.show(props.device_screen.toasts.add);
-          state.name = '';
-          state.phoneNumber = '';
-          toggleOverlay();
+      if (state.phoneNumber.match(/^[0-9]+$/)) {
+        if (state.phoneNumber.length !== 10) {
+          Toast.show(props.general_screen.missing_numbers_label);
         } else {
-          Toast.show(props.device_screen.toasts.add_repitation);
+          if (isAvailable(state.phoneNumber)) {
+            props.addNewDevice({
+              name: state.name,
+              phoneNumber: state.phoneNumber,
+            });
+            Toast.show(props.device_screen.toasts.add);
+            state.name = '';
+            state.phoneNumber = '';
+            toggleOverlay();
+          } else {
+            Toast.show(props.device_screen.toasts.add_repitation);
+          }
         }
+      } else {
+        Toast.show(props.device_screen.toasts.only_numbers);
       }
     } else {
       Toast.show(props.device_screen.toasts.add_fail);
@@ -98,7 +102,7 @@ const AddDevice = (props) => {
               {props.device_screen.cel_label}
             </Text>
             <Input
-              keyboardType="numeric"
+              keyboardType="number-pad"
               inputContainerStyle={style.input_container_style}
               containerStyle={style.input_container}
               placeholder="664*******"

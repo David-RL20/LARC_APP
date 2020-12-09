@@ -106,27 +106,34 @@ const AddContact = (props) => {
             if (range < 0 || range > 400) {
               Toast.show(props.screen_general.over_limits_toast);
             } else {
-              props.addContact({
-                name: state.input_name,
-                number: state.input_register_number,
-                phoneNumber: state.input_cellphone,
-                phoneNumberDevice: props.cellphone,
-                id: props.group_id,
-              });
-              Platform.OS === 'android' &&
-                sendMessageAndroid(
-                  `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
-                  props.cellphone,
-                );
-              Platform.OS === 'ios' &&
-                sendMessageIOS(
-                  `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
-                  props.cellphone,
-                );
+              if (
+                state.input_cellphone.match(/^[0-9]+$/) &&
+                state.input_register_number.match(/^[0-9]+$/)
+              ) {
+                props.addContact({
+                  name: state.input_name,
+                  number: state.input_register_number,
+                  phoneNumber: state.input_cellphone,
+                  phoneNumberDevice: props.cellphone,
+                  id: props.group_id,
+                });
+                Platform.OS === 'android' &&
+                  sendMessageAndroid(
+                    `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+                    props.cellphone,
+                  );
+                Platform.OS === 'ios' &&
+                  sendMessageIOS(
+                    `${prefix}${password}${searchCmd.serial}${state.input_register_number}=${state.input_cellphone}`,
+                    props.cellphone,
+                  );
 
-              state.input_cellphone = '';
-              state.input_name = '';
-              toggleOverlay();
+                state.input_cellphone = '';
+                state.input_name = '';
+                toggleOverlay();
+              } else {
+                Toast.show(props.screen.toasts.only_numbers);
+              }
             }
           }
         } else {
@@ -304,6 +311,7 @@ const mapStateToProps = (state) => {
     theme: state.themes[state.currentTheme],
     device_screen: state.screens.settings_calendar[state.currentLanguage],
     screen_general: state.screens.general[state.currentLanguage],
+    screen: state.screens.device[state.currentLanguage],
     devices: state.devices,
   };
 };

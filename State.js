@@ -408,6 +408,7 @@ const state = {
           add_fail: 'The phone number or name has not been registered',
           add: 'The device has been added',
           add_repitation: 'Phone number already exists',
+          only_numbers: 'Only numbers allowed',
         },
       },
       esp: {
@@ -436,6 +437,7 @@ const state = {
             'El numero de telefono y/o el nombre no han sido registrados',
           add: 'El dispositivo ha sido añadido',
           add_repitation: 'El número de teléfono ya existen',
+          only_numbers: 'Solo se permiten numeros',
         },
       },
     },

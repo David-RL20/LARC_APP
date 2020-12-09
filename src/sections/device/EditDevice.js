@@ -31,14 +31,18 @@ class EditDevice extends Component {
       if (this.state.phoneEdit.length !== 10) {
         Toast.show(this.props.screen_general.missing_numbers_label);
       } else {
-        this.props.editDevice({
-          phoneNumber: this.props.route.params.phoneNumber,
-          name: this.props.route.params.name,
-          phoneEdit: this.state.phoneEdit,
-          nameEdit: this.state.nameEdit,
-        });
-        Toast.show(this.props.screen.toasts.edit);
-        this.goBack();
+        if (this.state.phoneEdit.match(/^[0-9]+$/)) {
+          this.props.editDevice({
+            phoneNumber: this.props.route.params.phoneNumber,
+            name: this.props.route.params.name,
+            phoneEdit: this.state.phoneEdit,
+            nameEdit: this.state.nameEdit,
+          });
+          Toast.show(this.props.screen.toasts.edit);
+          this.goBack();
+        } else {
+          Toast.show(this.props.screen.toasts.only_numbers);
+        }
       }
     } else {
       Toast.show(this.props.screen.toasts.edit_fail);
