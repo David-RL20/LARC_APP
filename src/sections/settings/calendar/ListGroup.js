@@ -18,7 +18,7 @@ class ListGroup extends Component {
     );
   }
   keyExtractor(item) {
-    return item.group_name;
+    return item.group_name + item.id;
   }
   renderSeparator() {
     return <Separator />;

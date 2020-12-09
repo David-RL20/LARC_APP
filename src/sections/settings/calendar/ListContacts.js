@@ -18,7 +18,7 @@ class ListContact extends Component {
     );
   }
   keyExtractor(item) {
-    return item.number.toString();
+    return item.number.toString() + item.name;
   }
   renderSeparator() {
     return <Separator />;

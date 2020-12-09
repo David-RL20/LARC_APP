@@ -7,25 +7,18 @@ import {editContact} from '../../../../Actions';
 
 //import {editContact} from '../../../Actions';
 class EditContact extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       visible: true,
-      nameEdit: undefined,
-      numberEdit: undefined,
-      phoneEdit: undefined,
+      nameEdit: this.props.route.params.name,
+      numberEdit: this.props.route.params.number,
+      phoneEdit: this.props.route.params.phoneNumber,
     };
     this.handleEditContact = this.handleEditContact.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-
   verifyEmptyValues() {
-    this.state = {
-      visible: true,
-      nameEdit: this.state.nameEdit || this.props.route.params.name,
-      numberEdit: this.state.numberEdit || this.props.route.params.number,
-      phoneEdit: this.state.phoneEdit || this.props.route.params.phoneNumber,
-    };
     if (
       this.state.phoneEdit !== '' &&
       this.state.nameEdit !== '' &&
@@ -52,18 +45,25 @@ class EditContact extends Component {
       for (let j = 0; j < this.device.calendar.groups[i].contacts.length; j++) {
         const contact = this.device.calendar.groups[i].contacts[j];
         if (contact.phoneNumber == this.state.phoneEdit) {
-          availablePhoneNumber = false;
+          if (this.state.phoneEdit !== this.props.route.params.phoneNumber) {
+            availablePhoneNumber = false;
+          }
         }
         if (contact.number == this.state.numberEdit) {
-          availableRegisterNumber = false;
+          if (this.state.numberEdit !== this.props.route.params.number) {
+            availableRegisterNumber = false;
+          }
         }
       }
     }
     return {availablePhoneNumber, availableRegisterNumber};
   };
   handleEditContact = () => {
-    const {availablePhoneNumber, availableRegisterNumber} = this.isAvailable();
     if (this.verifyEmptyValues()) {
+      const {
+        availablePhoneNumber,
+        availableRegisterNumber,
+      } = this.isAvailable();
       if (availablePhoneNumber) {
         if (availableRegisterNumber) {
           if (this.verifyLength()) {
@@ -89,10 +89,10 @@ class EditContact extends Component {
             }
           }
         } else {
-          Toast.show(this.props.screen_general.registerNumber);
+          Toast.show(this.props.screen_general.RegisterNumber_not_available);
         }
       } else {
-        Toast.show(this.props.screen_general.RegisterNumber_not_available);
+        Toast.show(this.props.screen_general.phoneNumber_not_available);
       }
     } else {
       Toast.show(this.props.screen.toasts.edit_fail);
